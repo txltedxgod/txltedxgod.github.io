@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --notion-bg:#ffffff;--notion-bg-soft:#f9f9f8;--notion-surface:#ffffff;--notion-surface-hover:#f6f5f4;
+  --notion-text:#191918;--notion-text-soft:rgba(0,0,0,.54);--notion-text-faint:rgba(0,0,0,.3);
+  --notion-border:rgba(0,0,0,.1);--notion-border-soft:rgba(0,0,0,.05);
+  --notion-shadow:0px .7px 1.462px rgba(0,0,0,.015),0px 3px 9px rgba(0,0,0,.03);
+  --notion-blue:#2783de;--notion-blue-bg:#f3f9fd;--notion-green-bg:#f6f9f7;--notion-orange-bg:#fcf7f4;--notion-gray-bg:#f9f8f7;
+  --notion-radius:8px;--notion-page-width:900px;
+  --accent:#2783de;--accent2:#7c5cff;
+}
+@media (prefers-color-scheme:dark){:root{
+  --notion-bg:#0b0b0c;--notion-bg-soft:#161617;--notion-surface:#161617;--notion-surface-hover:#222224;
+  --notion-text:#fafafa;--notion-text-soft:rgba(255,255,255,.55);--notion-text-faint:rgba(255,255,255,.32);
+  --notion-border:rgba(255,255,255,.16);--notion-border-soft:rgba(255,255,255,.09);
+  --notion-shadow:0px .7px 1.462px rgba(0,0,0,.2),0px 3px 9px rgba(0,0,0,.35);
+  --notion-blue:#5e9fe8;--notion-blue-bg:rgba(41,139,253,.09);--notion-green-bg:rgba(42,157,118,.1);--notion-orange-bg:rgba(246,126,35,.1);--notion-gray-bg:#1d1d1f;
+  --accent:#6aa6ff;--accent2:#9d86ff;
+}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--notion-bg);color:var(--notion-text);
+  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif;
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{text-wrap:balance}
+img{max-width:100%}
+
+/* glow backdrop */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(900px 500px at 15% -10%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 60%),
+            radial-gradient(800px 500px at 100% 0%,color-mix(in srgb,var(--accent2) 18%,transparent),transparent 55%);}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 22px;backdrop-filter:saturate(160%) blur(12px);
+  background:color-mix(in srgb,var(--notion-bg) 78%,transparent);border-bottom:1px solid var(--notion-border-soft)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
+.brand .logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:15px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--notion-shadow)}
+.lang{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
+.lang button{all:unset;cursor:pointer;font-size:13px;font-weight:600;color:var(--notion-text-soft);
+  padding:6px 12px;border-radius:999px;transition:.16s}
+.lang button:hover{color:var(--notion-text)}
+.lang button.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+
+main{max-width:var(--notion-page-width);margin:0 auto;padding:64px 24px 90px}
+section{margin-top:56px}
+
+/* hero */
+.hero{padding:44px 0 8px;text-align:center}
+.avatar{width:96px;height:96px;margin:0 auto 22px;border-radius:26px;display:grid;place-items:center;
+  font-size:44px;background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px}
+.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.04;letter-spacing:-.04em;font-weight:800;margin:0 0 16px;
+  background:linear-gradient(120deg,var(--notion-text),color-mix(in srgb,var(--accent) 65%,var(--notion-text)));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:19px;color:var(--notion-text-soft);max-width:600px;margin:0 auto}
+.cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:11px;font-size:14.5px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;transition:.16s;text-decoration:none}
+.btn.primary{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--notion-shadow)}
+.btn.primary:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.btn.ghost{background:var(--notion-surface);color:var(--notion-text);border-color:var(--notion-border)}
+.btn.ghost:hover{background:var(--notion-surface-hover);transform:translateY(-1px)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:46px}
+.stat{padding:20px;border:1px solid var(--notion-border-soft);border-radius:14px;background:var(--notion-surface);box-shadow:var(--notion-shadow);text-align:center}
+.stat .num{font-size:34px;font-weight:800;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{margin-top:6px;font-size:13.5px;color:var(--notion-text-soft);font-weight:500}
+
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.shead h2{font-size:26px;letter-spacing:-.02em;margin:0}
+.shead .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.lead{color:var(--notion-text-soft);font-size:16.5px;line-height:1.65;max-width:680px}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600;
+  background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
+.chip .d{width:8px;height:8px;border-radius:50%}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
+.card{padding:20px;border:1px solid var(--notion-border-soft);border-radius:14px;background:var(--notion-surface);box-shadow:var(--notion-shadow);transition:.16s}
+.card:hover{transform:translateY(-2px);border-color:var(--notion-border)}
+.card .ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:21px;margin-bottom:13px;background:var(--notion-gray-bg)}
+.card h3{margin:0 0 6px;font-size:16.5px}
+.card p{margin:0;color:var(--notion-text-soft);font-size:14.5px;line-height:1.55}
+
+/* feature callout */
+.feature{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:24px;border-radius:16px;margin-top:6px;
+  background:var(--notion-blue-bg);border:1px solid var(--notion-border-soft)}
+.feature .badge{font-size:21px;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:var(--notion-shadow)}
+.feature h3{margin:0 0 7px;font-size:18px}
+.feature p{margin:0;color:var(--notion-text-soft);line-height:1.6}
+.feature .link{display:inline-block;margin-top:12px;font-weight:600;color:var(--accent)}
+.feature .link:hover{text-decoration:underline}
+
+/* timeline */
+.tl{display:grid;gap:4px;margin-top:8px}
+.tl-item{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:14px;border-radius:12px;transition:.16s}
+.tl-item:hover{background:var(--notion-surface-hover)}
+.tl-item .yr{font-weight:700;color:var(--accent)}
+.tl-item p{margin:0;color:var(--notion-text-soft);line-height:1.55}
+.tl-item h3{margin:0 0 3px;font-size:15.5px}
+
+/* contact */
+.contact{margin-top:60px;padding:38px 28px;border-radius:20px;text-align:center;
+  background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
+.contact h2{font-size:27px;margin:0 0 8px;letter-spacing:-.02em}
+.contact p{color:var(--notion-text-soft);margin:0 auto 22px;max-width:440px}
+.contact .cta{margin-top:0}
+
+.footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--notion-border-soft);
+  color:var(--notion-text-faint);font-size:13px;text-align:center}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:1fr 1fr}
+  .cards{grid-template-columns:1fr}
+  .tl-item{grid-template-columns:1fr;gap:4px}
+  .feature{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="#top"><span class="logo">&lt;/&gt;</span><span data-i18n="brand">Portfolio</span></a>
+  <div class="lang" role="group" aria-label="Language">
+    <button data-lang="en" class="active">EN</button>
+    <button data-lang="uk">УК</button>
+    <button data-lang="ru">RU</button>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero reveal">
+    <div class="avatar">👨‍💻</div>
+    <span class="eyebrow" data-i18n="role">Software Developer</span>
+    <h1 data-i18n="heroTitle">Building tools people actually use</h1>
+    <p data-i18n="heroSub">17-year-old developer with 2.5 years of hands-on experience. I build plugins for exteraGram — a Telegram fork.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">✈️ <span data-i18n="ctaTg">Message on Telegram</span></a>
+      <a class="btn ghost" href="mailto:seidoutakidzava@gmail.com">✉️ <span data-i18n="ctaMail">Email me</span></a>
+      <a class="btn ghost" href="https://github.com/txltedxgod" target="_blank" rel="noopener">⭐ GitHub</a>
+    </div>
+  </section>
+
+  <section class="stats reveal">
+    <div class="stat"><div class="num">2.5+</div><div class="lbl" data-i18n="statYears">years of coding</div></div>
+    <div class="stat"><div class="num">17</div><div class="lbl" data-i18n="statAge">years old</div></div>
+    <div class="stat"><div class="num">3</div><div class="lbl" data-i18n="statLangs">spoken languages</div></div>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="dot"></span><h2 data-i18n="aboutH">About</h2></div>
+    <p class="lead" data-i18n="aboutP">I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. Most of my time goes into plugin development — extending apps with the functionality their users are missing.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="dot"></span><h2 data-i18n="stackH">Tech stack</h2></div>
+    <div class="chips">
+      <span class="chip"><span class="d" style="background:#3776ab"></span>Python</span>
+      <span class="chip"><span class="d" style="background:#f7df1e"></span>JavaScript</span>
+      <span class="chip"><span class="d" style="background:#3178c6"></span>TypeScript</span>
+      <span class="chip"><span class="d" style="background:#a97bff"></span>Kotlin</span>
+      <span class="chip"><span class="d" style="background:#f05032"></span>Git</span>
+      <span class="chip"><span class="d" style="background:#fcc624"></span>Linux</span>
+      <span class="chip"><span class="d" style="background:#4479a1"></span>SQL</span>
+      <span class="chip"><span class="d" style="background:#26a5e4"></span>Telegram Bot API</span>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="dot"></span><h2 data-i18n="workH">Currently working on</h2></div>
+    <div class="feature">
+      <div class="badge">🧩</div>
+      <div>
+        <h3 data-i18n="workTitle">exteraGram plugins</h3>
+        <p data-i18n="workP">I develop plugins for exteraGram, a feature-rich fork of Telegram. My plugins add new functionality, automate routine actions, and improve the everyday experience for users of the client.</p>
+        <a class="link" href="https://github.com/txltedxgod" target="_blank" rel="noopener" data-i18n="workLink">See my repositories →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="dot"></span><h2 data-i18n="doH">What I do</h2></div>
+    <div class="cards">
+      <div class="card"><div class="ico">🧩</div><h3 data-i18n="do1H">Plugin development</h3><p data-i18n="do1P">Extending apps like exteraGram with custom, reliable features.</p></div>
+      <div class="card"><div class="ico">🤖</div><h3 data-i18n="do2H">Automation & bots</h3><p data-i18n="do2P">Scripts and bots that take repetitive work off people's hands.</p></div>
+      <div class="card"><div class="ico">⚡</div><h3 data-i18n="do3H">Tools & utilities</h3><p data-i18n="do3P">Small, fast tools built to solve a specific, concrete problem.</p></div>
+      <div class="card"><div class="ico">📐</div><h3 data-i18n="do4H">Clean code´</h3><p data-i18n="do4P">Readable, maintainable code I'm comfortable coming back to.</p></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="shead"><span class="dot"></span><h2 data-i18n="jH">Journey</h2></div>
+    <div class="tl">
+      <div class="tl-item"><span class="yr" data-i18n="j1Y">~2023</span><div><h3 data-i18n="j1H">First lines of code</h3><p data-i18n="j1P">Started learning programming and built my first small scripts.</p></div></div>
+      <div class="tl-item"><span class="yr" data-i18n="j2Y">2024</span><div><h3 data-i18n="j2H">Going deeper</h3><p data-i18n="j2P">Moved into real projects, automation, and the Telegram ecosystem.</p></div></div>
+      <div class="tl-item"><span class="yr" data-i18n="j3Y">Now</span><div><h3 data-i18n="j3H">exteraGram plugins</h3><p data-i18n="j3P">Actively building and maintaining plugins for the exteraGram community.</p></div></div>
+    </div>
+  </section>
+
+  <section class="contact reveal">
+    <h2 data-i18n="cH">Let's get in touch</h2>
+    <p data-i18n="cP">Open to collaboration, plugin requests, and interesting projects.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">✈️ Telegram @seocry</a>
+      <a class="btn ghost" href="mailto:seidoutakidzava@gmail.com">✉️ seidoutakidzava@gmail.com</a>
+    </div>
+  </section>
+
+  <p class="footer"><span data-i18n="foot">Built with code & coffee</span> · © <span id="yr"></span></p>
+</main>
+
+<script>
+const dict={
+ en:{
+  brand:"Portfolio",role:"Software Developer",
+  heroTitle:"Building tools people actually use",
+  heroSub:"17-year-old developer with 2.5 years of hands-on experience. I build plugins for exteraGram — a Telegram fork.",
+  ctaTg:"Message on Telegram",ctaMail:"Email me",
+  statYears:"years of coding",statAge:"years old",statLangs:"spoken languages",
+  aboutH:"About",
+  aboutP:"I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. Most of my time goes into plugin development — extending apps with the functionality their users are missing.",
+  stackH:"Tech stack",
+  workH:"Currently working on",workTitle:"exteraGram plugins",
+  workP:"I develop plugins for exteraGram, a feature-rich fork of Telegram. My plugins add new functionality, automate routine actions, and improve the everyday experience for users of the client.",
+  workLink:"See my repositories →",
+  doH:"What I do",
+  do1H:"Plugin development",do1P:"Extending apps like exteraGram with custom, reliable features.",
+  do2H:"Automation & bots",do2P:"Scripts and bots that take repetitive work off people's hands.",
+  do3H:"Tools & utilities",do3P:"Small, fast tools built to solve a specific, concrete problem.",
+  do4H:"Clean code",do4P:"Readable, maintainable code I'm comfortable coming back to.",
+  jH:"Journey",
+  j1Y:"~2023",j1H:"First lines of code",j1P:"Started learning programming and built my first small scripts.",
+  j2Y:"2024",j2H:"Going deeper",j2P:"Moved into real projects, automation, and the Telegram ecosystem.",
+  j3Y:"Now",j3H:"exteraGram plugins",j3P:"Actively building and maintaining plugins for the exteraGram community.",
+  cH:"Let's get in touch",cP:"Open to collaboration, plugin requests, and interesting projects.",
+  foot:"Built with code & coffee"
+ },
+ uk:{
+  brand:"Портфоліо",role:"Розробник програмного забезпечення",
+  heroTitle:"Створюю інструменти, якими справді користуються",
+  heroSub:"Розробник, 17 років, із 2.5 роками практичного досвіду. Створюю плагіни для exteraGram — форка Telegram.",
+  ctaTg:"Написати в Telegram",ctaMail:"Написати на пошту",
+  statYears:"років у коді",statAge:"років",statLangs:"мови спілкування",
+  aboutH:"Про мене",
+  aboutP:"Почав програмувати у 14 років і відтоді постійно щось релізю. Ціную чистий код, корисні функції та інструменти, які розв’язують реальні задачі. Найбільше часу приділяю розробці плагінів — розширюю додатки функціоналом, якого бракує користувачам.",
+  stackH:"Технології",
+  workH:"Зараз працюю над",workTitle:"Плагіни для exteraGram",
+  workP:"Розробляю плагіни для exteraGram — функціонального форка Telegram. Мої плагіни додають нові можливості, автоматизують рутинні дії та покращують щоденний досвід користувачів.",
+  workLink:"Мої репозиторії →",
+  doH:"Чим я займаюсь",
+  do1H:"Розробка плагінів",do1P:"Розширюю додатки на кшталт exteraGram надійними функціями.",
+  do2H:"Автоматизація та боти",do2P:"Скрипти та боти, які знімають рутинну роботу.",
+  do3H:"Інструменти та утиліти",do3P:"Невеликі швидкі інструменти для конкретної задачі.",
+  do4H:"Чистий код",do4P:"Читабельний і підтримуваний код, до якого не соромно повертатися.",
+  jH:"Шлях",
+  j1Y:"~2023",j1H:"Перші рядки коду",j1P:"Почав вчити програмування та написав перші невеликі скрипти.",
+  j2Y:"2024",j2H:"Глибше",j2P:"Перейшов до реальних проєктів, автоматизації та екосистеми Telegram.",
+  j3Y:"Зараз",j3H:"Плагіни exteraGram",j3P:"Активно створюю та підтримую плагіни для спільноти exteraGram.",
+  cH:"Зв’яжіться зі мною",cP:"Відкритий до співпраці, запитів на плагіни та цікавих проєктів.",
+  foot:"Зроблено на коді та каві"
+ },
+ ru:{
+  brand:"Портфолио",role:"Разработчик программного обеспечения",
+  heroTitle:"Создаю инструменты, которыми действительно пользуются",
+  heroSub:"Разработчик, 17 лет, с 2.5 годами практического опыта. Создаю плагины для exteraGram — форка Telegram.",
+  ctaTg:"Написать в Telegram",ctaMail:"Написать на почту",
+  statYears:"лет в коде",statAge:"лет",statLangs:"языка общения",
+  aboutH:"Обо мне",
+  aboutP:"Начал программировать в 14 лет и с тех пор постоянно что-то релизю. Ценю чистый код, полезные функции и инструменты, решающие реальные задачи. Больше всего времени уделяю разработке плагинов — расширяю приложения функционалом, которого не хватает пользователям.",
+  stackH:"Стек технологий",
+  workH:"Сейчас работаю над",workTitle:"Плагины для exteraGram",
+  workP:"Разрабатываю плагины для exteraGram — функционального форка Telegram. Мои плагины добавляют новые возможности, автоматизируют рутинные действия и улучшают повседневный опыт пользователей.",
+  workLink:"Мои репозитории →",
+  doH:"Чем я занимаюсь",
+  do1H:"Разработка плагинов",do1P:"Расширяю приложения вроде exteraGram надёжными функциями.",
+  do2H:"Автоматизация и боты",do2P:"Скрипты и боты, которые снимают рутинную работу.",
+  do3H:"Инструменты и утилиты",do3P:"Небольшие быстрые инструменты под конкретную задачу.",
+  do4H:"Чистый код",do4P:"Читаемый и поддерживаемый код, к которому не стыдно вернуться.",
+  jH:"Путь",
+  j1Y:"~2023",j1H:"Первые строки кода",j1P:"Начал учить программирование и написал первые небольшие скрипты.",
+  j2Y:"2024",j2H:"Глубже",j2P:"Перешёл к реальным проектам, автоматизации и экосистеме Telegram.",
+  j3Y:"Сейчас",j3H:"Плагины exteraGram",j3P:"Активно создаю и поддерживаю плагины для сообщества exteraGram.",
+  cH:"Свяжитесь со мной",cP:"Открыт к сотрудничеству, запросам на плагины и интересным проектам.",
+  foot:"Сделано на коде и кофе"
+ }
+};
+function setLang(lang){
+  document.documentElement.lang=lang==='uk'?'uk':lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(dict[lang]&&dict[lang][k]!==undefined) el.textContent=dict[lang][k];
+  });
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  try{localStorage.setItem('lang',lang);}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+let saved='en';try{saved=localStorage.getItem('lang')||'en';}catch(e){}
+if(!dict[saved])saved='en';
+setLang(saved);
+document.getElementById('yr').textContent=new Date().getFullYear();
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
