@@ -115,6 +115,14 @@ section{margin-top:56px}
 .tl-item p{margin:0;color:var(--notion-text-soft);line-height:1.55}
 .tl-item h3{margin:0 0 3px;font-size:15.5px}
 
+.skills{display:grid;gap:10px;margin-top:8px}
+.skill{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;border:1px solid var(--notion-border-soft);border-radius:14px;background:var(--notion-surface);box-shadow:var(--notion-shadow);transition:.16s}
+.skill:hover{transform:translateY(-2px);border-color:var(--notion-border)}
+.skill-main h3{margin:0 0 4px;font-size:16px}
+.skill-main p{margin:0;color:var(--notion-text-soft);font-size:14.5px;line-height:1.5}
+.skill-ex{flex:none;font-weight:600;color:var(--accent);font-size:14px;white-space:nowrap}
+.skill-ex:hover{text-decoration:underline}
+@media (max-width:760px){.skill{flex-direction:column;align-items:flex-start;gap:10px}}
 /* contact */
 .contact{margin-top:60px;padding:38px 28px;border-radius:20px;text-align:center;
   background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
@@ -153,7 +161,7 @@ section{margin-top:56px}
     <div class="avatar">👨‍💻</div>
     <span class="eyebrow" data-i18n="role">Software Developer</span>
     <h1 data-i18n="heroTitle">Building tools people actually use</h1>
-    <p data-i18n="heroSub">17-year-old developer with 2.5 years of hands-on experience. I build plugins for exteraGram — a Telegram fork.</p>
+    <p data-i18n="heroSub">17-year-old developer with 2.5 years of hands-on experience. I write real software and I'm confident working with libraries, APIs and other people's code.</p>
     <div class="cta">
       <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">✈️ <span data-i18n="ctaTg">Message on Telegram</span></a>
       <a class="btn ghost" href="mailto:seidoutakidzava@gmail.com">✉️ <span data-i18n="ctaMail">Email me</span></a>
@@ -169,30 +177,33 @@ section{margin-top:56px}
 
   <section class="reveal">
     <div class="shead"><span class="dot"></span><h2 data-i18n="aboutH">About</h2></div>
-    <p class="lead" data-i18n="aboutP">I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. Most of my time goes into plugin development — extending apps with the functionality their users are missing.</p>
+    <p class="lead" data-i18n="aboutP">I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. A lot of my growth comes from working with libraries and APIs — reading docs, fitting pieces together, and building on top of existing code.</p>
   </section>
 
   <section class="reveal">
     <div class="shead"><span class="dot"></span><h2 data-i18n="stackH">Tech stack</h2></div>
     <div class="chips">
       <span class="chip"><span class="d" style="background:#3776ab"></span>Python</span>
+      <span class="chip"><span class="d" style="background:#009688"></span>FastAPI</span>
+      <span class="chip"><span class="d" style="background:#26a5e4"></span>aiogram</span>
+      <span class="chip"><span class="d" style="background:#336791"></span>PostgreSQL</span>
+      <span class="chip"><span class="d" style="background:#003b57"></span>SQLite</span>
+      <span class="chip"><span class="d" style="background:#2496ed"></span>Docker</span>
       <span class="chip"><span class="d" style="background:#f7df1e"></span>JavaScript</span>
-      <span class="chip"><span class="d" style="background:#3178c6"></span>TypeScript</span>
-      <span class="chip"><span class="d" style="background:#a97bff"></span>Kotlin</span>
+      <span class="chip"><span class="d" style="background:#e34f26"></span>HTML</span>
+      <span class="chip"><span class="d" style="background:#1572b6"></span>CSS</span>
       <span class="chip"><span class="d" style="background:#f05032"></span>Git</span>
       <span class="chip"><span class="d" style="background:#fcc624"></span>Linux</span>
-      <span class="chip"><span class="d" style="background:#4479a1"></span>SQL</span>
-      <span class="chip"><span class="d" style="background:#26a5e4"></span>Telegram Bot API</span>
     </div>
   </section>
 
   <section class="reveal">
-    <div class="shead"><span class="dot"></span><h2 data-i18n="workH">Currently working on</h2></div>
+    <div class="shead"><span class="dot"></span><h2 data-i18n="workH">In practice</h2></div>
     <div class="feature">
-      <div class="badge">🧩</div>
+      <div class="badge">🛠️</div>
       <div>
-        <h3 data-i18n="workTitle">exteraGram plugins</h3>
-        <p data-i18n="workP">I develop plugins for exteraGram, a feature-rich fork of Telegram. My plugins add new functionality, automate routine actions, and improve the everyday experience for users of the client.</p>
+        <h3 data-i18n="workTitle">Real-world projects</h3>
+        <p data-i18n="workP">A hands-on example of how I work: real projects where I read docs, integrate an app's API with third-party libraries, and ship reliable features.</p>
         <a class="link" href="https://github.com/txltedxgod" target="_blank" rel="noopener" data-i18n="workLink">See my repositories →</a>
       </div>
     </div>
@@ -201,7 +212,7 @@ section{margin-top:56px}
   <section class="reveal">
     <div class="shead"><span class="dot"></span><h2 data-i18n="doH">What I do</h2></div>
     <div class="cards">
-      <div class="card"><div class="ico">🧩</div><h3 data-i18n="do1H">Plugin development</h3><p data-i18n="do1P">Extending apps like exteraGram with custom, reliable features.</p></div>
+      <div class="card"><div class="ico">🧩</div><h3 data-i18n="do1H">Working with libraries</h3><p data-i18n="do1P">Reading docs and wiring up third-party libraries and APIs in real projects.</p></div>
       <div class="card"><div class="ico">🤖</div><h3 data-i18n="do2H">Automation & bots</h3><p data-i18n="do2P">Scripts and bots that take repetitive work off people's hands.</p></div>
       <div class="card"><div class="ico">⚡</div><h3 data-i18n="do3H">Tools & utilities</h3><p data-i18n="do3P">Small, fast tools built to solve a specific, concrete problem.</p></div>
       <div class="card"><div class="ico">📐</div><h3 data-i18n="do4H">Clean code´</h3><p data-i18n="do4P">Readable, maintainable code I'm comfortable coming back to.</p></div>
@@ -209,17 +220,30 @@ section{margin-top:56px}
   </section>
 
   <section class="reveal">
-    <div class="shead"><span class="dot"></span><h2 data-i18n="jH">Journey</h2></div>
-    <div class="tl">
-      <div class="tl-item"><span class="yr" data-i18n="j1Y">~2023</span><div><h3 data-i18n="j1H">First lines of code</h3><p data-i18n="j1P">Started learning programming and built my first small scripts.</p></div></div>
-      <div class="tl-item"><span class="yr" data-i18n="j2Y">2024</span><div><h3 data-i18n="j2H">Going deeper</h3><p data-i18n="j2P">Moved into real projects, automation, and the Telegram ecosystem.</p></div></div>
-      <div class="tl-item"><span class="yr" data-i18n="j3Y">Now</span><div><h3 data-i18n="j3H">exteraGram plugins</h3><p data-i18n="j3P">Actively building and maintaining plugins for the exteraGram community.</p></div></div>
+    <div class="shead"><span class="dot"></span><h2 data-i18n="skH">What I can do</h2></div>
+    <div class="skills">
+      <div class="skill">
+        <div class="skill-main"><h3 data-i18n="sk1H">Backend &amp; APIs (FastAPI)</h3><p data-i18n="sk1P">Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.</p></div>
+        <a class="skill-ex" href="https://github.com/txltedxgod/sitemonitoring" target="_blank" rel="noopener">sitemonitoring →</a>
+      </div>
+      <div class="skill">
+        <div class="skill-main"><h3 data-i18n="sk2H">Telegram bots (aiogram 3)</h3><p data-i18n="sk2P">A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.</p></div>
+        <a class="skill-ex" href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" rel="noopener">telegram-store-bot →</a>
+      </div>
+      <div class="skill">
+        <div class="skill-main"><h3 data-i18n="sk3H">Frontend &amp; dashboards</h3><p data-i18n="sk3P">Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.</p></div>
+        <a class="skill-ex" href="https://github.com/txltedxgod/lumi" target="_blank" rel="noopener">lumi →</a>
+      </div>
+      <div class="skill">
+        <div class="skill-main"><h3 data-i18n="sk4H">Integrating libraries &amp; tools</h3><p data-i18n="sk4P">Combine third-party libraries into one app — username search across hundreds of sites with Sherlock &amp; Maigret.</p></div>
+        <a class="skill-ex" href="https://github.com/txltedxgod/osint-hub" target="_blank" rel="noopener">osint-hub →</a>
+      </div>
     </div>
   </section>
 
   <section class="contact reveal">
     <h2 data-i18n="cH">Let's get in touch</h2>
-    <p data-i18n="cP">Open to collaboration, plugin requests, and interesting projects.</p>
+    <p data-i18n="cP">Open to collaboration and interesting projects.</p>
     <div class="cta">
       <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">✈️ Telegram @seocry</a>
       <a class="btn ghost" href="mailto:seidoutakidzava@gmail.com">✉️ seidoutakidzava@gmail.com</a>
@@ -234,74 +258,77 @@ const dict={
  en:{
   brand:"Portfolio",role:"Software Developer",
   heroTitle:"Building tools people actually use",
-  heroSub:"17-year-old developer with 2.5 years of hands-on experience. I build plugins for exteraGram — a Telegram fork.",
+  heroSub:"17-year-old developer with 2.5 years of hands-on experience. I write real software and I'm confident working with libraries, APIs and other people's code.",
   ctaTg:"Message on Telegram",ctaMail:"Email me",
   statYears:"years of coding",statAge:"years old",statLangs:"spoken languages",
   aboutH:"About",
-  aboutP:"I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. Most of my time goes into plugin development — extending apps with the functionality their users are missing.",
+  aboutP:"I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. A lot of my growth comes from working with libraries and APIs — reading docs, fitting pieces together, and building on top of existing code.",
   stackH:"Tech stack",
-  workH:"Currently working on",workTitle:"exteraGram plugins",
-  workP:"I develop plugins for exteraGram, a feature-rich fork of Telegram. My plugins add new functionality, automate routine actions, and improve the everyday experience for users of the client.",
+  workH:"In practice",workTitle:"Real-world projects",
+  workP:"A hands-on example of how I work: real projects where I read docs, integrate an app's API with third-party libraries, and ship reliable features.",
   workLink:"See my repositories →",
   doH:"What I do",
-  do1H:"Plugin development",do1P:"Extending apps like exteraGram with custom, reliable features.",
+  do1H:"Working with libraries",do1P:"Reading docs and wiring up third-party libraries and APIs in real projects.",
   do2H:"Automation & bots",do2P:"Scripts and bots that take repetitive work off people's hands.",
   do3H:"Tools & utilities",do3P:"Small, fast tools built to solve a specific, concrete problem.",
   do4H:"Clean code",do4P:"Readable, maintainable code I'm comfortable coming back to.",
   jH:"Journey",
   j1Y:"~2023",j1H:"First lines of code",j1P:"Started learning programming and built my first small scripts.",
   j2Y:"2024",j2H:"Going deeper",j2P:"Moved into real projects, automation, and the Telegram ecosystem.",
-  j3Y:"Now",j3H:"exteraGram plugins",j3P:"Actively building and maintaining plugins for the exteraGram community.",
-  cH:"Let's get in touch",cP:"Open to collaboration, plugin requests, and interesting projects.",
-  foot:"Built with code & coffee"
+  j3Y:"Now",j3H:"Building real tools",j3P:"Actively building and maintaining real-world projects and tools.",
+  cH:"Let's get in touch",cP:"Open to collaboration and interesting projects.",
+  foot:"Built with code & coffee",
+  skH:"What I can do",sk1H:"Backend & APIs (FastAPI)",sk1P:"Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.",sk2H:"Telegram bots (aiogram 3)",sk2P:"A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.",sk3H:"Frontend & dashboards",sk3P:"Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.",sk4H:"Integrating libraries & tools",sk4P:"Combine third-party libraries into one app — username search across hundreds of sites with Sherlock & Maigret.",skEx:"Example on GitHub →"
  },
  uk:{
   brand:"Портфоліо",role:"Розробник програмного забезпечення",
   heroTitle:"Створюю інструменти, якими справді користуються",
-  heroSub:"Розробник, 17 років, із 2.5 роками практичного досвіду. Створюю плагіни для exteraGram — форка Telegram.",
+  heroSub:"Розробник, 17 років, із 2.5 роками практичного досвіду. Пишу реальний софт і впевнено працюю з бібліотеками, API та чужим кодом.",
   ctaTg:"Написати в Telegram",ctaMail:"Написати на пошту",
   statYears:"років у коді",statAge:"років",statLangs:"мови спілкування",
   aboutH:"Про мене",
-  aboutP:"Почав програмувати у 14 років і відтоді постійно щось релізю. Ціную чистий код, корисні функції та інструменти, які розв’язують реальні задачі. Найбільше часу приділяю розробці плагінів — розширюю додатки функціоналом, якого бракує користувачам.",
+  aboutP:"Почав програмувати у 14 років і відтоді постійно щось релізю. Ціную чистий код, корисні функції та інструменти, які розв’язують реальні задачі. Найбільше зростання дає робота з бібліотеками та API — читаю документацію, складаю частини докупи й будую на основі готового коду.",
   stackH:"Технології",
-  workH:"Зараз працюю над",workTitle:"Плагіни для exteraGram",
-  workP:"Розробляю плагіни для exteraGram — функціонального форка Telegram. Мої плагіни додають нові можливості, автоматизують рутинні дії та покращують щоденний досвід користувачів.",
+  workH:"На практиці",workTitle:"Реальні проєкти",
+  workP:"Наочний приклад того, як я працюю: реальні проєкти, де я читаю документацію, інтегрую API застосунку зі сторонніми бібліотеками та релізю надійні фічі.",
   workLink:"Мої репозиторії →",
   doH:"Чим я займаюсь",
-  do1H:"Розробка плагінів",do1P:"Розширюю додатки на кшталт exteraGram надійними функціями.",
+  do1H:"Робота з бібліотеками",do1P:"Читаю документацію та підключаю сторонні бібліотеки й API у реальних проєктах.",
   do2H:"Автоматизація та боти",do2P:"Скрипти та боти, які знімають рутинну роботу.",
   do3H:"Інструменти та утиліти",do3P:"Невеликі швидкі інструменти для конкретної задачі.",
   do4H:"Чистий код",do4P:"Читабельний і підтримуваний код, до якого не соромно повертатися.",
   jH:"Шлях",
   j1Y:"~2023",j1H:"Перші рядки коду",j1P:"Почав вчити програмування та написав перші невеликі скрипти.",
   j2Y:"2024",j2H:"Глибше",j2P:"Перейшов до реальних проєктів, автоматизації та екосистеми Telegram.",
-  j3Y:"Зараз",j3H:"Плагіни exteraGram",j3P:"Активно створюю та підтримую плагіни для спільноти exteraGram.",
-  cH:"Зв’яжіться зі мною",cP:"Відкритий до співпраці, запитів на плагіни та цікавих проєктів.",
-  foot:"Зроблено на коді та каві"
+  j3Y:"Зараз",j3H:"Створення інструментів",j3P:"Активно створюю та підтримую реальні проєкти та інструменти.",
+  cH:"Зв’яжіться зі мною",cP:"Відкритий до співпраці та цікавих проєктів.",
+  foot:"Зроблено на коді та каві",
+  skH:"Що я вмію",sk1H:"Бекенд та API (FastAPI)",sk1P:"Асинхронні REST-бекенди на FastAPI з плануванням завдань і базою даних — self-hosted моніторинг аптайму з періодичними перевірками та Telegram-алертами.",sk2H:"Telegram-боти (aiogram 3)",sk2P:"Повноцінний бот-магазин: каталог, кошик, FSM-оформлення, промокоди, реферали та адмін-панель. PostgreSQL, Alembic, Docker.",sk3H:"Фронтенд та дашборди",sk3P:"Адаптивні дашборди на чистому HTML/CSS/JS — стріки, хітмапи, темна/світла теми, без залежностей.",sk4H:"Інтеграція бібліотек та інструментів",sk4P:"Поєдную сторонні бібліотеки в одному застосунку — пошук юзернеймів на сотнях сайтів через Sherlock і Maigret.",skEx:"Приклад на GitHub →"
  },
  ru:{
   brand:"Портфолио",role:"Разработчик программного обеспечения",
   heroTitle:"Создаю инструменты, которыми действительно пользуются",
-  heroSub:"Разработчик, 17 лет, с 2.5 годами практического опыта. Создаю плагины для exteraGram — форка Telegram.",
+  heroSub:"Разработчик, 17 лет, с 2.5 годами практического опыта. Пишу реальный софт и уверенно работаю с библиотеками, API и чужим кодом.",
   ctaTg:"Написать в Telegram",ctaMail:"Написать на почту",
   statYears:"лет в коде",statAge:"лет",statLangs:"языка общения",
   aboutH:"Обо мне",
-  aboutP:"Начал программировать в 14 лет и с тех пор постоянно что-то релизю. Ценю чистый код, полезные функции и инструменты, решающие реальные задачи. Больше всего времени уделяю разработке плагинов — расширяю приложения функционалом, которого не хватает пользователям.",
+  aboutP:"Начал программировать в 14 лет и с тех пор постоянно что-то релизю. Ценю чистый код, полезные функции и инструменты, решающие реальные задачи. Больше всего роста даёт работа с библиотеками и API — читаю документацию, собираю части воедино и строю на основе готового кода.",
   stackH:"Стек технологий",
-  workH:"Сейчас работаю над",workTitle:"Плагины для exteraGram",
-  workP:"Разрабатываю плагины для exteraGram — функционального форка Telegram. Мои плагины добавляют новые возможности, автоматизируют рутинные действия и улучшают повседневный опыт пользователей.",
+  workH:"На практике",workTitle:"Реальные проекты",
+  workP:"Наглядный пример того, как я работаю: реальные проекты, где я читаю документацию, интегрирую API приложения со сторонними библиотеками и релизю надёжные фичи.",
   workLink:"Мои репозитории →",
   doH:"Чем я занимаюсь",
-  do1H:"Разработка плагинов",do1P:"Расширяю приложения вроде exteraGram надёжными функциями.",
+  do1H:"Работа с библиотеками",do1P:"Читаю документацию и подключаю сторонние библиотеки и API в реальных проектах.",
   do2H:"Автоматизация и боты",do2P:"Скрипты и боты, которые снимают рутинную работу.",
   do3H:"Инструменты и утилиты",do3P:"Небольшие быстрые инструменты под конкретную задачу.",
   do4H:"Чистый код",do4P:"Читаемый и поддерживаемый код, к которому не стыдно вернуться.",
   jH:"Путь",
   j1Y:"~2023",j1H:"Первые строки кода",j1P:"Начал учить программирование и написал первые небольшие скрипты.",
   j2Y:"2024",j2H:"Глубже",j2P:"Перешёл к реальным проектам, автоматизации и экосистеме Telegram.",
-  j3Y:"Сейчас",j3H:"Плагины exteraGram",j3P:"Активно создаю и поддерживаю плагины для сообщества exteraGram.",
-  cH:"Свяжитесь со мной",cP:"Открыт к сотрудничеству, запросам на плагины и интересным проектам.",
-  foot:"Сделано на коде и кофе"
+  j3Y:"Сейчас",j3H:"Создание инструментов",j3P:"Активно создаю и поддерживаю реальные проекты и инструменты.",
+  cH:"Свяжитесь со мной",cP:"Открыт к сотрудничеству и интересным проектам.",
+  foot:"Сделано на коде и кофе",
+  skH:"Что я умею",sk1H:"Бэкенд и API (FastAPI)",sk1P:"Асинхронные REST-бэкенды на FastAPI с планировщиком задач и базой данных — self-hosted мониторинг аптайма с периодическими проверками и Telegram-алертами.",sk2H:"Telegram-боты (aiogram 3)",sk2P:"Полноценный бот-магазин: каталог, корзина, FSM-оформление, промокоды, рефералы и админ-панель. PostgreSQL, Alembic, Docker.",sk3H:"Фронтенд и дашборды",sk3P:"Адаптивные дашборды на чистом HTML/CSS/JS — стрики, хитмапы, тёмная/светлая темы, без зависимостей.",sk4H:"Интеграция библиотек и инструментов",sk4P:"Объединяю сторонние библиотеки в одном приложении — поиск юзернеймов на сотнях сайтов через Sherlock и Maigret.",skEx:"Пример на GitHub →"
  }
 };
 function setLang(lang){
