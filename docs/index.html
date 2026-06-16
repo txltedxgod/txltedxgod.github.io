@@ -3,12 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>txltedxgod — Python Developer & Bot Builder</title>
-<meta name="description" content="17-year-old Python developer. Telegram bots, FastAPI backends, GCP deployments, automation tools. Based in Tbilisi." />
-<meta property="og:title" content="txltedxgod — Python Developer & Bot Builder" />
-<meta property="og:description" content="17-year-old developer. Telegram bots, FastAPI backends, GCP Cloud Run, automation tools." />
+<title>txltedxgod — Software Developer · Python, FastAPI, Telegram bots</title>
+<meta name="description" content="17-year-old software developer with 2.5 years of experience. Python &amp; FastAPI backends, Telegram bots (aiogram 3), dashboards and automation tools. Real projects on GitHub." />
+<meta name="keywords" content="software developer, Python, FastAPI, aiogram, Telegram bot, backend, automation, dashboards, GitHub portfolio" />
+<meta name="author" content="txltedxgod" />
+<meta name="theme-color" content="#2783de" />
+<link rel="canonical" href="https://txltedxgod.github.io/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="txltedxgod — Software Developer" />
+<meta property="og:description" content="Python &amp; FastAPI backends, Telegram bots, dashboards and automation. Real projects on GitHub." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://txltedxgod.github.io/" />
+<meta property="og:site_name" content="txltedxgod" />
+<meta property="og:image" content="https://txltedxgod.github.io/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="uk_UA" />
+<meta property="og:locale:alternate" content="ru_RU" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="txltedxgod — Software Developer" />
+<meta name="twitter:description" content="Python &amp; FastAPI backends, Telegram bots, dashboards and automation. Real projects on GitHub." />
+<meta name="twitter:image" content="https://txltedxgod.github.io/og.png" />
 <style>
 /* === VARIABLES === */
 :root {
@@ -45,7 +65,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --notion-bg: #0b0b0c;
     --notion-bg-soft: #161617;
     --notion-surface: #161617;
@@ -68,6 +88,27 @@
     --accent: #6aa6ff;
     --accent2: #9d86ff;
   }
+}
+
+/* manual dark theme override (wins over OS preference) */
+:root[data-theme="dark"] {
+  --notion-bg: #0b0b0c;
+  --notion-bg-soft: #161617;
+  --notion-surface: #161617;
+  --notion-surface-hover: #222224;
+  --notion-text: #fafafa;
+  --notion-text-soft: rgba(255,255,255,.55);
+  --notion-text-faint: rgba(255,255,255,.32);
+  --notion-border: rgba(255,255,255,.16);
+  --notion-border-soft: rgba(255,255,255,.09);
+  --notion-shadow: 0px .7px 1.462px rgba(0,0,0,.2), 0px 3px 9px rgba(0,0,0,.35);
+  --notion-blue: #5e9fe8;
+  --notion-blue-bg: rgba(41,139,253,.09);
+  --notion-green-bg: rgba(42,157,118,.1);
+  --notion-orange-bg: rgba(246,126,35,.1);
+  --notion-gray-bg: #1d1d1f;
+  --accent: #6aa6ff;
+  --accent2: #9d86ff;
 }
 
 /* === RESET === */
@@ -153,6 +194,28 @@ body::before {
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
 }
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.theme-toggle {
+  all: unset;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  line-height: 1;
+  border-radius: 999px;
+  background: var(--notion-surface);
+  border: 1px solid var(--notion-border-soft);
+  box-shadow: var(--notion-shadow);
+  transition: .16s;
+}
+.theme-toggle:hover { background: var(--notion-surface-hover); transform: translateY(-1px) }
+.theme-toggle:active { transform: translateY(0) }
 
 /* === LAYOUT === */
 main {
@@ -434,16 +497,89 @@ section { margin-top: 56px }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease }
 .reveal.in { opacity: 1; transform: none }
 
+
+/* === PROJECT PREVIEWS === */
+.skill-main { flex: 1; min-width: 0 }
+.skill-foot { display: flex; align-items: center; gap: 14px; margin-top: 12px; flex-wrap: wrap }
+.skill-foot .skill-status { margin-top: 0 }
+.skill-preview {
+  flex: none;
+  width: 230px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--notion-border-soft);
+  background: var(--notion-bg-soft);
+  box-shadow: var(--notion-shadow);
+}
+.pv-bar {
+  display: flex; align-items: center; gap: 5px;
+  padding: 7px 9px;
+  background: var(--notion-surface-hover);
+  border-bottom: 1px solid var(--notion-border-soft);
+}
+.pv-bar span { width: 8px; height: 8px; border-radius: 50% }
+.pv-bar span:nth-child(1){ background:#ff5f57 }
+.pv-bar span:nth-child(2){ background:#febc2e }
+.pv-bar span:nth-child(3){ background:#28c840 }
+.pv-bar i { margin-left: 7px; font-style: normal; font-size: 10.5px; color: var(--notion-text-faint); font-family: ui-monospace, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.pv-body { padding: 11px; height: 116px; display: flex; flex-direction: column; gap: 6px; font-size: 11px; overflow: hidden }
+.pv-monitor .pv-row { display: flex; align-items: center; gap: 7px; padding: 5px 8px; border-radius: 6px; background: var(--notion-surface) }
+.pv-monitor b { font-weight: 600; flex: 1; color: var(--notion-text-soft); white-space: nowrap }
+.pv-monitor em { font-style: normal; color: var(--notion-text-faint) }
+.pv-dot { width: 7px; height: 7px; border-radius: 50%; flex: none }
+.pv-dot.ok { background:#22a06b }
+.pv-dot.warn { background:#e9a23b }
+.pv-chat { justify-content: flex-end }
+.bub { max-width: 82%; padding: 6px 9px; border-radius: 11px; line-height: 1.3 }
+.bub.in { align-self: flex-start; background: var(--notion-surface); border: 1px solid var(--notion-border-soft); color: var(--notion-text-soft) }
+.bub.out { align-self: flex-end; color:#fff; background: linear-gradient(135deg, var(--accent), var(--accent2)) }
+.pv-heat { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; align-content: center }
+.pv-heat i { aspect-ratio: 1; border-radius: 2px; background: var(--accent) }
+.pv-heat i.l0 { opacity: .14 }
+.pv-heat i.l1 { opacity: .32 }
+.pv-heat i.l2 { opacity: .52 }
+.pv-heat i.l3 { opacity: .74 }
+.pv-heat i.l4 { opacity: 1 }
+.pv-finance { justify-content: flex-end }
+.pv-finance .bars { display: flex; align-items: flex-end; gap: 7px; height: 100% }
+.pv-finance .bars i { flex: 1; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, var(--accent2), var(--accent)) }
+.pv-search { justify-content: center; gap: 7px }
+.pv-search .pv-input { display: flex; gap: 6px; padding: 6px 9px; border-radius: 7px; background: var(--notion-surface); border: 1px solid var(--notion-border-soft); color: var(--notion-text-soft) }
+.pv-search .pv-hit { height: 9px; border-radius: 4px; background: var(--notion-surface); position: relative; overflow: hidden }
+.pv-search .pv-hit::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--w, 60%); background: color-mix(in srgb, var(--accent) 38%, transparent) }
+
+/* === HERO TYPEWRITER === */
+.type-caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 3px; vertical-align: -2px; background: var(--accent); animation: caretBlink 1s steps(1) infinite }
+@keyframes caretBlink { 50% { opacity: 0 } }
+
 /* === RESPONSIVE === */
 @media (max-width: 760px) {
+  .nav { padding: 12px 16px }
+  main { padding: 40px 18px 70px }
+  .hero { padding: 28px 0 8px }
+  .hero h1 { font-size: clamp(30px, 9vw, 44px) }
   .stats { grid-template-columns: 1fr 1fr }
   .cards { grid-template-columns: 1fr }
   .feature { grid-template-columns: 1fr }
-  .skill { flex-direction: column; align-items: flex-start; gap: 10px }
+  .skill { flex-direction: column; align-items: stretch; gap: 14px }
+  .skill-preview { width: 100% }
+  .pv-body { height: 132px }
+  .cta { flex-direction: column; align-items: stretch }
+  .cta .btn { width: 100%; justify-content: center; text-align: center }
+}
+
+@media (max-width: 460px) {
+  .nav-controls { gap: 6px }
+  .lang { gap: 2px; padding: 3px }
+  .lang button { padding: 6px 9px; font-size: 12px }
+  .theme-toggle { width: 34px; height: 34px; font-size: 15px }
+  .stats { grid-template-columns: 1fr }
+  .brand span:last-child { display: none }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none }
+  .type-caret { animation: none }
 }
 </style>
 </head>
@@ -454,10 +590,13 @@ section { margin-top: 56px }
     <span class="logo">&lt;/&gt;</span>
     <span data-i18n="brand">Portfolio</span>
   </a>
-  <div class="lang" role="group" aria-label="Language">
-    <button data-lang="en" class="active">EN</button>
-    <button data-lang="uk">УК</button>
-    <button data-lang="ru">RU</button>
+  <div class="nav-controls">
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="uk">УК</button>
+      <button data-lang="ru">RU</button>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme" title="Theme">🌙</button>
   </div>
 </nav>
 
@@ -465,7 +604,7 @@ section { margin-top: 56px }
 
   <section class="hero reveal">
     <div class="avatar">👨‍💻</div>
-    <span class="eyebrow" data-i18n="role">Software Developer</span>
+    <span class="eyebrow"><span id="role-typer"></span><span class="type-caret" aria-hidden="true"></span></span>
     <h1 data-i18n="heroTitle">Building tools people actually use</h1>
     <p data-i18n="heroSub">17-year-old developer with 2.5 years of hands-on experience. I write real software and I'm confident working with libraries, APIs and other people's code.</p>
     <div class="cta">
@@ -540,48 +679,63 @@ section { margin-top: 56px }
     <div class="skills">
 
       <div class="skill">
+        <div class="skill-preview" aria-hidden="true"><div class="pv-bar"><span></span><span></span><span></span><i>sitemonitoring</i></div><div class="pv-body pv-monitor"><div class="pv-row"><span class="pv-dot ok"></span><b>api.service.io</b><em>99.9%</em></div><div class="pv-row"><span class="pv-dot ok"></span><b>db.primary</b><em>100%</em></div><div class="pv-row"><span class="pv-dot warn"></span><b>cache.node</b><em>98.2%</em></div><div class="pv-row"><span class="pv-dot ok"></span><b>worker.queue</b><em>99.7%</em></div></div></div>
         <div class="skill-main">
           <h3 data-i18n="sk1H">Backend &amp; APIs (FastAPI)</h3>
           <p data-i18n="sk1P">Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.</p>
-          <span class="skill-status active" data-i18n="sk1Status">● Active</span>
+          <div class="skill-foot">
+            <span class="skill-status active" data-i18n="sk1Status">● Active</span>
+            <a class="skill-ex" href="https://github.com/txltedxgod/sitemonitoring" target="_blank" rel="noopener">sitemonitoring →</a>
+          </div>
         </div>
-        <a class="skill-ex" href="https://github.com/txltedxgod/sitemonitoring" target="_blank" rel="noopener">sitemonitoring →</a>
       </div>
 
       <div class="skill">
+        <div class="skill-preview" aria-hidden="true"><div class="pv-bar"><span></span><span></span><span></span><i>telegram-store-bot</i></div><div class="pv-body pv-chat"><div class="bub in">🛒 Catalog · Cart</div><div class="bub out">/checkout · promo</div><div class="bub in">✅ Order #1042 paid</div></div></div>
         <div class="skill-main">
           <h3 data-i18n="sk2H">Telegram bots (aiogram 3)</h3>
           <p data-i18n="sk2P">A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.</p>
-          <span class="skill-status active" data-i18n="sk2Status">● Active</span>
+          <div class="skill-foot">
+            <span class="skill-status active" data-i18n="sk2Status">● Active</span>
+            <a class="skill-ex" href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" rel="noopener">telegram-store-bot →</a>
+          </div>
         </div>
-        <a class="skill-ex" href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" rel="noopener">telegram-store-bot →</a>
       </div>
 
       <div class="skill">
+        <div class="skill-preview" aria-hidden="true"><div class="pv-bar"><span></span><span></span><span></span><i>lumi</i></div><div class="pv-body pv-heat"><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l1"></i><i class="l0"></i><i class="l3"></i><i class="l4"></i><i class="l2"></i><i class="l1"></i><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l4"></i><i class="l3"></i><i class="l2"></i><i class="l1"></i><i class="l0"></i><i class="l2"></i><i class="l3"></i><i class="l1"></i><i class="l0"></i><i class="l1"></i><i class="l3"></i><i class="l4"></i><i class="l4"></i><i class="l2"></i><i class="l1"></i><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l2"></i><i class="l3"></i><i class="l1"></i><i class="l0"></i><i class="l1"></i><i class="l4"></i><i class="l3"></i><i class="l2"></i><i class="l1"></i><i class="l0"></i></div></div>
         <div class="skill-main">
           <h3 data-i18n="sk3H">Frontend &amp; dashboards</h3>
           <p data-i18n="sk3P">Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.</p>
-          <span class="skill-status active" data-i18n="sk3Status">● Live demo available</span>
+          <div class="skill-foot">
+            <span class="skill-status active" data-i18n="sk3Status">● Live demo available</span>
+            <a class="skill-ex" href="https://github.com/txltedxgod/lumi" target="_blank" rel="noopener">lumi →</a>
+          </div>
         </div>
-        <a class="skill-ex" href="https://github.com/txltedxgod/lumi" target="_blank" rel="noopener">lumi →</a>
       </div>
 
       <div class="skill">
+        <div class="skill-preview" aria-hidden="true"><div class="pv-bar"><span></span><span></span><span></span><i>finbot</i></div><div class="pv-body pv-finance"><div class="bars"><i style="height:38%"></i><i style="height:60%"></i><i style="height:46%"></i><i style="height:72%"></i><i style="height:55%"></i><i style="height:84%"></i><i style="height:67%"></i><i style="height:91%"></i></div></div></div>
         <div class="skill-main">
           <h3 data-i18n="sk4H">Cloud deployment (GCP)</h3>
           <p data-i18n="sk4P">Personal finance tracker bot deployed on Google Cloud Run — Python, SQLite, Docker, CI via gcloud CLI.</p>
-          <span class="skill-status prod" data-i18n="sk4Status">● Running in production</span>
+          <div class="skill-foot">
+            <span class="skill-status prod" data-i18n="sk4Status">● Running in production</span>
+            <a class="skill-ex" href="https://github.com/txltedxgod/finbot" target="_blank" rel="noopener">finbot →</a>
+          </div>
         </div>
-        <a class="skill-ex" href="https://github.com/txltedxgod/finbot" target="_blank" rel="noopener">finbot →</a>
       </div>
 
       <div class="skill">
+        <div class="skill-preview" aria-hidden="true"><div class="pv-bar"><span></span><span></span><span></span><i>osint-hub</i></div><div class="pv-body pv-search"><div class="pv-input">🔍 username</div><div class="pv-hit" style="--w:78%"></div><div class="pv-hit" style="--w:54%"></div><div class="pv-hit" style="--w:86%"></div><div class="pv-hit" style="--w:42%"></div></div></div>
         <div class="skill-main">
           <h3 data-i18n="sk5H">Integrating libraries &amp; tools</h3>
           <p data-i18n="sk5P">Combine third-party libraries into one app — username search across hundreds of sites with Sherlock &amp; Maigret.</p>
-          <span class="skill-status active" data-i18n="sk5Status">● Active</span>
+          <div class="skill-foot">
+            <span class="skill-status active" data-i18n="sk5Status">● Active</span>
+            <a class="skill-ex" href="https://github.com/txltedxgod/osint-hub" target="_blank" rel="noopener">osint-hub →</a>
+          </div>
         </div>
-        <a class="skill-ex" href="https://github.com/txltedxgod/osint-hub" target="_blank" rel="noopener">osint-hub →</a>
       </div>
 
     </div>
@@ -693,7 +847,7 @@ const dict = {
     skH: "Что я умею",
     sk1H: "Бэкенд и API (FastAPI)",           sk1P: "Асинхронные REST-бэкенды на FastAPI с планировщиком задач и базой данных — self-hosted мониторинг аптайма с Telegram-алертами.", sk1Status: "● Активный",
     sk2H: "Telegram-боты (aiogram 3)",        sk2P: "Полноценный бот-магазин: каталог, корзина, FSM-оформление, промокоды, рефералы и админ-панель. PostgreSQL, Alembic, Docker.",   sk2Status: "● Активный",
-    sk3H: "Фронтенд и дашборды",              sk3P: "Адаптивные дашборды на чистом HTML/CSS/JS — стрики, хитмапы, тёмная/светлая темы, без зависимостей.",                           sk3Status: "● Live demo доступно",
+    sk3H: "Фронтен�� и дашборды",              sk3P: "Адаптивные дашборды на чистом HTML/CSS/JS — стрики, хитмапы, тёмная/светлая темы, без зависимостей.",                           sk3Status: "● Live demo доступно",
     sk4H: "Деплой в облако (GCP)",            sk4P: "Бот-трекер личных финансов, задеплоенный на Google Cloud Run — Python, SQLite, Docker, CI через gcloud CLI.",                   sk4Status: "● Работает в продакшене",
     sk5H: "Интеграция библиотек и инструментов", sk5P: "Объединяю сторонние библиотеки в одном приложении — поиск юзернеймов на сотнях сайтов через Sherlock и Maigret.",           sk5Status: "● Активный",
     cH: "Есть проект?",
@@ -706,6 +860,33 @@ const dict = {
 const i18nEls = document.querySelectorAll('[data-i18n]');
 const langBtns = document.querySelectorAll('.lang button');
 
+// Hero role typewriter
+const roleSets = {
+  en: ["Software Developer", "Backend & APIs", "Telegram bot builder", "Automation & tooling"],
+  uk: ["Розробник ПЗ", "Бекенд та API", "Розробник Telegram-ботів", "Автоматизація"],
+  ru: ["Разработчик ПО", "Бэкенд и API", "Разработчик Telegram-ботов", "Автоматизация"]
+};
+const typerEl = document.getElementById('role-typer');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let typerLang = 'en', roleIdx = 0, charIdx = 0, deleting = false, typerTimer = null;
+function typeTick() {
+  const list = roleSets[typerLang] || roleSets.en;
+  const word = list[roleIdx % list.length];
+  charIdx += deleting ? -1 : 1;
+  if (typerEl) typerEl.textContent = word.slice(0, charIdx);
+  let delay = deleting ? 45 : 95;
+  if (!deleting && charIdx >= word.length) { delay = 1500; deleting = true; }
+  else if (deleting && charIdx <= 0) { deleting = false; roleIdx++; delay = 350; }
+  typerTimer = setTimeout(typeTick, delay);
+}
+function startTyper(lang) {
+  typerLang = roleSets[lang] ? lang : 'en';
+  if (reduceMotion) { if (typerEl) typerEl.textContent = (roleSets[typerLang] || roleSets.en)[0]; return; }
+  if (typerTimer) clearTimeout(typerTimer);
+  roleIdx = 0; charIdx = 0; deleting = false;
+  typeTick();
+}
+
 function setLang(lang) {
   if (!dict[lang]) lang = 'en';
   document.documentElement.lang = lang;
@@ -714,6 +895,7 @@ function setLang(lang) {
     if (dict[lang][k] !== undefined) el.textContent = dict[lang][k];
   });
   langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  startTyper(lang);
   try { localStorage.setItem('lang', lang); } catch(e) {}
 }
 
@@ -723,6 +905,27 @@ function getSavedLang() {
   try { return localStorage.getItem('lang') || 'en'; } catch { return 'en'; }
 }
 setLang(getSavedLang());
+
+// Theme toggle (manual light/dark with persistence; falls back to OS preference)
+const themeToggle = document.getElementById('theme-toggle');
+function savedTheme() {
+  try { return localStorage.getItem('theme'); } catch { return null; }
+}
+function effectiveTheme() {
+  const s = savedTheme();
+  if (s === 'dark' || s === 'light') return s;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function applyTheme(theme, persist) {
+  document.documentElement.setAttribute('data-theme', theme);
+  if (themeToggle) themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  if (persist) { try { localStorage.setItem('theme', theme); } catch(e) {} }
+}
+applyTheme(effectiveTheme(), false);
+if (themeToggle) themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next, true);
+});
 
 // Reveal on scroll
 const io = new IntersectionObserver(
