@@ -3,152 +3,457 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portfolio</title>
+<title>txltedxgod — Python Developer & Bot Builder</title>
+<meta name="description" content="17-year-old Python developer. Telegram bots, FastAPI backends, GCP deployments, automation tools. Based in Tbilisi." />
+<meta property="og:title" content="txltedxgod — Python Developer & Bot Builder" />
+<meta property="og:description" content="17-year-old developer. Telegram bots, FastAPI backends, GCP Cloud Run, automation tools." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://txltedxgod.github.io/" />
 <style>
-:root{
+/* === VARIABLES === */
+:root {
   color-scheme: light dark;
-  --notion-bg:#ffffff;--notion-bg-soft:#f9f9f8;--notion-surface:#ffffff;--notion-surface-hover:#f6f5f4;
-  --notion-text:#191918;--notion-text-soft:rgba(0,0,0,.54);--notion-text-faint:rgba(0,0,0,.3);
-  --notion-border:rgba(0,0,0,.1);--notion-border-soft:rgba(0,0,0,.05);
-  --notion-shadow:0px .7px 1.462px rgba(0,0,0,.015),0px 3px 9px rgba(0,0,0,.03);
-  --notion-blue:#2783de;--notion-blue-bg:#f3f9fd;--notion-green-bg:#f6f9f7;--notion-orange-bg:#fcf7f4;--notion-gray-bg:#f9f8f7;
-  --notion-radius:8px;--notion-page-width:900px;
-  --accent:#2783de;--accent2:#7c5cff;
+
+  /* backgrounds */
+  --notion-bg: #ffffff;
+  --notion-bg-soft: #f9f9f8;
+  --notion-surface: #ffffff;
+  --notion-surface-hover: #f6f5f4;
+
+  /* text */
+  --notion-text: #191918;
+  --notion-text-soft: rgba(0,0,0,.54);
+  --notion-text-faint: rgba(0,0,0,.3);
+
+  /* borders & shadows */
+  --notion-border: rgba(0,0,0,.1);
+  --notion-border-soft: rgba(0,0,0,.05);
+  --notion-shadow: 0px .7px 1.462px rgba(0,0,0,.015), 0px 3px 9px rgba(0,0,0,.03);
+
+  /* accent colors */
+  --notion-blue: #2783de;
+  --notion-blue-bg: #f3f9fd;
+  --notion-green-bg: #f6f9f7;
+  --notion-orange-bg: #fcf7f4;
+  --notion-gray-bg: #f9f8f7;
+
+  --notion-radius: 8px;
+  --notion-page-width: 900px;
+
+  --accent: #2783de;
+  --accent2: #7c5cff;
 }
-@media (prefers-color-scheme:dark){:root{
-  --notion-bg:#0b0b0c;--notion-bg-soft:#161617;--notion-surface:#161617;--notion-surface-hover:#222224;
-  --notion-text:#fafafa;--notion-text-soft:rgba(255,255,255,.55);--notion-text-faint:rgba(255,255,255,.32);
-  --notion-border:rgba(255,255,255,.16);--notion-border-soft:rgba(255,255,255,.09);
-  --notion-shadow:0px .7px 1.462px rgba(0,0,0,.2),0px 3px 9px rgba(0,0,0,.35);
-  --notion-blue:#5e9fe8;--notion-blue-bg:rgba(41,139,253,.09);--notion-green-bg:rgba(42,157,118,.1);--notion-orange-bg:rgba(246,126,35,.1);--notion-gray-bg:#1d1d1f;
-  --accent:#6aa6ff;--accent2:#9d86ff;
-}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--notion-bg);color:var(--notion-text);
-  font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif;
-  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-h1,h2,h3{text-wrap:balance}
-img{max-width:100%}
 
-/* glow backdrop */
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(900px 500px at 15% -10%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 60%),
-            radial-gradient(800px 500px at 100% 0%,color-mix(in srgb,var(--accent2) 18%,transparent),transparent 55%);}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --notion-bg: #0b0b0c;
+    --notion-bg-soft: #161617;
+    --notion-surface: #161617;
+    --notion-surface-hover: #222224;
 
-/* nav */
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-  padding:14px 22px;backdrop-filter:saturate(160%) blur(12px);
-  background:color-mix(in srgb,var(--notion-bg) 78%,transparent);border-bottom:1px solid var(--notion-border-soft)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
-.brand .logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:15px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--notion-shadow)}
-.lang{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
-.lang button{all:unset;cursor:pointer;font-size:13px;font-weight:600;color:var(--notion-text-soft);
-  padding:6px 12px;border-radius:999px;transition:.16s}
-.lang button:hover{color:var(--notion-text)}
-.lang button.active{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+    --notion-text: #fafafa;
+    --notion-text-soft: rgba(255,255,255,.55);
+    --notion-text-faint: rgba(255,255,255,.32);
 
-main{max-width:var(--notion-page-width);margin:0 auto;padding:64px 24px 90px}
-section{margin-top:56px}
+    --notion-border: rgba(255,255,255,.16);
+    --notion-border-soft: rgba(255,255,255,.09);
+    --notion-shadow: 0px .7px 1.462px rgba(0,0,0,.2), 0px 3px 9px rgba(0,0,0,.35);
 
-/* hero */
-.hero{padding:44px 0 8px;text-align:center}
-.avatar{width:96px;height:96px;margin:0 auto 22px;border-radius:26px;display:grid;place-items:center;
-  font-size:44px;background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
-.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:14px}
-.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.04;letter-spacing:-.04em;font-weight:800;margin:0 0 16px;
-  background:linear-gradient(120deg,var(--notion-text),color-mix(in srgb,var(--accent) 65%,var(--notion-text)));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{font-size:19px;color:var(--notion-text-soft);max-width:600px;margin:0 auto}
-.cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:11px;font-size:14.5px;font-weight:600;
-  border:1px solid transparent;cursor:pointer;transition:.16s;text-decoration:none}
-.btn.primary{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--notion-shadow)}
-.btn.primary:hover{transform:translateY(-1px);filter:brightness(1.05)}
-.btn.ghost{background:var(--notion-surface);color:var(--notion-text);border-color:var(--notion-border)}
-.btn.ghost:hover{background:var(--notion-surface-hover);transform:translateY(-1px)}
+    --notion-blue: #5e9fe8;
+    --notion-blue-bg: rgba(41,139,253,.09);
+    --notion-green-bg: rgba(42,157,118,.1);
+    --notion-orange-bg: rgba(246,126,35,.1);
+    --notion-gray-bg: #1d1d1f;
 
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:46px}
-.stat{padding:20px;border:1px solid var(--notion-border-soft);border-radius:14px;background:var(--notion-surface);box-shadow:var(--notion-shadow);text-align:center}
-.stat .num{font-size:34px;font-weight:800;letter-spacing:-.03em;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat .lbl{margin-top:6px;font-size:13.5px;color:var(--notion-text-soft);font-weight:500}
-
-.shead{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.shead h2{font-size:26px;letter-spacing:-.02em;margin:0}
-.shead .dot{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
-.lead{color:var(--notion-text-soft);font-size:16.5px;line-height:1.65;max-width:680px}
-
-/* chips */
-.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
-.chip{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;font-size:13.5px;font-weight:600;
-  background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
-.chip .d{width:8px;height:8px;border-radius:50%}
-
-/* cards */
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
-.card{padding:20px;border:1px solid var(--notion-border-soft);border-radius:14px;background:var(--notion-surface);box-shadow:var(--notion-shadow);transition:.16s}
-.card:hover{transform:translateY(-2px);border-color:var(--notion-border)}
-.card .ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:21px;margin-bottom:13px;background:var(--notion-gray-bg)}
-.card h3{margin:0 0 6px;font-size:16.5px}
-.card p{margin:0;color:var(--notion-text-soft);font-size:14.5px;line-height:1.55}
-
-/* feature callout */
-.feature{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:24px;border-radius:16px;margin-top:6px;
-  background:var(--notion-blue-bg);border:1px solid var(--notion-border-soft)}
-.feature .badge{font-size:21px;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:var(--notion-shadow)}
-.feature h3{margin:0 0 7px;font-size:18px}
-.feature p{margin:0;color:var(--notion-text-soft);line-height:1.6}
-.feature .link{display:inline-block;margin-top:12px;font-weight:600;color:var(--accent)}
-.feature .link:hover{text-decoration:underline}
-
-/* timeline */
-.tl{display:grid;gap:4px;margin-top:8px}
-.tl-item{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:14px;border-radius:12px;transition:.16s}
-.tl-item:hover{background:var(--notion-surface-hover)}
-.tl-item .yr{font-weight:700;color:var(--accent)}
-.tl-item p{margin:0;color:var(--notion-text-soft);line-height:1.55}
-.tl-item h3{margin:0 0 3px;font-size:15.5px}
-
-.skills{display:grid;gap:10px;margin-top:8px}
-.skill{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;border:1px solid var(--notion-border-soft);border-radius:14px;background:var(--notion-surface);box-shadow:var(--notion-shadow);transition:.16s}
-.skill:hover{transform:translateY(-2px);border-color:var(--notion-border)}
-.skill-main h3{margin:0 0 4px;font-size:16px}
-.skill-main p{margin:0;color:var(--notion-text-soft);font-size:14.5px;line-height:1.5}
-.skill-ex{flex:none;font-weight:600;color:var(--accent);font-size:14px;white-space:nowrap}
-.skill-ex:hover{text-decoration:underline}
-@media (max-width:760px){.skill{flex-direction:column;align-items:flex-start;gap:10px}}
-/* contact */
-.contact{margin-top:60px;padding:38px 28px;border-radius:20px;text-align:center;
-  background:var(--notion-surface);border:1px solid var(--notion-border-soft);box-shadow:var(--notion-shadow)}
-.contact h2{font-size:27px;margin:0 0 8px;letter-spacing:-.02em}
-.contact p{color:var(--notion-text-soft);margin:0 auto 22px;max-width:440px}
-.contact .cta{margin-top:0}
-
-.footer{margin-top:54px;padding-top:20px;border-top:1px solid var(--notion-border-soft);
-  color:var(--notion-text-faint);font-size:13px;text-align:center}
-
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-
-@media (max-width:760px){
-  .stats{grid-template-columns:1fr 1fr}
-  .cards{grid-template-columns:1fr}
-  .tl-item{grid-template-columns:1fr;gap:4px}
-  .feature{grid-template-columns:1fr}
+    --accent: #6aa6ff;
+    --accent2: #9d86ff;
+  }
 }
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* === RESET === */
+* { box-sizing: border-box }
+html { scroll-behavior: smooth }
+body {
+  margin: 0;
+  background: var(--notion-bg);
+  color: var(--notion-text);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none }
+h1, h2, h3 { text-wrap: balance }
+img { max-width: 100% }
+
+/* === GLOW BACKDROP === */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 15% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    radial-gradient(800px 500px at 100% 0%, color-mix(in srgb, var(--accent2) 18%, transparent), transparent 55%);
+}
+
+/* === NAV === */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  backdrop-filter: saturate(160%) blur(12px);
+  background: color-mix(in srgb, var(--notion-bg) 78%, transparent);
+  border-bottom: 1px solid var(--notion-border-soft);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.brand .logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 15px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: var(--notion-shadow);
+}
+.lang {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--notion-surface);
+  border: 1px solid var(--notion-border-soft);
+  box-shadow: var(--notion-shadow);
+}
+.lang button {
+  all: unset;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--notion-text-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: .16s;
+}
+.lang button:hover { color: var(--notion-text) }
+.lang button.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+/* === LAYOUT === */
+main {
+  max-width: var(--notion-page-width);
+  margin: 0 auto;
+  padding: 64px 24px 90px;
+}
+section { margin-top: 56px }
+
+/* === HERO === */
+.hero { padding: 44px 0 8px; text-align: center }
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 22px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  font-size: 44px;
+  background: var(--notion-surface);
+  border: 1px solid var(--notion-border-soft);
+  box-shadow: var(--notion-shadow);
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: clamp(38px, 7vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -.04em;
+  font-weight: 800;
+  margin: 0 0 16px;
+  background: linear-gradient(120deg, var(--notion-text), color-mix(in srgb, var(--accent) 65%, var(--notion-text)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero p {
+  font-size: 19px;
+  color: var(--notion-text-soft);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === BUTTONS === */
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 28px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 11px;
+  font-size: 14.5px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: .16s;
+  text-decoration: none;
+}
+.btn.primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: var(--notion-shadow);
+}
+.btn.primary:hover { transform: translateY(-1px); filter: brightness(1.05) }
+.btn.ghost {
+  background: var(--notion-surface);
+  color: var(--notion-text);
+  border-color: var(--notion-border);
+}
+.btn.ghost:hover { background: var(--notion-surface-hover); transform: translateY(-1px) }
+
+/* === STATS === */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 46px;
+}
+.stat {
+  padding: 20px;
+  border: 1px solid var(--notion-border-soft);
+  border-radius: 14px;
+  background: var(--notion-surface);
+  box-shadow: var(--notion-shadow);
+  text-align: center;
+}
+.stat .num {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stat .lbl {
+  margin-top: 6px;
+  font-size: 13.5px;
+  color: var(--notion-text-soft);
+  font-weight: 500;
+}
+
+/* === SECTION HEADER === */
+.shead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.shead h2 { font-size: 26px; letter-spacing: -.02em; margin: 0 }
+.shead .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+.lead {
+  color: var(--notion-text-soft);
+  font-size: 16.5px;
+  line-height: 1.65;
+  max-width: 680px;
+}
+
+/* === CHIPS (tech stack) === */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 6px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: var(--notion-surface);
+  border: 1px solid var(--notion-border-soft);
+  box-shadow: var(--notion-shadow);
+}
+.chip .d { width: 8px; height: 8px; border-radius: 50% }
+
+/* === CARDS (what I do) === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 6px;
+}
+.card {
+  padding: 20px;
+  border: 1px solid var(--notion-border-soft);
+  border-radius: 14px;
+  background: var(--notion-surface);
+  box-shadow: var(--notion-shadow);
+  transition: .16s;
+}
+.card:hover { transform: translateY(-2px); border-color: var(--notion-border) }
+.card .ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+  margin-bottom: 13px;
+  background: var(--notion-gray-bg);
+}
+.card h3 { margin: 0 0 6px; font-size: 16.5px }
+.card p { margin: 0; color: var(--notion-text-soft); font-size: 14.5px; line-height: 1.55 }
+
+/* === FEATURE CALLOUT === */
+.feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 16px;
+  margin-top: 6px;
+  background: var(--notion-blue-bg);
+  border: 1px solid var(--notion-border-soft);
+}
+.feature .badge {
+  font-size: 21px;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  box-shadow: var(--notion-shadow);
+}
+.feature h3 { margin: 0 0 7px; font-size: 18px }
+.feature p { margin: 0; color: var(--notion-text-soft); line-height: 1.6 }
+.feature .link {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.feature .link:hover { text-decoration: underline }
+
+/* === SKILLS (what I can do) === */
+.skills { display: grid; gap: 10px; margin-top: 8px }
+.skill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--notion-border-soft);
+  border-radius: 14px;
+  background: var(--notion-surface);
+  box-shadow: var(--notion-shadow);
+  transition: .16s;
+}
+.skill:hover { transform: translateY(-2px); border-color: var(--notion-border) }
+.skill-main h3 { margin: 0 0 4px; font-size: 16px }
+.skill-main p { margin: 0; color: var(--notion-text-soft); font-size: 14.5px; line-height: 1.5 }
+.skill-ex {
+  flex: none;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.skill-ex:hover { text-decoration: underline }
+.skill-status {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.skill-status.active { color: #22a06b }
+.skill-status.prod { color: #e2483d }
+
+/* === CONTACT === */
+.contact {
+  margin-top: 60px;
+  padding: 38px 28px;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--notion-surface);
+  border: 1px solid var(--notion-border-soft);
+  box-shadow: var(--notion-shadow);
+}
+.contact h2 { font-size: 27px; margin: 0 0 8px; letter-spacing: -.02em }
+.contact p { color: var(--notion-text-soft); margin: 0 auto 22px; max-width: 440px }
+.contact .cta { margin-top: 0 }
+
+/* === FOOTER === */
+.footer {
+  margin-top: 54px;
+  padding-top: 20px;
+  border-top: 1px solid var(--notion-border-soft);
+  color: var(--notion-text-faint);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* === REVEAL ANIMATION === */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease }
+.reveal.in { opacity: 1; transform: none }
+
+/* === RESPONSIVE === */
+@media (max-width: 760px) {
+  .stats { grid-template-columns: 1fr 1fr }
+  .cards { grid-template-columns: 1fr }
+  .feature { grid-template-columns: 1fr }
+  .skill { flex-direction: column; align-items: flex-start; gap: 10px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none }
+}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a class="brand" href="#top"><span class="logo">&lt;/&gt;</span><span data-i18n="brand">Portfolio</span></a>
+  <a class="brand" href="#top">
+    <span class="logo">&lt;/&gt;</span>
+    <span data-i18n="brand">Portfolio</span>
+  </a>
   <div class="lang" role="group" aria-label="Language">
     <button data-lang="en" class="active">EN</button>
     <button data-lang="uk">УК</button>
@@ -157,6 +462,7 @@ section{margin-top:56px}
 </nav>
 
 <main id="top">
+
   <section class="hero reveal">
     <div class="avatar">👨‍💻</div>
     <span class="eyebrow" data-i18n="role">Software Developer</span>
@@ -170,9 +476,18 @@ section{margin-top:56px}
   </section>
 
   <section class="stats reveal">
-    <div class="stat"><div class="num">2.5+</div><div class="lbl" data-i18n="statYears">years of coding</div></div>
-    <div class="stat"><div class="num">17</div><div class="lbl" data-i18n="statAge">years old</div></div>
-    <div class="stat"><div class="num">3</div><div class="lbl" data-i18n="statLangs">spoken languages</div></div>
+    <div class="stat">
+      <div class="num">2.5+</div>
+      <div class="lbl" data-i18n="statYears">years of coding</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="lbl" data-i18n="statRepos">projects shipped</div>
+    </div>
+    <div class="stat">
+      <div class="num">EN · UK · RU</div>
+      <div class="lbl" data-i18n="statLangs">spoken languages</div>
+    </div>
   </section>
 
   <section class="reveal">
@@ -189,6 +504,7 @@ section{margin-top:56px}
       <span class="chip"><span class="d" style="background:#336791"></span>PostgreSQL</span>
       <span class="chip"><span class="d" style="background:#003b57"></span>SQLite</span>
       <span class="chip"><span class="d" style="background:#2496ed"></span>Docker</span>
+      <span class="chip"><span class="d" style="background:#4285f4"></span>GCP</span>
       <span class="chip"><span class="d" style="background:#f7df1e"></span>JavaScript</span>
       <span class="chip"><span class="d" style="background:#e34f26"></span>HTML</span>
       <span class="chip"><span class="d" style="background:#1572b6"></span>CSS</span>
@@ -210,144 +526,213 @@ section{margin-top:56px}
   </section>
 
   <section class="reveal">
-    <div class="shead"><span class="dot"></span><h2 data-i18n="doH">What I do</h2></div>
+    <div class="shead"><span class="dot"></span><h2 data-i18n="doH">What I ship</h2></div>
     <div class="cards">
-      <div class="card"><div class="ico">🧩</div><h3 data-i18n="do1H">Working with libraries</h3><p data-i18n="do1P">Reading docs and wiring up third-party libraries and APIs in real projects.</p></div>
-      <div class="card"><div class="ico">🤖</div><h3 data-i18n="do2H">Automation & bots</h3><p data-i18n="do2P">Scripts and bots that take repetitive work off people's hands.</p></div>
-      <div class="card"><div class="ico">⚡</div><h3 data-i18n="do3H">Tools & utilities</h3><p data-i18n="do3P">Small, fast tools built to solve a specific, concrete problem.</p></div>
-      <div class="card"><div class="ico">📐</div><h3 data-i18n="do4H">Clean code´</h3><p data-i18n="do4P">Readable, maintainable code I'm comfortable coming back to.</p></div>
+      <div class="card"><div class="ico">🤖</div><h3 data-i18n="do1H">Telegram bots that go live</h3><p data-i18n="do1P">Shop bots, finance trackers, monitors — built with aiogram 3, dockerized, deployed. Not just "works on my machine".</p></div>
+      <div class="card"><div class="ico">🔌</div><h3 data-i18n="do2H">API integrations that hold up</h3><p data-i18n="do2P">I read the docs, wire up third-party services, and handle edge cases — so the integration doesn't break two weeks later.</p></div>
+      <div class="card"><div class="ico">☁️</div><h3 data-i18n="do3H">Deployed to the cloud</h3><p data-i18n="do3P">GCP Cloud Run, Docker, environment configs. I've taken a project from local to production and kept it running.</p></div>
+      <div class="card"><div class="ico">⚡</div><h3 data-i18n="do4H">Automation that saves time</h3><p data-i18n="do4P">Uptime monitors with Telegram alerts, OSINT scripts, scheduled tasks — tools that run without babysitting.</p></div>
     </div>
   </section>
 
   <section class="reveal">
     <div class="shead"><span class="dot"></span><h2 data-i18n="skH">What I can do</h2></div>
     <div class="skills">
+
       <div class="skill">
-        <div class="skill-main"><h3 data-i18n="sk1H">Backend &amp; APIs (FastAPI)</h3><p data-i18n="sk1P">Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.</p></div>
+        <div class="skill-main">
+          <h3 data-i18n="sk1H">Backend &amp; APIs (FastAPI)</h3>
+          <p data-i18n="sk1P">Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.</p>
+          <span class="skill-status active" data-i18n="sk1Status">● Active</span>
+        </div>
         <a class="skill-ex" href="https://github.com/txltedxgod/sitemonitoring" target="_blank" rel="noopener">sitemonitoring →</a>
       </div>
+
       <div class="skill">
-        <div class="skill-main"><h3 data-i18n="sk2H">Telegram bots (aiogram 3)</h3><p data-i18n="sk2P">A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.</p></div>
+        <div class="skill-main">
+          <h3 data-i18n="sk2H">Telegram bots (aiogram 3)</h3>
+          <p data-i18n="sk2P">A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.</p>
+          <span class="skill-status active" data-i18n="sk2Status">● Active</span>
+        </div>
         <a class="skill-ex" href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" rel="noopener">telegram-store-bot →</a>
       </div>
+
       <div class="skill">
-        <div class="skill-main"><h3 data-i18n="sk3H">Frontend &amp; dashboards</h3><p data-i18n="sk3P">Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.</p></div>
+        <div class="skill-main">
+          <h3 data-i18n="sk3H">Frontend &amp; dashboards</h3>
+          <p data-i18n="sk3P">Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.</p>
+          <span class="skill-status active" data-i18n="sk3Status">● Live demo available</span>
+        </div>
         <a class="skill-ex" href="https://github.com/txltedxgod/lumi" target="_blank" rel="noopener">lumi →</a>
       </div>
+
       <div class="skill">
-        <div class="skill-main"><h3 data-i18n="sk4H">Integrating libraries &amp; tools</h3><p data-i18n="sk4P">Combine third-party libraries into one app — username search across hundreds of sites with Sherlock &amp; Maigret.</p></div>
+        <div class="skill-main">
+          <h3 data-i18n="sk4H">Cloud deployment (GCP)</h3>
+          <p data-i18n="sk4P">Personal finance tracker bot deployed on Google Cloud Run — Python, SQLite, Docker, CI via gcloud CLI.</p>
+          <span class="skill-status prod" data-i18n="sk4Status">● Running in production</span>
+        </div>
+        <a class="skill-ex" href="https://github.com/txltedxgod/finbot" target="_blank" rel="noopener">finbot →</a>
+      </div>
+
+      <div class="skill">
+        <div class="skill-main">
+          <h3 data-i18n="sk5H">Integrating libraries &amp; tools</h3>
+          <p data-i18n="sk5P">Combine third-party libraries into one app — username search across hundreds of sites with Sherlock &amp; Maigret.</p>
+          <span class="skill-status active" data-i18n="sk5Status">● Active</span>
+        </div>
         <a class="skill-ex" href="https://github.com/txltedxgod/osint-hub" target="_blank" rel="noopener">osint-hub →</a>
       </div>
+
     </div>
   </section>
 
   <section class="contact reveal">
-    <h2 data-i18n="cH">Let's get in touch</h2>
-    <p data-i18n="cP">Open to collaboration and interesting projects.</p>
+    <h2 data-i18n="cH">Got a project?</h2>
+    <p data-i18n="cP">Let's scope it. I'm open to freelance work, collaboration, and interesting builds.</p>
     <div class="cta">
-      <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">✈️ Telegram @seocry</a>
+      <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">✈️ <span data-i18n="ctaTg">Message on Telegram</span></a>
       <a class="btn ghost" href="mailto:seidoutakidzava@gmail.com">✉️ seidoutakidzava@gmail.com</a>
     </div>
   </section>
 
-  <p class="footer"><span data-i18n="foot">Built with code & coffee</span> · © <span id="yr"></span></p>
+  <p class="footer"><span data-i18n="foot">Built with code & coffee</span> · © 2026 txltedxgod</p>
+
 </main>
 
 <script>
-const dict={
- en:{
-  brand:"Portfolio",role:"Software Developer",
-  heroTitle:"Building tools people actually use",
-  heroSub:"17-year-old developer with 2.5 years of hands-on experience. I write real software and I'm confident working with libraries, APIs and other people's code.",
-  ctaTg:"Message on Telegram",ctaMail:"Email me",
-  statYears:"years of coding",statAge:"years old",statLangs:"spoken languages",
-  aboutH:"About",
-  aboutP:"I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. A lot of my growth comes from working with libraries and APIs — reading docs, fitting pieces together, and building on top of existing code.",
-  stackH:"Tech stack",
-  workH:"In practice",workTitle:"Real-world projects",
-  workP:"A hands-on example of how I work: real projects where I read docs, integrate an app's API with third-party libraries, and ship reliable features.",
-  workLink:"See my repositories →",
-  doH:"What I do",
-  do1H:"Working with libraries",do1P:"Reading docs and wiring up third-party libraries and APIs in real projects.",
-  do2H:"Automation & bots",do2P:"Scripts and bots that take repetitive work off people's hands.",
-  do3H:"Tools & utilities",do3P:"Small, fast tools built to solve a specific, concrete problem.",
-  do4H:"Clean code",do4P:"Readable, maintainable code I'm comfortable coming back to.",
-  jH:"Journey",
-  j1Y:"~2023",j1H:"First lines of code",j1P:"Started learning programming and built my first small scripts.",
-  j2Y:"2024",j2H:"Going deeper",j2P:"Moved into real projects, automation, and the Telegram ecosystem.",
-  j3Y:"Now",j3H:"Building real tools",j3P:"Actively building and maintaining real-world projects and tools.",
-  cH:"Let's get in touch",cP:"Open to collaboration and interesting projects.",
-  foot:"Built with code & coffee",
-  skH:"What I can do",sk1H:"Backend & APIs (FastAPI)",sk1P:"Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.",sk2H:"Telegram bots (aiogram 3)",sk2P:"A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.",sk3H:"Frontend & dashboards",sk3P:"Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.",sk4H:"Integrating libraries & tools",sk4P:"Combine third-party libraries into one app — username search across hundreds of sites with Sherlock & Maigret.",skEx:"Example on GitHub →"
- },
- uk:{
-  brand:"Портфоліо",role:"Розробник програмного забезпечення",
-  heroTitle:"Створюю інструменти, якими справді користуються",
-  heroSub:"Розробник, 17 років, із 2.5 роками практичного досвіду. Пишу реальний софт і впевнено працюю з бібліотеками, API та чужим кодом.",
-  ctaTg:"Написати в Telegram",ctaMail:"Написати на пошту",
-  statYears:"років у коді",statAge:"років",statLangs:"мови спілкування",
-  aboutH:"Про мене",
-  aboutP:"Почав програмувати у 14 років і відтоді постійно щось релізю. Ціную чистий код, корисні функції та інструменти, які розв’язують реальні задачі. Найбільше зростання дає робота з бібліотеками та API — читаю документацію, складаю частини докупи й будую на основі готового коду.",
-  stackH:"Технології",
-  workH:"На практиці",workTitle:"Реальні проєкти",
-  workP:"Наочний приклад того, як я працюю: реальні проєкти, де я читаю документацію, інтегрую API застосунку зі сторонніми бібліотеками та релізю надійні фічі.",
-  workLink:"Мої репозиторії →",
-  doH:"Чим я займаюсь",
-  do1H:"Робота з бібліотеками",do1P:"Читаю документацію та підключаю сторонні бібліотеки й API у реальних проєктах.",
-  do2H:"Автоматизація та боти",do2P:"Скрипти та боти, які знімають рутинну роботу.",
-  do3H:"Інструменти та утиліти",do3P:"Невеликі швидкі інструменти для конкретної задачі.",
-  do4H:"Чистий код",do4P:"Читабельний і підтримуваний код, до якого не соромно повертатися.",
-  jH:"Шлях",
-  j1Y:"~2023",j1H:"Перші рядки коду",j1P:"Почав вчити програмування та написав перші невеликі скрипти.",
-  j2Y:"2024",j2H:"Глибше",j2P:"Перейшов до реальних проєктів, автоматизації та екосистеми Telegram.",
-  j3Y:"Зараз",j3H:"Створення інструментів",j3P:"Активно створюю та підтримую реальні проєкти та інструменти.",
-  cH:"Зв’яжіться зі мною",cP:"Відкритий до співпраці та цікавих проєктів.",
-  foot:"Зроблено на коді та каві",
-  skH:"Що я вмію",sk1H:"Бекенд та API (FastAPI)",sk1P:"Асинхронні REST-бекенди на FastAPI з плануванням завдань і базою даних — self-hosted моніторинг аптайму з періодичними перевірками та Telegram-алертами.",sk2H:"Telegram-боти (aiogram 3)",sk2P:"Повноцінний бот-магазин: каталог, кошик, FSM-оформлення, промокоди, реферали та адмін-панель. PostgreSQL, Alembic, Docker.",sk3H:"Фронтенд та дашборди",sk3P:"Адаптивні дашборди на чистому HTML/CSS/JS — стріки, хітмапи, темна/світла теми, без залежностей.",sk4H:"Інтеграція бібліотек та інструментів",sk4P:"Поєдную сторонні бібліотеки в одному застосунку — пошук юзернеймів на сотнях сайтів через Sherlock і Maigret.",skEx:"Приклад на GitHub →"
- },
- ru:{
-  brand:"Портфолио",role:"Разработчик программного обеспечения",
-  heroTitle:"Создаю инструменты, которыми действительно пользуются",
-  heroSub:"Разработчик, 17 лет, с 2.5 годами практического опыта. Пишу реальный софт и уверенно работаю с библиотеками, API и чужим кодом.",
-  ctaTg:"Написать в Telegram",ctaMail:"Написать на почту",
-  statYears:"лет в коде",statAge:"лет",statLangs:"языка общения",
-  aboutH:"Обо мне",
-  aboutP:"Начал программировать в 14 лет и с тех пор постоянно что-то релизю. Ценю чистый код, полезные функции и инструменты, решающие реальные задачи. Больше всего роста даёт работа с библиотеками и API — читаю документацию, собираю части воедино и строю на основе готового кода.",
-  stackH:"Стек технологий",
-  workH:"На практике",workTitle:"Реальные проекты",
-  workP:"Наглядный пример того, как я работаю: реальные проекты, где я читаю документацию, интегрирую API приложения со сторонними библиотеками и релизю надёжные фичи.",
-  workLink:"Мои репозитории →",
-  doH:"Чем я занимаюсь",
-  do1H:"Работа с библиотеками",do1P:"Читаю документацию и подключаю сторонние библиотеки и API в реальных проектах.",
-  do2H:"Автоматизация и боты",do2P:"Скрипты и боты, которые снимают рутинную работу.",
-  do3H:"Инструменты и утилиты",do3P:"Небольшие быстрые инструменты под конкретную задачу.",
-  do4H:"Чистый код",do4P:"Читаемый и поддерживаемый код, к которому не стыдно вернуться.",
-  jH:"Путь",
-  j1Y:"~2023",j1H:"Первые строки кода",j1P:"Начал учить программирование и написал первые небольшие скрипты.",
-  j2Y:"2024",j2H:"Глубже",j2P:"Перешёл к реальным проектам, автоматизации и экосистеме Telegram.",
-  j3Y:"Сейчас",j3H:"Создание инструментов",j3P:"Активно создаю и поддерживаю реальные проекты и инструменты.",
-  cH:"Свяжитесь со мной",cP:"Открыт к сотрудничеству и интересным проектам.",
-  foot:"Сделано на коде и кофе",
-  skH:"Что я умею",sk1H:"Бэкенд и API (FastAPI)",sk1P:"Асинхронные REST-бэкенды на FastAPI с планировщиком задач и базой данных — self-hosted мониторинг аптайма с периодическими проверками и Telegram-алертами.",sk2H:"Telegram-боты (aiogram 3)",sk2P:"Полноценный бот-магазин: каталог, корзина, FSM-оформление, промокоды, рефералы и админ-панель. PostgreSQL, Alembic, Docker.",sk3H:"Фронтенд и дашборды",sk3P:"Адаптивные дашборды на чистом HTML/CSS/JS — стрики, хитмапы, тёмная/светлая темы, без зависимостей.",sk4H:"Интеграция библиотек и инструментов",sk4P:"Объединяю сторонние библиотеки в одном приложении — поиск юзернеймов на сотнях сайтов через Sherlock и Maigret.",skEx:"Пример на GitHub →"
- }
+const dict = {
+  en: {
+    brand: "Portfolio",
+    role: "Software Developer",
+    heroTitle: "Building tools people actually use",
+    heroSub: "17-year-old developer with 2.5 years of hands-on experience. I write real software and I'm confident working with libraries, APIs and other people's code.",
+    ctaTg: "Message on Telegram",
+    ctaMail: "Email me",
+    statYears: "years of coding",
+    statRepos: "projects shipped",
+    statLangs: "spoken languages",
+    aboutH: "About",
+    aboutP: "I started programming at 14 and have been shipping ever since. I care about clean code, useful features, and tools that solve real problems. A lot of my growth comes from working with libraries and APIs — reading docs, fitting pieces together, and building on top of existing code.",
+    stackH: "Tech stack",
+    workH: "In practice",
+    workTitle: "Real-world projects",
+    workP: "A hands-on example of how I work: real projects where I read docs, integrate an app's API with third-party libraries, and ship reliable features.",
+    workLink: "See my repositories →",
+    doH: "What I ship",
+    do1H: "Telegram bots that go live",    do1P: "Shop bots, finance trackers, monitors — built with aiogram 3, dockerized, deployed. Not just \"works on my machine\".",
+    do2H: "API integrations that hold up", do2P: "I read the docs, wire up third-party services, and handle edge cases — so the integration doesn't break two weeks later.",
+    do3H: "Deployed to the cloud",         do3P: "GCP Cloud Run, Docker, environment configs. I've taken a project from local to production and kept it running.",
+    do4H: "Automation that saves time",    do4P: "Uptime monitors with Telegram alerts, OSINT scripts, scheduled tasks — tools that run without babysitting.",
+    skH: "What I can do",
+    sk1H: "Backend & APIs (FastAPI)",        sk1P: "Async REST backends with FastAPI, task scheduling and a database — a self-hosted uptime monitor with periodic checks and Telegram alerts.", sk1Status: "● Active",
+    sk2H: "Telegram bots (aiogram 3)",       sk2P: "A full shop bot: catalog, cart, FSM checkout, promo codes, referrals and an admin panel. PostgreSQL, Alembic, Docker.",               sk2Status: "● Active",
+    sk3H: "Frontend & dashboards",           sk3P: "Responsive dashboards in vanilla HTML/CSS/JS — streaks, heatmaps, dark/light themes, no dependencies.",                               sk3Status: "● Live demo available",
+    sk4H: "Cloud deployment (GCP)",          sk4P: "Personal finance tracker bot deployed on Google Cloud Run — Python, SQLite, Docker, CI via gcloud CLI.",                              sk4Status: "● Running in production",
+    sk5H: "Integrating libraries & tools",   sk5P: "Combine third-party libraries into one app — username search across hundreds of sites with Sherlock & Maigret.",                     sk5Status: "● Active",
+    cH: "Got a project?",
+    cP: "Let's scope it. I'm open to freelance work, collaboration, and interesting builds.",
+    foot: "Built with code & coffee"
+  },
+
+  uk: {
+    brand: "Портфоліо",
+    role: "Розробник програмного забезпечення",
+    heroTitle: "Створюю інструменти, якими справді користуються",
+    heroSub: "Розробник, 17 років, із 2.5 роками практичного досвіду. Пишу реальний софт і впевнено працюю з бібліотеками, API та чужим кодом.",
+    ctaTg: "Написати в Telegram",
+    ctaMail: "Написати на пошту",
+    statYears: "років у коді",
+    statRepos: "проєктів зроблено",
+    statLangs: "мови спілкування",
+    aboutH: "Про мене",
+    aboutP: "Почав програмувати у 14 років і відтоді постійно щось релізю. Ціную чистий код, корисні функції та інструменти, які розв'язують реальні задачі. Найбільше зростання дає робота з бібліотеками та API — читаю документацію, складаю частини докупи й будую на основі готового коду.",
+    stackH: "Технології",
+    workH: "На практиці",
+    workTitle: "Реальні проєкти",
+    workP: "Наочний приклад того, як я працюю: реальні проєкти, де я читаю документацію, інтегрую API застосунку зі сторонніми бібліотеками та релізю надійні фічі.",
+    workLink: "Мої репозиторії →",
+    doH: "Що я роблю",
+    do1H: "Telegram-боти, які живуть у проді",  do1P: "Бот-магазини, трекери, моніторинги — aiogram 3, Docker, деплой. Не «працює на моїй машині».",
+    do2H: "Інтеграції API, які не ламаються",    do2P: "Читаю документацію, підключаю сервіси, обробляю крайні кейси — щоб інтеграція трималась через тиждень.",
+    do3H: "Деплой у хмару",                      do3P: "GCP Cloud Run, Docker, env-конфіги. Провів проєкт від локального до продакшену та підтримую його.",
+    do4H: "Автоматизація, що економить час",      do4P: "Моніторинг аптайму з Telegram-алертами, OSINT-скрипти, планувальники — інструменти, що працюють самі.",
+    skH: "Що я вмію",
+    sk1H: "Бекенд та API (FastAPI)",          sk1P: "Асинхронні REST-бекенди на FastAPI з плануванням завдань і базою даних — self-hosted моніторинг аптайму з Telegram-алертами.", sk1Status: "● Активний",
+    sk2H: "Telegram-боти (aiogram 3)",        sk2P: "Повноцінний бот-магазин: каталог, кошик, FSM-оформлення, промокоди, реферали та адмін-панель. PostgreSQL, Alembic, Docker.",   sk2Status: "● Активний",
+    sk3H: "Фронтенд та дашборди",             sk3P: "Адаптивні дашборди на чистому HTML/CSS/JS — стріки, хітмапи, темна/світла теми, без залежностей.",                             sk3Status: "● Live demo доступно",
+    sk4H: "Деплой у хмару (GCP)",             sk4P: "Бот-трекер особистих фінансів, задеплоєний на Google Cloud Run — Python, SQLite, Docker, CI через gcloud CLI.",                sk4Status: "● Працює в продакшені",
+    sk5H: "Інтеграція бібліотек та інструментів", sk5P: "Поєдную сторонні бібліотеки в одному застосунку — пошук юзернеймів на сотнях сайтів через Sherlock і Maigret.",           sk5Status: "● Активний",
+    cH: "Є проєкт?",
+    cP: "Давайте обговоримо. Відкритий до фрілансу, співпраці та цікавих задач.",
+    foot: "Зроблено на коді та каві"
+  },
+
+  ru: {
+    brand: "Портфолио",
+    role: "Разработчик программного обеспечения",
+    heroTitle: "Создаю инструменты, которыми действительно пользуются",
+    heroSub: "Разработчик, 17 лет, с 2.5 годами практического опыта. Пишу реальный софт и уверенно работаю с библиотеками, API и чужим кодом.",
+    ctaTg: "Написать в Telegram",
+    ctaMail: "Написать на почту",
+    statYears: "лет в коде",
+    statRepos: "проектов сделано",
+    statLangs: "языка общения",
+    aboutH: "Обо мне",
+    aboutP: "Начал программировать в 14 лет и с тех пор постоянно что-то релижу. Ценю чистый код, полезные функции и инструменты, решающие реальные задачи. Больше всего роста даёт работа с библиотеками и API — читаю документацию, собираю части воедино и строю на основе готового кода.",
+    stackH: "Стек технологий",
+    workH: "На практике",
+    workTitle: "Реальные проекты",
+    workP: "Наглядный пример того, как я работаю: реальные проекты, где я читаю документацию, интегрирую API приложения со сторонними библиотеками и релижу надёжные фичи.",
+    workLink: "Мои репозитории →",
+    doH: "Что я делаю",
+    do1H: "Telegram-боты, которые работают в проде", do1P: "Бот-магазины, трекеры, мониторинги — aiogram 3, Docker, деплой. Не «работает на моей машине».",
+    do2H: "Интеграции API, которые не ломаются",     do2P: "Читаю документацию, подключаю сервисы, обрабатываю крайние кейсы — чтобы интеграция держалась через неделю.",
+    do3H: "Деплой в облако",                         do3P: "GCP Cloud Run, Docker, env-конфиги. Провёл проект от локального до продакшена и поддерживаю его.",
+    do4H: "Автоматизация, которая экономит время",   do4P: "Мониторинг аптайма с Telegram-алертами, OSINT-скрипты, планировщики — инструменты, которые работают сами.",
+    skH: "Что я умею",
+    sk1H: "Бэкенд и API (FastAPI)",           sk1P: "Асинхронные REST-бэкенды на FastAPI с планировщиком задач и базой данных — self-hosted мониторинг аптайма с Telegram-алертами.", sk1Status: "● Активный",
+    sk2H: "Telegram-боты (aiogram 3)",        sk2P: "Полноценный бот-магазин: каталог, корзина, FSM-оформление, промокоды, рефералы и админ-панель. PostgreSQL, Alembic, Docker.",   sk2Status: "● Активный",
+    sk3H: "Фронтенд и дашборды",              sk3P: "Адаптивные дашборды на чистом HTML/CSS/JS — стрики, хитмапы, тёмная/светлая темы, без зависимостей.",                           sk3Status: "● Live demo доступно",
+    sk4H: "Деплой в облако (GCP)",            sk4P: "Бот-трекер личных финансов, задеплоенный на Google Cloud Run — Python, SQLite, Docker, CI через gcloud CLI.",                   sk4Status: "● Работает в продакшене",
+    sk5H: "Интеграция библиотек и инструментов", sk5P: "Объединяю сторонние библиотеки в одном приложении — поиск юзернеймов на сотнях сайтов через Sherlock и Maigret.",           sk5Status: "● Активный",
+    cH: "Есть проект?",
+    cP: "Давайте обсудим. Открыт к фрилансу, сотрудничеству и интересным задачам.",
+    foot: "Сделано на коде и кофе"
+  }
 };
-function setLang(lang){
-  document.documentElement.lang=lang==='uk'?'uk':lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(dict[lang]&&dict[lang][k]!==undefined) el.textContent=dict[lang][k];
+
+// Cache DOM collections once
+const i18nEls = document.querySelectorAll('[data-i18n]');
+const langBtns = document.querySelectorAll('.lang button');
+
+function setLang(lang) {
+  if (!dict[lang]) lang = 'en';
+  document.documentElement.lang = lang;
+  i18nEls.forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (dict[lang][k] !== undefined) el.textContent = dict[lang][k];
   });
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-  try{localStorage.setItem('lang',lang);}catch(e){}
+  langBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  try { localStorage.setItem('lang', lang); } catch(e) {}
 }
-document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-let saved='en';try{saved=localStorage.getItem('lang')||'en';}catch(e){}
-if(!dict[saved])saved='en';
-setLang(saved);
-document.getElementById('yr').textContent=new Date().getFullYear();
-// reveal on scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+langBtns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+function getSavedLang() {
+  try { return localStorage.getItem('lang') || 'en'; } catch { return 'en'; }
+}
+setLang(getSavedLang());
+
+// Reveal on scroll
+const io = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }),
+  { threshold: .12, rootMargin: '0px 0px -40px 0px' }
+);
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+
 </body>
 </html>
