@@ -526,17 +526,42 @@ main {
   border: 1px solid var(--border);
 }
 
-.project-link {
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 13.5px;
   font-weight: 700;
   color: var(--accent-cyan);
-  transition: gap 0.2s ease;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  transition: all 0.2s ease;
 }
 
-.project-link:hover { gap: 10px; }
+.project-btn:hover {
+  background: rgba(0, 242, 254, 0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+}
+
+.project-btn.sub {
+  color: var(--text-soft);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.project-btn.sub:hover {
+  color: var(--text);
+  border-color: var(--border-hover);
+}
 
 /* === WHAT I SHIP (CORE STRENGTHS) === */
 .strengths-grid {
@@ -646,34 +671,12 @@ footer {
 
 .footer-link:hover { color: var(--accent-cyan); }
 
-/* Copy Toast */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 200;
-  padding: 12px 20px;
-  border-radius: var(--radius-md);
-  background: #10141f;
-  color: #fff;
-  border: 1px solid var(--accent-cyan);
-  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
-  font-size: 13px;
-  font-weight: 600;
-  display: none;
-  animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @media (max-width: 680px) {
   .nav { padding: 12px 18px; }
   main { padding: 32px 16px 80px; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .contact-box { padding: 36px 20px; }
+  .project-actions { flex-direction: column; align-items: stretch; }
 }
 </style>
 </head>
@@ -720,11 +723,11 @@ footer {
   <symbol id="icon-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>
   </symbol>
-  <symbol id="icon-desktop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>
-  </symbol>
   <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="icon-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
   </symbol>
 </svg>
 
@@ -843,111 +846,16 @@ footer {
   <section>
     <div class="section-header">
       <div class="section-icon"><svg width="18" height="18"><use href="#icon-terminal"/></svg></div>
-      <h2 class="section-title" data-i18n="projH">Featured Systems &amp; Products</h2>
+      <h2 class="section-title" data-i18n="projH">Featured Open-Source Repositories</h2>
     </div>
 
     <div class="projects-grid">
 
-      <!-- telegram-reporter-bot -->
+      <!-- 1. zenith-gateway -->
       <div class="project-card">
         <div class="project-top">
           <div class="project-badge-row">
-            <span class="project-tag live">Production Daemon</span>
-            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-bot"/></svg>
-          </div>
-          <h3 class="project-title">telegram-reporter-bot</h3>
-          <p class="project-desc" data-i18n="pReporterDesc">High-concurrency automated Telegram reporting network with 40+ concurrent sessions, sticky proxy rotation, killswitch protection, and Oracle Cloud VPS daemon.</p>
-        </div>
-        <div>
-          <div class="project-stack">
-            <span class="stack-pill">Python 3.10+</span>
-            <span class="stack-pill">aiogram 3</span>
-            <span class="stack-pill">Pyrogram</span>
-            <span class="stack-pill">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/txltedxgod" target="_blank" rel="noopener">
-            <span data-i18n="viewRepo">View on GitHub</span>
-            <svg width="15" height="15"><use href="#icon-external"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- otkat-generator -->
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-badge-row">
-            <span class="project-tag">Desktop Tool</span>
-            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-desktop"/></svg>
-          </div>
-          <h3 class="project-title">otkat-generator</h3>
-          <p class="project-desc" data-i18n="pOtkatDesc">Graphic screenshot annotation and surveillance evidence editor on C# WPF (.NET 10) with WebView2, clipboard hotkeys (Ctrl+V/Ctrl+C), target framing, and sensor engine.</p>
-        </div>
-        <div>
-          <div class="project-stack">
-            <span class="stack-pill">C# (.NET 10)</span>
-            <span class="stack-pill">WPF</span>
-            <span class="stack-pill">WebView2</span>
-            <span class="stack-pill">Canvas JS</span>
-          </div>
-          <a class="project-link" href="https://github.com/txltedxgod" target="_blank" rel="noopener">
-            <span data-i18n="viewRepo">View on GitHub</span>
-            <svg width="15" height="15"><use href="#icon-external"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- life-os -->
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-badge-row">
-            <span class="project-tag live">PWA + APK</span>
-            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-cpu"/></svg>
-          </div>
-          <h3 class="project-title">life-os</h3>
-          <p class="project-desc" data-i18n="pLifeDesc">Personal productivity operating system featuring multi-currency financial accounting (CZK/RUB/EUR/USDT), automated daily executive reporting, and Android APK client.</p>
-        </div>
-        <div>
-          <div class="project-stack">
-            <span class="stack-pill">Python</span>
-            <span class="stack-pill">Vanilla JS</span>
-            <span class="stack-pill">Android APK</span>
-            <span class="stack-pill">SQLite</span>
-          </div>
-          <a class="project-link" href="https://github.com/txltedxgod" target="_blank" rel="noopener">
-            <span data-i18n="viewRepo">View on GitHub</span>
-            <svg width="15" height="15"><use href="#icon-external"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- tma-portfolio-suite -->
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-badge-row">
-            <span class="project-tag live">Web3 TMA Suite</span>
-            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-gem"/></svg>
-          </div>
-          <h3 class="project-title">tma-portfolio-suite</h3>
-          <p class="project-desc" data-i18n="pTmaDesc">Suite of 7 Telegram Mini Apps featuring Obsidian Glass UI, WebApp SDK (haptics, expand), CryptoBot &amp; xRocket checkouts, and TON Connect wallet integration.</p>
-        </div>
-        <div>
-          <div class="project-stack">
-            <span class="stack-pill">Telegram WebApp SDK</span>
-            <span class="stack-pill">Web3</span>
-            <span class="stack-pill">TON Connect</span>
-          </div>
-          <a class="project-link" href="https://txltedxgod.github.io/tma-portfolio-suite/" target="_blank" rel="noopener">
-            <span data-i18n="liveDemo">Live Interactive Demo</span>
-            <svg width="15" height="15"><use href="#icon-external"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- zenith-gateway -->
-      <div class="project-card">
-        <div class="project-top">
-          <div class="project-badge-row">
-            <span class="project-tag">Cloud-Native</span>
+            <span class="project-tag">Cloud-Native &bull; Rust</span>
             <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-bolt"/></svg>
           </div>
           <h3 class="project-title">zenith-gateway</h3>
@@ -960,41 +868,158 @@ footer {
             <span class="stack-pill">Axum</span>
             <span class="stack-pill">Tower</span>
           </div>
-          <a class="project-link" href="https://github.com/txltedxgod/zenith-gateway" target="_blank" rel="noopener">
-            <span data-i18n="viewRepo">View on GitHub</span>
-            <svg width="15" height="15"><use href="#icon-external"/></svg>
-          </a>
+          <div class="project-actions">
+            <a class="project-btn" href="https://github.com/txltedxgod/zenith-gateway" target="_blank" rel="noopener">
+              <svg width="15" height="15"><use href="#icon-github"/></svg>
+              <span data-i18n="viewRepo">View on GitHub</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- zynlume -->
+      <!-- 2. turbokv -->
       <div class="project-card">
         <div class="project-top">
           <div class="project-badge-row">
-            <span class="project-tag live">Commercial SaaS</span>
-            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-cloud"/></svg>
+            <span class="project-tag">Storage Engine &bull; C++17</span>
+            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-cpu"/></svg>
           </div>
-          <h3 class="project-title">zynlume</h3>
-          <p class="project-desc" data-i18n="pZynDesc">Commercial Dark Glass SaaS platform for AI software licensing: Google OAuth, multi-gateway billing (Stripe / Crypto), and automated cryptographic key distribution.</p>
+          <h3 class="project-title">turbokv</h3>
+          <p class="project-desc" data-i18n="pTurbokvDesc">High-throughput in-memory key-value database with binary Write-Ahead Log (WAL), crash recovery guarantees, and low-latency custom TCP protocol.</p>
+        </div>
+        <div>
+          <div class="project-stack">
+            <span class="stack-pill">Modern C++17</span>
+            <span class="stack-pill">TCP Protocol</span>
+            <span class="stack-pill">Binary WAL</span>
+            <span class="stack-pill">POSIX</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-btn" href="https://github.com/txltedxgod/turbokv" target="_blank" rel="noopener">
+              <svg width="15" height="15"><use href="#icon-github"/></svg>
+              <span data-i18n="viewRepo">View on GitHub</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. nexus-mq -->
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-badge-row">
+            <span class="project-tag">Distributed Broker &bull; Go</span>
+            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-layers"/></svg>
+          </div>
+          <h3 class="project-title">nexus-mq</h3>
+          <p class="project-desc" data-i18n="pNexusDesc">Distributed commit-log message broker written in Go with consumer groups, automatic partition rebalancing, mmap zero-copy storage, and live web dashboard.</p>
+        </div>
+        <div>
+          <div class="project-stack">
+            <span class="stack-pill">Go 1.22</span>
+            <span class="stack-pill">gRPC</span>
+            <span class="stack-pill">mmap</span>
+            <span class="stack-pill">WebSocket</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-btn" href="https://github.com/txltedxgod/nexus-mq" target="_blank" rel="noopener">
+              <svg width="15" height="15"><use href="#icon-github"/></svg>
+              <span data-i18n="viewRepo">View on GitHub</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. rag-fusion-engine -->
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-badge-row">
+            <span class="project-tag">AI &amp; Neural Search</span>
+            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-bot"/></svg>
+          </div>
+          <h3 class="project-title">rag-fusion-engine</h3>
+          <p class="project-desc" data-i18n="pRagDesc">Next-generation RAG engine with Reciprocal Rank Fusion (RRF), multi-query generation, cross-encoder reranking, and semantic vector deduplication.</p>
         </div>
         <div>
           <div class="project-stack">
             <span class="stack-pill">Python 3.12</span>
             <span class="stack-pill">FastAPI</span>
-            <span class="stack-pill">Stripe</span>
-            <span class="stack-pill">PostgreSQL</span>
+            <span class="stack-pill">NumPy</span>
+            <span class="stack-pill">Docker</span>
           </div>
-          <a class="project-link" href="https://github.com/txltedxgod/zynlume" target="_blank" rel="noopener">
-            <span data-i18n="viewRepo">View on GitHub</span>
-            <svg width="15" height="15"><use href="#icon-external"/></svg>
-          </a>
+          <div class="project-actions">
+            <a class="project-btn" href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" rel="noopener">
+              <svg width="15" height="15"><use href="#icon-github"/></svg>
+              <span data-i18n="viewRepo">View on GitHub</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. tma-portfolio-suite -->
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-badge-row">
+            <span class="project-tag live">Web3 TMA Suite</span>
+            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-gem"/></svg>
+          </div>
+          <h3 class="project-title">tma-portfolio-suite</h3>
+          <p class="project-desc" data-i18n="pTmaDesc">Suite of 7 Telegram Mini Apps featuring Obsidian Glass UI, WebApp SDK (haptic feedback, themes), CryptoBot &amp; xRocket checkouts, and TON Connect wallet integration.</p>
+        </div>
+        <div>
+          <div class="project-stack">
+            <span class="stack-pill">Telegram WebApp SDK</span>
+            <span class="stack-pill">Web3 Payments</span>
+            <span class="stack-pill">TON Connect</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-btn" href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" rel="noopener">
+              <svg width="15" height="15"><use href="#icon-github"/></svg>
+              <span data-i18n="viewRepo">View on GitHub</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+            <a class="project-btn sub" href="https://txltedxgod.github.io/tma-portfolio-suite/" target="_blank" rel="noopener">
+              <span data-i18n="liveDemo">Live Demo</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. telegram-store-bot -->
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-badge-row">
+            <span class="project-tag live">Production Bot</span>
+            <svg width="18" height="18" fill="var(--text-muted)"><use href="#icon-bot"/></svg>
+          </div>
+          <h3 class="project-title">telegram-store-bot</h3>
+          <p class="project-desc" data-i18n="pStoreDesc">Full-featured e-commerce store bot on aiogram 3: interactive product catalog, cart manager, FSM checkout flow, promo codes, referral tiers, and admin console.</p>
+        </div>
+        <div>
+          <div class="project-stack">
+            <span class="stack-pill">aiogram 3</span>
+            <span class="stack-pill">PostgreSQL</span>
+            <span class="stack-pill">SQLAlchemy</span>
+            <span class="stack-pill">Docker</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-btn" href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" rel="noopener">
+              <svg width="15" height="15"><use href="#icon-github"/></svg>
+              <span data-i18n="viewRepo">View on GitHub</span>
+              <svg width="13" height="13"><use href="#icon-external"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- WHAT I SHIP (PILLARS) -->
+  <!-- ENGINEERING CAPABILITIES -->
   <section>
     <div class="section-header">
       <div class="section-icon"><svg width="18" height="18"><use href="#icon-code"/></svg></div>
@@ -1064,8 +1089,6 @@ footer {
 
 </main>
 
-<div id="toast" class="toast">Copied to clipboard</div>
-
 <!-- SCRIPT: I18N & THEME -->
 <script>
 const dict = {
@@ -1079,15 +1102,15 @@ const dict = {
     statUptime: "Production Uptime",
     statYears: "Years Shipping Systems",
     stackH: "Core Technologies",
-    projH: "Featured Systems & Products",
-    pReporterDesc: "High-concurrency automated Telegram reporting network with 40+ concurrent sessions, sticky proxy rotation, killswitch protection, and Oracle Cloud VPS daemon.",
-    pOtkatDesc: "Graphic screenshot annotation and surveillance evidence editor on C# WPF (.NET 10) with WebView2, clipboard hotkeys (Ctrl+V/Ctrl+C), target framing, and sensor engine.",
-    pLifeDesc: "Personal productivity operating system featuring multi-currency financial accounting (CZK/RUB/EUR/USDT), automated daily executive reporting, and Android APK client.",
-    pTmaDesc: "Suite of 7 Telegram Mini Apps featuring Obsidian Glass UI, WebApp SDK (haptics, expand), CryptoBot & xRocket checkouts, and TON Connect wallet integration.",
+    projH: "Featured Open-Source Repositories",
     pZenithDesc: "Ultra-fast asynchronous cloud-native API Gateway and WAF in Rust with dynamic rate limiting, token bucket algorithms, and JWT RBAC policies (150k+ QPS).",
-    pZynDesc: "Commercial Dark Glass SaaS platform for AI software licensing: Google OAuth, multi-gateway billing (Stripe / Crypto), and automated cryptographic key distribution.",
+    pTurbokvDesc: "High-throughput in-memory key-value database with binary Write-Ahead Log (WAL), crash recovery guarantees, and low-latency custom TCP protocol.",
+    pNexusDesc: "Distributed commit-log message broker written in Go with consumer groups, automatic partition rebalancing, mmap zero-copy storage, and live web dashboard.",
+    pRagDesc: "Next-generation RAG engine with Reciprocal Rank Fusion (RRF), multi-query generation, cross-encoder reranking, and semantic vector deduplication.",
+    pTmaDesc: "Suite of 7 Telegram Mini Apps featuring Obsidian Glass UI, WebApp SDK (haptic feedback, themes), CryptoBot & xRocket checkouts, and TON Connect wallet integration.",
+    pStoreDesc: "Full-featured e-commerce store bot on aiogram 3: interactive product catalog, cart manager, FSM checkout flow, promo codes, referral tiers, and admin console.",
     viewRepo: "View on GitHub",
-    liveDemo: "Live Interactive Demo",
+    liveDemo: "Live Demo",
     pillarsH: "Engineering Capabilities",
     pill1H: "Production Telegram Bots",
     pill1P: "Full-cycle bots on aiogram 3: e-commerce catalogs, FSM state machines, financial monitors, Dockerized and deployed with automated recovery.",
@@ -1111,15 +1134,15 @@ const dict = {
     statUptime: "Аптайм у продакшені",
     statYears: "Років розробки софту",
     stackH: "Стек технологій",
-    projH: "Флагманські системи та продукти",
-    pReporterDesc: "Високонавантажена автоматизована система репортингу в Telegram з пулом 40+ сесій, sticky-проксі, аварійним вимикачем (killswitch) та цілодобовим демоном на VPS.",
-    pOtkatDesc: "Десктопний графічний редактор фіксацій та анотацій на C# WPF (.NET 10) з WebView2, шорткатами буфера (Ctrl+V/Ctrl+C), виділенням цілей та цензором.",
-    pLifeDesc: "Персональна операційна система продуктивності з мультивалютним фінансовим обліком (CZK/RUB/EUR/USDT), щоденними авто-звітами та клієнтом для Android.",
-    pTmaDesc: "Комплекс із 7 Telegram Mini Apps у стилі Obsidian Glass з WebApp SDK (вібровідгук Haptic, теми), оплатами CryptoBot / xRocket та TON Connect.",
+    projH: "Відкриті репозиторії та архітектури",
     pZenithDesc: "Ультрашвидкий хмарний API Gateway & WAF на Rust із динамічним rate limiting, алгоритмами токен-бакетів та політиками JWT RBAC (150k+ QPS).",
-    pZynDesc: "Комерційна Dark Glass SaaS-платформа для ліцензування AI-софту: Google OAuth, мультивалютний еквайринг (Stripe / Crypto) та криптографічна видача ключів.",
+    pTurbokvDesc: "Високопродуктивна in-memory key-value база даних на C++17 з бінарним Write-Ahead Log (WAL), захистом від збоїв та низьколатентним TCP-протоколом.",
+    pNexusDesc: "Розподілений commit-log брокер повідомлень на Go з групами споживачів, авто-ребалансуванням, zero-copy сховищем mmap та панеллю моніторингу.",
+    pRagDesc: "RAG-рушій нового покоління з алгоритмом Reciprocal Rank Fusion (RRF), мульти-запитами, крос-енкодер переранжуванням та векторною дедуплікацією.",
+    pTmaDesc: "Комплекс із 7 Telegram Mini Apps у стилі Obsidian Glass з WebApp SDK (вібровідгук Haptic, теми), оплатами CryptoBot / xRocket та TON Connect.",
+    pStoreDesc: "Повнофункціональний бот-магазин на aiogram 3: інтерактивний каталог, кошик, FSM-оформлення, промокоди, реферальна програма та адмін-панель.",
     viewRepo: "Переглянути на GitHub",
-    liveDemo: "Інтерактивне демо",
+    liveDemo: "Демо онлайн",
     pillarsH: "Інженерні компетенції",
     pill1H: "Telegram-боти для продакшену",
     pill1P: "Повноцінні боти на aiogram 3: каталоги, FSM-сценарії, фінансові трекери, упаковані в Docker з авто-відновленням після збоїв.",
