@@ -566,6 +566,210 @@ main {
   border-color: var(--border-hover);
 }
 
+/* === INTERACTIVE TERMINAL === */
+.terminal-window {
+  margin-bottom: 60px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), var(--glow-cyan);
+  transition: border-color 0.3s ease;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(13, 17, 23, 0.85);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.terminal-title {
+  color: var(--text-soft);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.terminal-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #10b981;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.terminal-body {
+  padding: 20px;
+  max-height: 380px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+.terminal-output {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 14px;
+}
+
+.term-prompt-tag {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.term-cmd-text {
+  color: #fff;
+  font-weight: 600;
+}
+
+.term-hl {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.term-violet {
+  color: #c084fc;
+}
+
+.term-green {
+  color: #34d399;
+}
+
+.term-dim {
+  color: var(--text-muted);
+}
+
+.term-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 12.5px;
+}
+
+.term-table th, .term-table td {
+  padding: 6px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.term-table th {
+  background: rgba(0, 242, 254, 0.08);
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.term-table td {
+  color: var(--text-soft);
+}
+
+.terminal-pills-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(13, 17, 23, 0.6);
+  border-top: 1px solid var(--border);
+}
+
+.term-pill-hint {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.term-pill-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 242, 254, 0.08);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.term-pill-btn:hover {
+  background: rgba(0, 242, 254, 0.2);
+  transform: translateY(-1px);
+}
+
+.terminal-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: rgba(13, 17, 23, 0.95);
+  border-top: 1px solid var(--border);
+}
+
+.term-input-prompt {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  white-space: nowrap;
+}
+
+.term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  color: #fff;
+}
+
+.term-input::placeholder {
+  color: var(--text-muted);
+}
+
+.term-exec-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-grad);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.term-exec-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
 /* === WHAT I SHIP (CORE STRENGTHS) === */
 .strengths-grid {
   display: grid;
@@ -1022,6 +1226,52 @@ footer {
     </div>
   </section>
 
+  <!-- INTERACTIVE TERMINAL -->
+  <section>
+    <div class="section-header">
+      <div class="section-icon"><svg width="18" height="18"><use href="#icon-terminal"/></svg></div>
+      <h2 class="section-title" data-i18n="termH">Interactive Systems Terminal</h2>
+    </div>
+
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot dot-red"></span>
+          <span class="terminal-dot dot-yellow"></span>
+          <span class="terminal-dot dot-green"></span>
+        </div>
+        <div class="terminal-title">seocry@zenith-edge-node: ~ (zsh)</div>
+        <div class="terminal-status-badge">
+          <span class="pulse-dot" style="margin-right:4px;"></span>
+          <span>LIVE &bull; 99.9% UPTIME</span>
+        </div>
+      </div>
+
+      <div class="terminal-body" id="term-body">
+        <div class="terminal-output" id="term-initial">
+          <span class="term-dim">[SYSTEM READY]</span> Connected to edge runtime. Type <span class="term-hl">help</span> or click quick pills below to inspect architecture, telemetry &amp; benchmarks.
+        </div>
+      </div>
+
+      <div class="terminal-pills-bar">
+        <span class="term-pill-hint">Quick Run:</span>
+        <button type="button" class="term-pill-btn" data-cmd="whoami">whoami</button>
+        <button type="button" class="term-pill-btn" data-cmd="benchmarks">benchmarks</button>
+        <button type="button" class="term-pill-btn" data-cmd="skills">skills</button>
+        <button type="button" class="term-pill-btn" data-cmd="projects">projects</button>
+        <button type="button" class="term-pill-btn" data-cmd="neofetch">neofetch</button>
+        <button type="button" class="term-pill-btn" data-cmd="contact">contact</button>
+        <button type="button" class="term-pill-btn" data-cmd="clear">clear</button>
+      </div>
+
+      <form class="terminal-input-bar" id="term-form">
+        <span class="term-input-prompt">seocry@node:~$</span>
+        <input type="text" id="term-input" class="term-input" placeholder="type a command (e.g. benchmarks, whoami, contact)..." autocomplete="off" spellcheck="false" />
+        <button type="submit" class="term-exec-btn">Execute</button>
+      </form>
+    </div>
+  </section>
+
   <!-- ENGINEERING CAPABILITIES -->
   <section>
     <div class="section-header">
@@ -1125,6 +1375,7 @@ const dict = {
     pill4P: "Self-healing worker daemons, headless scraper meshes, automated reporting, and background sync engines designed to run 24/7 without intervention.",
     contactH: "Ready to Build Something Solid?",
     contactP: "Available for backend development, Telegram bots & Mini Apps, automation systems, and architectural consulting. Direct communication, zero bureaucracy.",
+    termH: "Interactive Systems Terminal",
     footNote: "Crafted with precision • Clean code only"
   },
   uk: {
@@ -1157,6 +1408,7 @@ const dict = {
     pill4P: "Фонові демони, розподілені скрапери, регулярна звітність та сервіси синхронізації, що працюють цілодобово без втручання.",
     contactH: "Потрібно створити надійне рішення?",
     contactP: "Відкритий до розробки бекенду, Telegram-ботів та Mini Apps, систем автоматизації та архітектурного консалтингу. Прямий контакт, без зайвої бюрократії.",
+    termH: "Інтерактивний термінал систем",
     footNote: "Створено з точністю • Тільки чистий код"
   }
 };
@@ -1187,6 +1439,10 @@ function setLang(lang) {
 
   localStorage.setItem('lang', lang);
   startTyper();
+  const termInit = document.getElementById('term-initial');
+  if (termInit && termBody && termBody.children.length === 1 && termData && termData[lang]) {
+    termInit.innerHTML = termData[lang].welcome;
+  }
 }
 
 langBtns.forEach(btn => {
@@ -1247,6 +1503,224 @@ applyTheme(savedTheme);
 themeBtn.addEventListener('click', () => {
   const current = document.documentElement.getAttribute('data-theme');
   applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// === INTERACTIVE TERMINAL ENGINE ===
+const termBody = document.getElementById('term-body');
+const termForm = document.getElementById('term-form');
+const termInput = document.getElementById('term-input');
+const termPills = document.querySelectorAll('.term-pill-btn');
+
+let cmdHistory = [];
+let historyIndex = -1;
+
+const termData = {
+  en: {
+    welcome: '<span class="term-dim">[SYSTEM READY]</span> Connected to edge runtime. Type <span class="term-hl">help</span> or click quick pills below to inspect architecture, telemetry &amp; benchmarks.',
+    help: `Available commands:
+  <span class="term-hl">whoami</span>       - Engineer identity &amp; core focus
+  <span class="term-hl">benchmarks</span>   - High-concurrency metrics vs industry baselines
+  <span class="term-hl">skills</span>       - Systems &amp; language competence matrix
+  <span class="term-hl">projects</span>     - Production flagship open-source repositories
+  <span class="term-hl">neofetch</span>     - Edge host telemetry &amp; hardware specs
+  <span class="term-hl">contact</span>      - Direct Telegram &amp; Email (auto-copies @seocry)
+  <span class="term-hl">uptime</span>       - Service availability &amp; cluster stats
+  <span class="term-hl">clear</span>        - Flush terminal buffer`,
+    whoami: `<span class="term-hl">txltedxgod</span> • Software &amp; Systems Architect
+• Specialization : Low-latency distributed engines, async Rust/Go, and Telegram Mini Apps.
+• Engineering    : Zero-bloat, zero-compromise performance, event-driven pipelines.
+• Focus          : 150k+ QPS gateways, custom in-memory storage, production AI engines.
+• Telegram       : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
+    benchmarks: `<table class="term-table">
+  <thead>
+    <tr><th>Engine / Target</th><th>Peak QPS</th><th>P99 Latency</th><th>Memory &amp; Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="term-hl">zenith-gateway</span></td><td><span class="term-green">152,400 QPS</span></td><td>0.42 ms</td><td>Rust / Tokio / Zero-copy</td></tr>
+    <tr><td>nginx (baseline)</td><td>84,100 QPS</td><td>1.85 ms</td><td>C / Epoll reverse proxy</td></tr>
+    <tr><td><span class="term-hl">turbokv</span></td><td><span class="term-green">210,000 Ops/s</span></td><td>0.18 ms</td><td>C++17 / Binary WAL</td></tr>
+    <tr><td>redis (baseline)</td><td>115,000 Ops/s</td><td>0.89 ms</td><td>In-Memory AOF</td></tr>
+    <tr><td><span class="term-hl">nexus-mq</span></td><td><span class="term-green">480,000 Msg/s</span></td><td>0.65 ms</td><td>Go 1.22 / Zero-copy mmap</td></tr>
+    <tr><td><span class="term-hl">rag-fusion-engine</span></td><td><span class="term-green">2,400 QPS</span></td><td>42.0 ms</td><td>RRF + Cross-Encoder rerank</td></tr>
+  </tbody>
+</table>`,
+    skills: `• <span class="term-hl">Languages</span>   : Rust, Go 1.22, Modern C++17, Python 3.12, C# (.NET 10), TypeScript, SQL
+• <span class="term-hl">High-Load</span>   : Axum, Tokio, gRPC, Protobuf, Kafka (Transactional Outbox), Redis, pgvector
+• <span class="term-hl">Telegram</span>    : aiogram 3, TMA WebApp SDK, Web3 CryptoBot / xRocket, TON Connect
+• <span class="term-hl">Infra &amp; CI</span>   : Docker Multi-stage, Kubernetes, Linux Hardening, Prometheus / Grafana`,
+    projects: `Flagship Open-Source Repositories:
+1. <a href="https://github.com/txltedxgod/zenith-gateway" target="_blank" class="term-hl">zenith-gateway</a>      - Cloud-native API Gateway &amp; WAF in Rust (150k+ QPS)
+2. <a href="https://github.com/txltedxgod/turbokv" target="_blank" class="term-hl">turbokv</a>             - In-memory KV database with binary WAL in C++17
+3. <a href="https://github.com/txltedxgod/nexus-mq" target="_blank" class="term-hl">nexus-mq</a>            - Distributed commit-log message broker in Go
+4. <a href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" class="term-hl">rag-fusion-engine</a>   - Next-gen RAG with RRF &amp; cross-encoder in Python
+5. <a href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" class="term-hl">tma-portfolio-suite</a> - Suite of 7 Telegram Mini Apps (Obsidian Glass)
+6. <a href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" class="term-hl">telegram-store-bot</a>  - Full-featured e-commerce shop bot on aiogram 3`,
+    neofetch: `  <span class="term-violet">/\\_/\\</span>      <span class="term-hl">OS</span>        : Hardened Edge Linux x86_64
+ <span class="term-violet">( o.o )</span>     <span class="term-hl">Host</span>      : Zenith-Node-01 (Tokyo Edge)
+  <span class="term-violet">&gt; ^ &lt;</span>      <span class="term-hl">Kernel</span>    : 6.10.11-zenith-rt
+             <span class="term-hl">Uptime</span>    : 99.98% (Zero Downtime)
+             <span class="term-hl">Packages</span>  : 70+ open-source repos (txltedxgod)
+             <span class="term-hl">Shell</span>     : zsh 5.9 (tokyo-night)
+             <span class="term-hl">Terminal</span>  : Interactive WebAssembly / DOM
+             <span class="term-hl">Telegram</span>  : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
+    contact: `Direct channels:
+• Telegram : <a href="https://t.me/seocry" target="_blank" class="term-hl">https://t.me/seocry</a> (@seocry)
+• Email    : <a href="mailto:seidoutakidzava@gmail.com" class="term-hl">seidoutakidzava@gmail.com</a>
+<span class="term-green">[✓ Copied @seocry to clipboard!]</span>`,
+    uptime: `<span class="term-green">UP 243 days, 14:22</span> | Load avg: 0.12, 0.08, 0.05 | Peak throughput: 152,400 req/s | Memory RSS: 18.4 MB`,
+    sudo: `<span class="term-violet">[GUARD ACTIVE]</span> Nice try. Kernel sandbox is strictly isolated. Root privileges denied.`
+  },
+  uk: {
+    welcome: '<span class="term-dim">[СИСТЕМА ГОТОВА]</span> Підключено до edge-вузла. Введіть <span class="term-hl">help</span> або натисніть швидкі кнопки для перегляду архітектури та бенчмарків.',
+    help: `Доступні команди:
+  <span class="term-hl">whoami</span>       - Профіль інженера та спеціалізація
+  <span class="term-hl">benchmarks</span>   - Заміри продуктивності та порівняння
+  <span class="term-hl">skills</span>       - Компетенції та технологічний стек
+  <span class="term-hl">projects</span>     - Відкриті флагманські репозиторії
+  <span class="term-hl">neofetch</span>     - Телеметрія вузла та системні характеристики
+  <span class="term-hl">contact</span>      - Контакти Telegram та пошта (авто-копіювання @seocry)
+  <span class="term-hl">uptime</span>       - Аптайм та статус сервісів
+  <span class="term-hl">clear</span>        - Очистити консоль`,
+    whoami: `<span class="term-hl">txltedxgod</span> • Інженер системного та серверного ПЗ
+• Спеціалізація : Розподілені системи з низькою затримкою, асинхронний Rust/Go, Telegram Mini Apps.
+• Філософія     : Максимальна продуктивність без зайвого оверхеду, стійкість до збоїв.
+• Фокус          : Шлюзи на 150k+ QPS, in-memory сховища даних, продакшен AI-пайплайни.
+• Telegram       : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
+    benchmarks: `<table class="term-table">
+  <thead>
+    <tr><th>Система / Ціль</th><th>Піковий QPS</th><th>P99 Затримка</th><th>Пам'ять та примітки</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="term-hl">zenith-gateway</span></td><td><span class="term-green">152,400 QPS</span></td><td>0.42 ms</td><td>Rust / Tokio / Zero-copy</td></tr>
+    <tr><td>nginx (базовий)</td><td>84,100 QPS</td><td>1.85 ms</td><td>C / Epoll проксі</td></tr>
+    <tr><td><span class="term-hl">turbokv</span></td><td><span class="term-green">210,000 Ops/s</span></td><td>0.18 ms</td><td>C++17 / Бінарний WAL</td></tr>
+    <tr><td>redis (базовий)</td><td>115,000 Ops/s</td><td>0.89 ms</td><td>In-Memory AOF</td></tr>
+    <tr><td><span class="term-hl">nexus-mq</span></td><td><span class="term-green">480,000 Msg/s</span></td><td>0.65 ms</td><td>Go 1.22 / Zero-copy mmap</td></tr>
+    <tr><td><span class="term-hl">rag-fusion-engine</span></td><td><span class="term-green">2,400 QPS</span></td><td>42.0 ms</td><td>RRF + Cross-Encoder</td></tr>
+  </tbody>
+</table>`,
+    skills: `• <span class="term-hl">Мови</span>          : Rust, Go 1.22, Modern C++17, Python 3.12, C# (.NET 10), TypeScript, SQL
+• <span class="term-hl">High-Load</span>      : Axum, Tokio, gRPC, Protobuf, Kafka (Transactional Outbox), Redis, pgvector
+• <span class="term-hl">Telegram</span>       : aiogram 3, TMA WebApp SDK, Web3 CryptoBot / xRocket, TON Connect
+• <span class="term-hl">Інфраструктура</span> : Docker Multi-stage, Kubernetes, Linux Hardening, Prometheus / Grafana`,
+    projects: `Флагманські відкриті проєкти:
+1. <a href="https://github.com/txltedxgod/zenith-gateway" target="_blank" class="term-hl">zenith-gateway</a>      - Хмарний API Gateway &amp; WAF на Rust (150k+ QPS)
+2. <a href="https://github.com/txltedxgod/turbokv" target="_blank" class="term-hl">turbokv</a>             - In-memory KV база даних із бінарним WAL на C++17
+3. <a href="https://github.com/txltedxgod/nexus-mq" target="_blank" class="term-hl">nexus-mq</a>            - Розподілений commit-log брокер повідомлень на Go
+4. <a href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" class="term-hl">rag-fusion-engine</a>   - RAG-рушій з RRF та крос-енкодером на Python
+5. <a href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" class="term-hl">tma-portfolio-suite</a> - Комплекс із 7 Telegram Mini Apps (Obsidian Glass)
+6. <a href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" class="term-hl">telegram-store-bot</a>  - Магазин на aiogram 3 з каталогом та FSM`,
+    neofetch: `  <span class="term-violet">/\\_/\\</span>      <span class="term-hl">ОС</span>        : Hardened Edge Linux x86_64
+ <span class="term-violet">( o.o )</span>     <span class="term-hl">Вузол</span>     : Zenith-Node-01 (Tokyo Edge)
+  <span class="term-violet">&gt; ^ &lt;</span>      <span class="term-hl">Ядро</span>      : 6.10.11-zenith-rt
+             <span class="term-hl">Аптайм</span>    : 99.98% (Zero Downtime)
+             <span class="term-hl">Пакети</span>    : 70+ відкритих репозиторіїв (txltedxgod)
+             <span class="term-hl">Shell</span>     : zsh 5.9 (tokyo-night)
+             <span class="term-hl">Термінал</span>  : WebAssembly / DOM
+             <span class="term-hl">Telegram</span>  : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
+    contact: `Прямі контакти:
+• Telegram : <a href="https://t.me/seocry" target="_blank" class="term-hl">https://t.me/seocry</a> (@seocry)
+• Email    : <a href="mailto:seidoutakidzava@gmail.com" class="term-hl">seidoutakidzava@gmail.com</a>
+<span class="term-green">[✓ Скопійовано @seocry у буфер обміну!]</span>`,
+    uptime: `<span class="term-green">UP 243 дні, 14:22</span> | Навантаження: 0.12, 0.08, 0.05 | Піковий QPS: 152,400 req/s | Пам'ять RSS: 18.4 MB`,
+    sudo: `<span class="term-violet">[ЗАХИСТ АКТИВОВАНИЙ]</span> Гарна спроба. Пісочниця ядра надійно ізольована. Root доступ заблоковано.`
+  }
+};
+
+function escapeTermHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function execTermCmd(raw) {
+  const trimmed = raw.trim();
+  if (!trimmed) return;
+
+  cmdHistory.push(trimmed);
+  historyIndex = cmdHistory.length;
+
+  const args = trimmed.toLowerCase().split(/\s+/);
+  const cmd = args[0];
+  const langKey = currentLang === 'uk' ? 'uk' : 'en';
+  const data = termData[langKey];
+
+  if (cmd === 'clear') {
+    termBody.innerHTML = `<div class="terminal-output">${data.welcome}</div>`;
+    return;
+  }
+
+  let outputHtml = '';
+
+  if (cmd === 'contact') {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText('@seocry').catch(() => {});
+    }
+    outputHtml = data.contact;
+  } else if (cmd === 'help') {
+    outputHtml = data.help;
+  } else if (cmd === 'whoami') {
+    outputHtml = data.whoami;
+  } else if (cmd === 'benchmarks' || cmd === 'benchmark') {
+    outputHtml = data.benchmarks;
+  } else if (cmd === 'skills' || cmd === 'stack') {
+    outputHtml = data.skills;
+  } else if (cmd === 'projects' || cmd === 'repos') {
+    outputHtml = data.projects;
+  } else if (cmd === 'neofetch' || cmd === 'sysinfo') {
+    outputHtml = data.neofetch;
+  } else if (cmd === 'uptime') {
+    outputHtml = data.uptime;
+  } else if (cmd === 'sudo' || trimmed.includes('rm -rf')) {
+    outputHtml = data.sudo;
+  } else {
+    outputHtml = `<span class="term-dim">zsh: command not found: ${escapeTermHtml(trimmed)}. Type <span class="term-hl">help</span> for available commands.</span>`;
+  }
+
+  const row = document.createElement('div');
+  row.className = 'terminal-output';
+  row.innerHTML = `<div><span class="term-prompt-tag">seocry@node:~$</span> <span class="term-cmd-text">${escapeTermHtml(trimmed)}</span></div><div>${outputHtml}</div>`;
+  termBody.appendChild(row);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+
+if (termForm) {
+  termForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (termInput) {
+      execTermCmd(termInput.value);
+      termInput.value = '';
+    }
+  });
+}
+
+if (termInput) {
+  termInput.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowUp') {
+      if (cmdHistory.length > 0 && historyIndex > 0) {
+        historyIndex--;
+        termInput.value = cmdHistory[historyIndex];
+      }
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown') {
+      if (historyIndex < cmdHistory.length - 1) {
+        historyIndex++;
+        termInput.value = cmdHistory[historyIndex];
+      } else {
+        historyIndex = cmdHistory.length;
+        termInput.value = '';
+      }
+      e.preventDefault();
+    }
+  });
+}
+
+termPills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    const cmd = pill.dataset.cmd;
+    if (cmd) {
+      execTermCmd(cmd);
+      if (termInput) termInput.focus();
+    }
+  });
 });
 
 // Init
