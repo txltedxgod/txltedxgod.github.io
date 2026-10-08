@@ -1421,7 +1421,19 @@ const roles = {
 // Language logic
 const langBtns = document.querySelectorAll('.lang-btn');
 const i18nEls = document.querySelectorAll('[data-i18n]');
-let currentLang = localStorage.getItem('lang') || 'en';
+function detectInitialLang() {
+  const saved = localStorage.getItem('lang');
+  if (saved && (saved === 'uk' || saved === 'en')) return saved;
+  const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
+  for (const l of navLangs) {
+    if (!l) continue;
+    const clean = l.toLowerCase();
+    if (clean.startsWith('uk')) return 'uk';
+  }
+  return 'en';
+}
+
+let currentLang = detectInitialLang();
 
 function setLang(lang) {
   if (!dict[lang]) lang = 'en';
