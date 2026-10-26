@@ -7,7 +7,7 @@
 <meta name="description" content="High-throughput backend architecture, distributed systems, Telegram bots &amp; Mini Apps, and AI/ML infrastructure. 70+ open-source repositories." />
 <meta name="keywords" content="txltedxgod, software engineer, backend, Rust, Go, Python, C++, Telegram bot, aiogram, TMA, FastAPI, portfolio" />
 <meta name="author" content="txltedxgod" />
-<meta name="theme-color" content="#0a0c12" />
+<meta name="theme-color" content="#0c0e12" />
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
@@ -23,29 +23,33 @@
 <meta property="og:image" content="https://txltedxgod.github.io/og.png" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="uk_UA" />
+<meta property="og:locale:alternate" content="ru_RU" />
 
 <style>
-/* === CSS VARIABLES === */
+/* === CSS VARIABLES (PURE MONOCHROME & SLATE PALETTE) === */
 :root {
-  --bg: #0a0c12;
-  --bg-subtle: #10141f;
-  --surface: rgba(18, 22, 34, 0.75);
-  --surface-hover: rgba(26, 32, 50, 0.9);
-  --surface-glass: rgba(16, 20, 32, 0.65);
+  color-scheme: dark;
+  --bg: #0c0e12;
+  --bg-subtle: #12151c;
+  --bg-elevated: #181b24;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-hover: rgba(255, 255, 255, 0.075);
+  --surface-glass: rgba(255, 255, 255, 0.04);
+  --surface-glass-border: rgba(255, 255, 255, 0.1);
   
-  --text: #f0f4ff;
-  --text-soft: #9aa4bf;
-  --text-muted: #5e6882;
+  --text: #f4f4f6;
+  --text-soft: #a1a1aa;
+  --text-muted: #71717a;
   
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(0, 242, 254, 0.4);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-hover: rgba(255, 255, 255, 0.32);
+  --border-strong: rgba(255, 255, 255, 0.18);
 
-  --accent-cyan: #00f2fe;
-  --accent-violet: #8a2be2;
-  --accent-grad: linear-gradient(135deg, #00f2fe 0%, #8a2be2 100%);
-  --glow-cyan: 0 0 24px rgba(0, 242, 254, 0.2);
-  --glow-violet: 0 0 24px rgba(138, 43, 226, 0.2);
+  --accent-white: #ffffff;
+  --accent-silver: #d4d4d8;
+  --accent-grad: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  --glow-white: 0 0 28px rgba(255, 255, 255, 0.14);
+  --glow-hover: 0 16px 45px -10px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 255, 255, 0.09);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -58,24 +62,30 @@
 }
 
 [data-theme="light"] {
-  --bg: #f5f7fc;
-  --bg-subtle: #ebf0f9;
-  --surface: rgba(255, 255, 255, 0.85);
-  --surface-hover: rgba(255, 255, 255, 0.98);
-  --surface-glass: rgba(255, 255, 255, 0.7);
-  --text: #0e121e;
-  --text-soft: #4a546e;
-  --text-muted: #8591b0;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 168, 204, 0.5);
-  --border-strong: rgba(0, 0, 0, 0.16);
-  --glow-cyan: 0 4px 20px rgba(0, 168, 204, 0.15);
-  --glow-violet: 0 4px 20px rgba(138, 43, 226, 0.12);
+  color-scheme: light;
+  --bg: #f5f5f7;
+  --bg-subtle: #eaecee;
+  --bg-elevated: #ffffff;
+  --surface: rgba(0, 0, 0, 0.035);
+  --surface-hover: rgba(0, 0, 0, 0.065);
+  --surface-glass: rgba(255, 255, 255, 0.8);
+  --surface-glass-border: rgba(0, 0, 0, 0.1);
+  --text: #111317;
+  --text-soft: #52525b;
+  --text-muted: #858592;
+  --border: rgba(0, 0, 0, 0.09);
+  --border-hover: rgba(0, 0, 0, 0.3);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --accent-white: #111317;
+  --accent-silver: #3f3f46;
+  --accent-grad: linear-gradient(135deg, #111317 0%, #52525b 100%);
+  --glow-white: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --glow-hover: 0 16px 45px -10px rgba(0, 0, 0, 0.14), 0 0 30px rgba(0, 0, 0, 0.06);
 }
 
 /* === RESET & BASE === */
-* { box-sizing: border-box; margin: 0; padding: 0 }
-html { scroll-behavior: smooth }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
@@ -86,10 +96,10 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.35s ease, color 0.35s ease;
 }
 
-/* Ambient Cyber Glow Background */
+/* Ambient Charcoal/Obsidian Mesh Glow (NO dead pitch black) */
 body::before {
   content: "";
   position: fixed;
@@ -97,15 +107,174 @@ body::before {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(1000px 550px at 10% -10%, rgba(0, 242, 254, 0.12), transparent 70%),
-    radial-gradient(900px 500px at 90% 10%, rgba(138, 43, 226, 0.14), transparent 65%),
-    radial-gradient(800px 600px at 50% 90%, rgba(0, 242, 254, 0.06), transparent 70%);
+    radial-gradient(1200px 650px at 50% -80px, rgba(255, 255, 255, 0.06), transparent 70%),
+    radial-gradient(850px 500px at 90% 25%, rgba(255, 255, 255, 0.025), transparent 70%),
+    radial-gradient(900px 650px at 10% 80%, rgba(255, 255, 255, 0.025), transparent 70%),
+    linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg) 100%);
 }
 
-a { color: inherit; text-decoration: none }
-svg { display: block; flex-shrink: 0 }
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-/* === NAVIGATION === */
+a { color: inherit; text-decoration: none; }
+svg { display: block; flex-shrink: 0; }
+
+/* === WELCOME GREETING OVERLAY (ALWAYS ON ENTRY) === */
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 12, 16, 0.78);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s ease;
+}
+
+[data-theme="light"] .welcome-overlay {
+  background: rgba(245, 245, 247, 0.82);
+}
+
+.welcome-overlay.closing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.welcome-overlay.closed {
+  display: none;
+}
+
+.welcome-backdrop {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.welcome-card {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+  width: 100%;
+  padding: 44px 36px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.065) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    0 24px 65px -15px rgba(0, 0, 0, 0.8),
+    0 0 45px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation: welcomePop 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+[data-theme="light"] .welcome-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes welcomePop {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.welcome-icon-spin {
+  animation: spinOrbital 18s linear infinite;
+}
+
+.welcome-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.welcome-title {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.welcome-desc {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.welcome-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 30px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0c0e12;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .welcome-btn {
+  color: #ffffff;
+  background: #111317;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.welcome-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.55);
+}
+
+.welcome-btn:hover .icon-arrow-slide {
+  transform: translateX(4px);
+}
+
+.welcome-hint {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* === NAVIGATION (GLASSMORPHIC) === */
 .nav {
   position: sticky;
   top: 0;
@@ -114,10 +283,15 @@ svg { display: block; flex-shrink: 0 }
   align-items: center;
   justify-content: space-between;
   padding: 16px 28px;
-  backdrop-filter: blur(18px) saturate(180%);
-  background: color-mix(in srgb, var(--bg) 75%, transparent);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  background: rgba(12, 14, 18, 0.75);
   border-bottom: 1px solid var(--border);
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+[data-theme="light"] .nav {
+  background: rgba(245, 245, 247, 0.8);
 }
 
 .brand {
@@ -127,6 +301,11 @@ svg { display: block; flex-shrink: 0 }
   font-weight: 800;
   font-size: 18px;
   letter-spacing: -0.02em;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand:hover {
+  transform: translateY(-1px);
 }
 
 .brand-badge {
@@ -135,9 +314,17 @@ svg { display: block; flex-shrink: 0 }
   border-radius: 10px;
   display: grid;
   place-items: center;
-  background: var(--accent-grad);
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 242, 254, 0.3);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--accent-white);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand:hover .brand-badge {
+  transform: scale(1.08) rotate(-4deg);
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .nav-controls {
@@ -157,20 +344,26 @@ svg { display: block; flex-shrink: 0 }
 .lang-btn {
   all: unset;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   font-family: var(--font-mono);
-  padding: 5px 12px;
+  padding: 5px 11px;
   border-radius: var(--radius-full);
   color: var(--text-soft);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.lang-btn:hover { color: var(--text) }
+.lang-btn:hover { color: var(--text); }
 .lang-btn.active {
+  color: #0c0e12;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .lang-btn.active {
   color: #ffffff;
-  background: var(--accent-grad);
-  box-shadow: 0 1px 8px rgba(0, 242, 254, 0.3);
+  background: #111317;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 .theme-btn {
@@ -184,13 +377,14 @@ svg { display: block; flex-shrink: 0 }
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text-soft);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .theme-btn:hover {
-  color: var(--accent-cyan);
+  color: var(--accent-white);
   border-color: var(--border-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 /* === MAIN LAYOUT === */
@@ -207,33 +401,68 @@ main {
 }
 
 .avatar-container {
-  width: 108px;
-  height: 108px;
-  margin: 0 auto 24px;
-  border-radius: 28px;
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 28px;
+  border-radius: 30px;
   padding: 3px;
-  background: var(--accent-grad);
-  box-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: float 6s ease-in-out infinite;
+  animation: floatHarmonic 7s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 
-@keyframes float {
+.avatar-container:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 255, 255, 0.18);
+}
+
+@keyframes floatHarmonic {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-7px); }
 }
 
 .avatar-inner {
   width: 100%;
   height: 100%;
-  border-radius: 25px;
-  background: var(--bg);
+  border-radius: 27px;
+  background: var(--bg-subtle);
   display: grid;
   place-items: center;
   overflow: hidden;
+  position: relative;
 }
+
+/* Sleek Geometric Animated Avatar Sigil */
+.avatar-sigil-orbital {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spinOrbital 24s linear infinite;
+}
+
+.avatar-sigil-orbital-rev {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spinOrbitalRev 16s linear infinite;
+}
+
+.avatar-sigil-core {
+  position: relative;
+  z-index: 2;
+  animation: glyphPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes spinOrbital { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spinOrbitalRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes glyphPulse { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.05); opacity: 1; } }
 
 .eyebrow-tag {
   display: inline-flex;
@@ -246,16 +475,33 @@ main {
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent-cyan);
-  margin-bottom: 20px;
+  color: var(--text-soft);
+  margin-bottom: 22px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .pulse-dot {
-  width: 8px;
-  height: 8px;
+  position: relative;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 10px #10b981;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  display: inline-block;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  animation: ripple 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.8); opacity: 0; }
 }
 
 .hero h1 {
@@ -264,21 +510,28 @@ main {
   line-height: 1.08;
   letter-spacing: -0.035em;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--text) 40%, var(--accent-cyan) 100%);
+  background: linear-gradient(135deg, #ffffff 40%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-theme="light"] .hero h1 {
+  background: linear-gradient(135deg, #111317 40%, #52525b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .hero p {
-  font-size: 19px;
+  font-size: 18.5px;
   color: var(--text-soft);
   max-width: 660px;
   margin: 0 auto 32px;
   line-height: 1.6;
 }
 
-/* CTA BUTTONS */
+/* === CTA BUTTONS === */
 .cta-group {
   display: flex;
   flex-wrap: wrap;
@@ -292,59 +545,78 @@ main {
   gap: 10px;
   padding: 12px 22px;
   border-radius: var(--radius-md);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid transparent;
+  will-change: transform, box-shadow;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn.primary {
-  background: var(--accent-grad);
+  background: #ffffff;
+  color: #0c0e12;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.28);
+}
+
+[data-theme="light"] .btn.primary {
+  background: #111317;
   color: #ffffff;
-  box-shadow: 0 4px 18px rgba(0, 242, 254, 0.25);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
 }
 
 .btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0, 242, 254, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.45);
+}
+
+.btn.primary:hover .icon-tg-anim {
+  transform: translate(2px, -2px) rotate(-8deg);
 }
 
 .btn.secondary {
   background: var(--surface);
   color: var(--text);
   border-color: var(--border);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .btn.secondary:hover {
   background: var(--surface-hover);
   border-color: var(--border-hover);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 255, 255, 0.08);
 }
 
-/* === STATS BAR === */
+/* === STATS BAR (FROSTED GLASS & HOVER LIFT) === */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
-  margin: 50px 0;
+  margin: 52px 0;
 }
 
 .stat-card {
-  padding: 22px 20px;
+  padding: 24px 20px;
   border-radius: var(--radius-md);
-  background: var(--surface-glass);
-  backdrop-filter: blur(14px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
   border: 1px solid var(--border);
+  box-shadow: 0 14px 35px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   text-align: center;
-  transition: all 0.25s ease;
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
 .stat-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-3px);
-  box-shadow: var(--glow-cyan);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .stat-num {
@@ -360,11 +632,11 @@ main {
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 /* === SECTION HEADERS === */
@@ -376,14 +648,22 @@ main {
 }
 
 .section-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
   display: grid;
   place-items: center;
   background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--accent-cyan);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-header:hover .section-icon {
+  transform: scale(1.08);
+  border-color: var(--border-hover);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
 }
 
 .section-title {
@@ -392,12 +672,12 @@ main {
   letter-spacing: -0.02em;
 }
 
-/* === TECH STACK PILLS === */
+/* === TECH STACK PILLS (MONOCHROME GLOW) === */
 .chips-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 48px;
+  margin-bottom: 52px;
 }
 
 .tech-chip {
@@ -408,27 +688,40 @@ main {
   border-radius: var(--radius-full);
   background: var(--surface-glass);
   border: 1px solid var(--border);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--text-soft);
-  backdrop-filter: blur(10px);
-  transition: all 0.2s ease;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  will-change: transform, box-shadow, border-color;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tech-chip:hover {
   color: var(--text);
   border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 255, 255, 0.08);
 }
 
 .tech-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+  opacity: 0.85;
+  transition: all 0.25s ease;
 }
 
-/* === FEATURED PROJECTS GRID === */
+.tech-chip:hover .tech-dot {
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 1);
+  transform: scale(1.2);
+}
+
+/* === FEATURED PROJECTS GRID (BUTTERY HOVER LIFT) === */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -437,15 +730,20 @@ main {
 }
 
 .project-card {
-  padding: 26px;
+  padding: 28px;
   border-radius: var(--radius-lg);
-  background: var(--surface-glass);
-  backdrop-filter: blur(16px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid var(--border);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
   position: relative;
   overflow: hidden;
 }
@@ -453,16 +751,16 @@ main {
 .project-card::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; height: 2px;
-  background: var(--accent-grad);
+  top: 0; left: 0; right: 0; height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.35s ease;
 }
 
 .project-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), var(--glow-cyan);
+  transform: translateY(-9px);
+  box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 255, 255, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .project-card:hover::before { opacity: 1; }
@@ -484,16 +782,18 @@ main {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  background: rgba(0, 242, 254, 0.08);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(0, 242, 254, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-soft);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .project-tag.live {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 .project-title {
@@ -503,6 +803,7 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
+  color: var(--text);
 }
 
 .project-desc {
@@ -524,7 +825,7 @@ main {
   font-size: 11.5px;
   padding: 3px 8px;
   border-radius: 6px;
-  background: var(--bg-subtle);
+  background: rgba(255, 255, 255, 0.035);
   color: var(--text-muted);
   border: 1px solid var(--border);
 }
@@ -541,18 +842,25 @@ main {
   gap: 6px;
   font-size: 13.5px;
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: var(--text);
   padding: 8px 14px;
   border-radius: var(--radius-sm);
-  background: rgba(0, 242, 254, 0.08);
-  border: 1px solid rgba(0, 242, 254, 0.2);
-  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  will-change: transform, box-shadow;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-btn:hover {
-  background: rgba(0, 242, 254, 0.18);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.project-btn:hover .icon-arrow-slide {
+  transform: translate(2px, -2px);
 }
 
 .project-btn.sub {
@@ -566,16 +874,22 @@ main {
   border-color: var(--border-hover);
 }
 
-/* === INTERACTIVE TERMINAL === */
+/* === INTERACTIVE TERMINAL (MONOCHROME GLASS) === */
 .terminal-window {
   margin-bottom: 60px;
-  background: var(--surface-glass);
-  backdrop-filter: blur(16px);
+  background: rgba(14, 17, 24, 0.75);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), var(--glow-cyan);
-  transition: border-color 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="light"] .terminal-window {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
 }
 
 .terminal-header {
@@ -583,10 +897,14 @@ main {
   align-items: center;
   justify-content: space-between;
   padding: 12px 18px;
-  background: rgba(13, 17, 23, 0.85);
+  background: rgba(11, 13, 18, 0.85);
   border-bottom: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 12px;
+}
+
+[data-theme="light"] .terminal-header {
+  background: rgba(240, 242, 245, 0.85);
 }
 
 .terminal-dots {
@@ -598,10 +916,9 @@ main {
   width: 11px;
   height: 11px;
   border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
 }
-.dot-red { background: #ff5f56; }
-.dot-yellow { background: #ffbd2e; }
-.dot-green { background: #27c93f; }
 
 .terminal-title {
   color: var(--text-soft);
@@ -613,7 +930,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #10b981;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -637,26 +954,28 @@ main {
 }
 
 .term-prompt-tag {
-  color: var(--accent-cyan);
+  color: #ffffff;
   font-weight: 700;
 }
 
 .term-cmd-text {
-  color: #fff;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .term-hl {
-  color: var(--accent-cyan);
+  color: #ffffff;
   font-weight: 700;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
 }
 
 .term-violet {
-  color: #c084fc;
+  color: #cbd5e1;
 }
 
 .term-green {
-  color: #34d399;
+  color: #f1f5f9;
+  font-weight: 600;
 }
 
 .term-dim {
@@ -677,8 +996,8 @@ main {
 }
 
 .term-table th {
-  background: rgba(0, 242, 254, 0.08);
-  color: var(--accent-cyan);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -692,8 +1011,12 @@ main {
   flex-wrap: wrap;
   gap: 8px;
   padding: 12px 20px;
-  background: rgba(13, 17, 23, 0.6);
+  background: rgba(11, 13, 18, 0.6);
   border-top: 1px solid var(--border);
+}
+
+[data-theme="light"] .terminal-pills-bar {
+  background: rgba(240, 242, 245, 0.6);
 }
 
 .term-pill-hint {
@@ -707,18 +1030,22 @@ main {
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 4px 11px;
   border-radius: var(--radius-sm);
-  background: rgba(0, 242, 254, 0.08);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(0, 242, 254, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-soft);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
-  transition: all 0.2s ease;
+  will-change: transform, box-shadow;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .term-pill-btn:hover {
-  background: rgba(0, 242, 254, 0.2);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .terminal-input-bar {
@@ -726,16 +1053,24 @@ main {
   align-items: center;
   gap: 10px;
   padding: 14px 20px;
-  background: rgba(13, 17, 23, 0.95);
+  background: rgba(11, 13, 18, 0.95);
   border-top: 1px solid var(--border);
+}
+
+[data-theme="light"] .terminal-input-bar {
+  background: rgba(245, 245, 247, 0.95);
 }
 
 .term-input-prompt {
   font-family: var(--font-mono);
   font-size: 13.5px;
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: #ffffff;
   white-space: nowrap;
+}
+
+[data-theme="light"] .term-input-prompt {
+  color: #111317;
 }
 
 .term-input {
@@ -745,7 +1080,7 @@ main {
   outline: none;
   font-family: var(--font-mono);
   font-size: 13.5px;
-  color: #fff;
+  color: var(--text);
 }
 
 .term-input::placeholder {
@@ -758,19 +1093,25 @@ main {
   font-weight: 700;
   padding: 6px 14px;
   border-radius: var(--radius-sm);
-  background: var(--accent-grad);
-  color: #fff;
+  background: #ffffff;
+  color: #0c0e12;
   border: none;
   cursor: pointer;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
   transition: all 0.2s ease;
 }
 
-.term-exec-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+[data-theme="light"] .term-exec-btn {
+  background: #111317;
+  color: #ffffff;
 }
 
-/* === WHAT I SHIP (CORE STRENGTHS) === */
+.term-exec-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.45);
+}
+
+/* === ENGINEERING CAPABILITIES (GLASS & LIFT) === */
 .strengths-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -779,17 +1120,23 @@ main {
 }
 
 .strength-card {
-  padding: 24px;
+  padding: 26px;
   border-radius: var(--radius-md);
-  background: var(--surface-glass);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
   border: 1px solid var(--border);
-  transition: all 0.25s ease;
+  box-shadow: 0 14px 35px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
 .strength-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-2px);
+  transform: translateY(-7px);
+  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .strength-icon {
@@ -798,32 +1145,50 @@ main {
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: rgba(0, 242, 254, 0.08);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(0, 242, 254, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   margin-bottom: 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.strength-card:hover .strength-icon {
+  transform: scale(1.08);
+  border-color: var(--border-hover);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
 }
 
 .strength-title {
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 8px;
+  color: var(--text);
 }
 
 .strength-desc {
   font-size: 14px;
   color: var(--text-soft);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* === CONTACT SECTION === */
 .contact-box {
   padding: 48px 32px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(0, 242, 254, 0.05), rgba(138, 43, 226, 0.08));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid var(--border-strong);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   text-align: center;
   margin-bottom: 60px;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.contact-box:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 255, 255, 0.08);
 }
 
 .contact-box h2 {
@@ -848,9 +1213,11 @@ main {
   background: var(--surface);
   border: 1px solid var(--border);
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 12.5px;
+  font-weight: 600;
   margin-bottom: 24px;
-  color: var(--accent-cyan);
+  color: var(--text-soft);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* === FOOTER === */
@@ -876,7 +1243,16 @@ footer {
   transition: color 0.2s ease;
 }
 
-.footer-link:hover { color: var(--accent-cyan); }
+.footer-link:hover { color: var(--accent-white); }
+
+/* SVG MICRO-ANIMATIONS */
+.icon-arrow-slide {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.icon-tg-anim {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 @media (max-width: 680px) {
   .nav { padding: 12px 18px; }
@@ -884,6 +1260,8 @@ footer {
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .contact-box { padding: 36px 20px; }
   .project-actions { flex-direction: column; align-items: stretch; }
+  .welcome-card { padding: 34px 22px; }
+  .welcome-title { font-size: 23px; }
 }
 </style>
 </head>
@@ -938,6 +1316,33 @@ footer {
   </symbol>
 </svg>
 
+<!-- WELCOME GREETING MODAL (TEXT ONLY, ALWAYS ON ENTRY) -->
+<div id="welcome-modal" class="welcome-overlay" role="dialog" aria-modal="true" aria-label="Welcome">
+  <div class="welcome-backdrop"></div>
+  <div class="welcome-card">
+    <div class="welcome-badge">
+      <svg class="welcome-icon-spin" width="34" height="34" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="17" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <circle cx="20" cy="20" r="11" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <polygon points="20 13 25 24 15 24" fill="rgba(255,255,255,0.85)"/>
+      </svg>
+    </div>
+    <div class="welcome-eyebrow" data-i18n="welcomeEyebrow">SYSTEM ONLINE &bull; TXLTEDXGOD</div>
+    <h2 class="welcome-title" data-i18n="welcomeTitle">Welcome to the Systems Suite</h2>
+    <p class="welcome-desc" data-i18n="welcomeDesc">High-throughput architecture, distributed engines, and production Telegram ecosystems. Pure performance, zero bloat.</p>
+    <div class="welcome-actions">
+      <button id="welcome-enter-btn" class="welcome-btn" type="button">
+        <span data-i18n="welcomeBtn">Enter Portfolio</span>
+        <svg class="icon-arrow-slide" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+    <div class="welcome-hint" data-i18n="welcomeHint">Press Enter, Space or click anywhere to explore</div>
+  </div>
+</div>
+
 <!-- NAVBAR -->
 <nav class="nav">
   <a class="brand" href="#top">
@@ -951,6 +1356,7 @@ footer {
     <div class="lang-switch" role="group" aria-label="Language">
       <button data-lang="en" class="lang-btn active">EN</button>
       <button data-lang="uk" class="lang-btn">УК</button>
+      <button data-lang="ru" class="lang-btn">RU</button>
     </div>
     <button id="theme-btn" class="theme-btn" type="button" aria-label="Toggle Theme">
       <svg width="18" height="18" id="theme-icon"><use href="#icon-sun"/></svg>
@@ -964,18 +1370,25 @@ footer {
   <section class="hero">
     <div class="avatar-container">
       <div class="avatar-inner">
-        <!-- Minimalist Monogram Sigil -->
-        <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
-          <rect x="10" y="16" width="44" height="10" rx="3" fill="url(#hero-grad)"/>
-          <rect x="27" y="26" width="10" height="26" rx="2" fill="url(#hero-grad)"/>
-          <line x1="12" y1="46" x2="52" y2="20" stroke="#00f2fe" stroke-width="3" stroke-linecap="round"/>
-          <line x1="52" y1="46" x2="12" y2="20" stroke="#8a2be2" stroke-width="3" stroke-linecap="round"/>
-          <defs>
-            <linearGradient id="hero-grad" x1="0" y1="0" x2="64" y2="64">
-              <stop offset="0%" stop-color="#00f2fe"/>
-              <stop offset="100%" stop-color="#8a2be2"/>
-            </linearGradient>
-          </defs>
+        <!-- High-Tech Animated Geometric Monogram SVG -->
+        <svg class="avatar-sigil-orbital" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <circle cx="32" cy="32" r="23" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="2 4"/>
+        </svg>
+        <svg class="avatar-sigil-orbital-rev" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="18" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 8"/>
+        </svg>
+        <svg class="avatar-sigil-core" width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <polygon points="32 11 51 22 51 42 32 53 13 42 13 22" stroke="#ffffff" stroke-width="1.75" fill="rgba(255,255,255,0.06)" stroke-linejoin="round"/>
+          <polyline points="13 22 32 32 51 22" stroke="#ffffff" stroke-width="1.75" stroke-linejoin="round"/>
+          <line x1="32" y1="32" x2="32" y2="53" stroke="#ffffff" stroke-width="1.75"/>
+          <circle cx="32" cy="32" r="2.5" fill="#ffffff"/>
+          <circle cx="32" cy="11" r="2" fill="#ffffff"/>
+          <circle cx="51" cy="22" r="2" fill="#ffffff"/>
+          <circle cx="51" cy="42" r="2" fill="#ffffff"/>
+          <circle cx="32" cy="53" r="2" fill="#ffffff"/>
+          <circle cx="13" cy="42" r="2" fill="#ffffff"/>
+          <circle cx="13" cy="22" r="2" fill="#ffffff"/>
         </svg>
       </div>
     </div>
@@ -990,7 +1403,7 @@ footer {
 
     <div class="cta-group">
       <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">
-        <svg width="18" height="18"><use href="#icon-tg"/></svg>
+        <svg class="icon-tg-anim" width="18" height="18"><use href="#icon-tg"/></svg>
         <span data-i18n="ctaTg">Telegram @seocry</span>
       </a>
       <a class="btn secondary" href="mailto:seidoutakidzava@gmail.com">
@@ -1024,28 +1437,28 @@ footer {
     </div>
   </section>
 
-  <!-- TECH STACK -->
+  <!-- TECH STACK (MONOCHROME GLOW) -->
   <section>
     <div class="section-header">
       <div class="section-icon"><svg width="18" height="18"><use href="#icon-cpu"/></svg></div>
       <h2 class="section-title" data-i18n="stackH">Core Technologies</h2>
     </div>
     <div class="chips-grid">
-      <span class="tech-chip"><span class="tech-dot" style="background:#dea584"></span>Rust</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#00add8"></span>Go</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#f34b7d"></span>Modern C++17</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#3572a5"></span>Python 3.12</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#178600"></span>C# (.NET 10)</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#3178c6"></span>TypeScript</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#009688"></span>FastAPI</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#26a5e4"></span>aiogram 3</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#336791"></span>PostgreSQL &amp; pgvector</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#dc382d"></span>Redis</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#2496ed"></span>Docker &amp; Compose</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#326ce5"></span>Kubernetes</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#00f2fe"></span>Telegram Mini Apps (TMA)</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#8a2be2"></span>PyTorch &amp; RAG (RRF)</span>
-      <span class="tech-chip"><span class="tech-dot" style="background:#fcc624"></span>Linux Hardening</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Rust</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Go</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Modern C++17</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Python 3.12</span>
+      <span class="tech-chip"><span class="tech-dot"></span>C# (.NET 10)</span>
+      <span class="tech-chip"><span class="tech-dot"></span>TypeScript</span>
+      <span class="tech-chip"><span class="tech-dot"></span>FastAPI</span>
+      <span class="tech-chip"><span class="tech-dot"></span>aiogram 3</span>
+      <span class="tech-chip"><span class="tech-dot"></span>PostgreSQL &amp; pgvector</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Redis</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Docker &amp; Compose</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Kubernetes</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Telegram Mini Apps (TMA)</span>
+      <span class="tech-chip"><span class="tech-dot"></span>PyTorch &amp; RAG (RRF)</span>
+      <span class="tech-chip"><span class="tech-dot"></span>Linux Hardening</span>
     </div>
   </section>
 
@@ -1079,7 +1492,7 @@ footer {
             <a class="project-btn" href="https://github.com/txltedxgod/zenith-gateway" target="_blank" rel="noopener">
               <svg width="15" height="15"><use href="#icon-github"/></svg>
               <span data-i18n="viewRepo">View on GitHub</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
           </div>
         </div>
@@ -1106,7 +1519,7 @@ footer {
             <a class="project-btn" href="https://github.com/txltedxgod/turbokv" target="_blank" rel="noopener">
               <svg width="15" height="15"><use href="#icon-github"/></svg>
               <span data-i18n="viewRepo">View on GitHub</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
           </div>
         </div>
@@ -1133,7 +1546,7 @@ footer {
             <a class="project-btn" href="https://github.com/txltedxgod/nexus-mq" target="_blank" rel="noopener">
               <svg width="15" height="15"><use href="#icon-github"/></svg>
               <span data-i18n="viewRepo">View on GitHub</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
           </div>
         </div>
@@ -1160,7 +1573,7 @@ footer {
             <a class="project-btn" href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" rel="noopener">
               <svg width="15" height="15"><use href="#icon-github"/></svg>
               <span data-i18n="viewRepo">View on GitHub</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
           </div>
         </div>
@@ -1186,11 +1599,11 @@ footer {
             <a class="project-btn" href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" rel="noopener">
               <svg width="15" height="15"><use href="#icon-github"/></svg>
               <span data-i18n="viewRepo">View on GitHub</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
             <a class="project-btn sub" href="https://txltedxgod.github.io/tma-portfolio-suite/" target="_blank" rel="noopener">
               <span data-i18n="liveDemo">Live Demo</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
           </div>
         </div>
@@ -1217,7 +1630,7 @@ footer {
             <a class="project-btn" href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" rel="noopener">
               <svg width="15" height="15"><use href="#icon-github"/></svg>
               <span data-i18n="viewRepo">View on GitHub</span>
-              <svg width="13" height="13"><use href="#icon-external"/></svg>
+              <svg class="icon-arrow-slide" width="13" height="13"><use href="#icon-external"/></svg>
             </a>
           </div>
         </div>
@@ -1236,9 +1649,9 @@ footer {
     <div class="terminal-window">
       <div class="terminal-header">
         <div class="terminal-dots">
-          <span class="terminal-dot dot-red"></span>
-          <span class="terminal-dot dot-yellow"></span>
-          <span class="terminal-dot dot-green"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
         </div>
         <div class="terminal-title">seocry@zenith-edge-node: ~ (zsh)</div>
         <div class="terminal-status-badge">
@@ -1317,7 +1730,7 @@ footer {
 
     <div class="cta-group">
       <a class="btn primary" href="https://t.me/seocry" target="_blank" rel="noopener">
-        <svg width="18" height="18"><use href="#icon-tg"/></svg>
+        <svg class="icon-tg-anim" width="18" height="18"><use href="#icon-tg"/></svg>
         <span>Telegram @seocry</span>
       </a>
       <a class="btn secondary" href="mailto:seidoutakidzava@gmail.com">
@@ -1342,10 +1755,15 @@ footer {
 
 </main>
 
-<!-- SCRIPT: I18N & THEME -->
+<!-- SCRIPT: I18N, THEME, TERMINAL & WELCOME GREETING -->
 <script>
 const dict = {
   en: {
+    welcomeEyebrow: "SYSTEM ONLINE • ARCHITECT WORKSPACE",
+    welcomeTitle: "Welcome to the Engineering Portfolio",
+    welcomeDesc: "Distributed systems, high-concurrency backends, Telegram bot ecosystems, and production AI platforms. Zero bloat, pure performance.",
+    welcomeBtn: "Enter Portfolio",
+    welcomeHint: "Press Enter, Space or click anywhere to explore",
     heroTitle: "Architecting Resilient & High-Throughput Systems",
     heroSub: "Software engineer building high-concurrency backends, distributed pipelines, Telegram bot ecosystems, and production AI platforms. Zero bloat, maximum performance.",
     ctaTg: "Telegram @seocry",
@@ -1379,6 +1797,11 @@ const dict = {
     footNote: "Crafted with precision • Clean code only"
   },
   uk: {
+    welcomeEyebrow: "СИСТЕМА В ОНЛАЙНІ • ВУЗОЛ TXLTEDXGOD",
+    welcomeTitle: "Ласкаво просимо до інженерного простору",
+    welcomeDesc: "Відмовостійка архітектура, розподілені рушії та екосистеми Telegram-ботів. Чистий код, максимальна швидкість.",
+    welcomeBtn: "Увійти в портфоліо",
+    welcomeHint: "Натисніть Enter, Пробіл або клікніть будь-де",
     heroTitle: "Проєктування відмовостійких та високонавантажених систем",
     heroSub: "Інженер програмного забезпечення: високонавантажений бекенд, розподілені системи, екосистеми Telegram-ботів та AI-платформи. Чистий код, максимальна продуктивність.",
     ctaTg: "Telegram @seocry",
@@ -1410,25 +1833,66 @@ const dict = {
     contactP: "Відкритий до розробки бекенду, Telegram-ботів та Mini Apps, систем автоматизації та архітектурного консалтингу. Прямий контакт, без зайвої бюрократії.",
     termH: "Інтерактивний термінал систем",
     footNote: "Створено з точністю • Тільки чистий код"
+  },
+  ru: {
+    welcomeEyebrow: "СИСТЕМА В ОНЛАЙНЕ • УЗЕЛ TXLTEDXGOD",
+    welcomeTitle: "Добро пожаловать в инженерный профиль",
+    welcomeDesc: "Отказоустойчивая архитектура, распределённые движки и Telegram-экосистемы. Максимальная производительность, чистый код.",
+    welcomeBtn: "Войти в портфолио",
+    welcomeHint: "Нажмите Enter, Пробел или в любое место",
+    heroTitle: "Архитектура отказоустойчивых систем",
+    heroSub: "Инженер распределённых систем: высоконагруженный бэкенд, микросервисы, Telegram-боты и Mini Apps, AI-инфраструктура. Чистый код, нулевой оверхед.",
+    ctaTg: "Telegram @seocry",
+    ctaMail: "Написать на почту",
+    statRepos: "Открытых репозиториев",
+    statQps: "Пиковая пропускная способность",
+    statUptime: "Аптайм в продакшене",
+    statYears: "Лет проектирования систем",
+    stackH: "Технологический стек",
+    projH: "Флагманские открытые репозитории",
+    pZenithDesc: "Сверхбыстрый асинхронный cloud-native API Gateway и WAF на Rust: динамический rate-limiting, token bucket, JWT RBAC (150k+ QPS).",
+    pTurbokvDesc: "Высокопроизводительная in-memory KV-база данных на C++17 с бинарным Write-Ahead Log (WAL), гарантией восстановления и кастомным TCP-протоколом.",
+    pNexusDesc: "Распределённый брокер сообщений на Go с commit-log, группами потребителей, авто-ребалансировкой, zero-copy mmap и web-мониторингом.",
+    pRagDesc: "RAG-движок нового поколения с Reciprocal Rank Fusion (RRF), мульти-запросами, cross-encoder реранкингом и векторной дедупликацией.",
+    pTmaDesc: "Комплекс из 7 Telegram Mini Apps: WebApp SDK (haptic feedback, темы), оплаты CryptoBot & xRocket, кошельки TON Connect.",
+    pStoreDesc: "Полнофункциональный бот-магазин на aiogram 3: каталог товаров, корзина, FSM-оформление заказов, промокоды, админ-панель.",
+    viewRepo: "Открыть на GitHub",
+    liveDemo: "Демо онлайн",
+    pillarsH: "Инженерные компетенции",
+    pill1H: "Telegram-боты для продакшена",
+    pill1P: "Полный цикл разработки на aiogram 3: интернет-магазины, FSM-сценарии, мониторинг финансов, контейнеризация в Docker.",
+    pill2H: "Высокопроизводительные API",
+    pill2P: "Низколатентные REST и gRPC сервисы на Rust Axum, Go и FastAPI. Строгая типизация, пул соединений, субмиллисекундный отклик.",
+    pill3H: "Облака и микросервисы",
+    pill3P: "Многоэтапные сборки Docker, контроллеры Kubernetes, GCP Cloud Run и инфраструктура на Terraform с zero-downtime деплоем.",
+    pill4H: "Автономная автоматизация",
+    pill4P: "Самовосстанавливающиеся фоновые демоны, распределённый скрапинг, отчётность и синхронизация 24/7 без ручного вмешательства.",
+    contactH: "Готовы создать надёжную систему?",
+    contactP: "Открыт к разработке бэкенда, Telegram-ботов и Mini Apps, автоматизации и архитектурному консалтингу. Прямой контакт, без бюрократии.",
+    termH: "Интерактивный терминал систем",
+    footNote: "Создано с точностью • Только чистый код"
   }
 };
 
 const roles = {
   en: ["Software & Systems Engineer", "High-Concurrency Backend", "Telegram Bots & Mini Apps", "Distributed Architect"],
-  uk: ["Інженер розподілених систем", "Високонавантажений бекенд", "Telegram-боти та Mini Apps", "Системний архітектор"]
+  uk: ["Інженер розподілених систем", "Високонавантажений бекенд", "Telegram-боти та Mini Apps", "Системний архітектор"],
+  ru: ["Инженер распределённых систем", "Высоконагруженный бэкенд", "Telegram-боты и Mini Apps", "Системный архитектор"]
 };
 
 // Language logic
 const langBtns = document.querySelectorAll('.lang-btn');
 const i18nEls = document.querySelectorAll('[data-i18n]');
+
 function detectInitialLang() {
   const saved = localStorage.getItem('lang');
-  if (saved && (saved === 'uk' || saved === 'en')) return saved;
+  if (saved && (saved === 'uk' || saved === 'ru' || saved === 'en')) return saved;
   const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
   for (const l of navLangs) {
     if (!l) continue;
     const clean = l.toLowerCase();
     if (clean.startsWith('uk')) return 'uk';
+    if (clean.startsWith('ru')) return 'ru';
   }
   return 'en';
 }
@@ -1477,10 +1941,10 @@ function typeTick() {
 
   if (typerEl) typerEl.textContent = currentRole.substring(0, charIdx);
 
-  let speed = isDeleting ? 40 : 80;
+  let speed = isDeleting ? 35 : 75;
 
   if (!isDeleting && charIdx === currentRole.length) {
-    speed = 2000;
+    speed = 2200;
     isDeleting = true;
   } else if (isDeleting && charIdx === 0) {
     isDeleting = false;
@@ -1516,6 +1980,37 @@ themeBtn.addEventListener('click', () => {
   const current = document.documentElement.getAttribute('data-theme');
   applyTheme(current === 'dark' ? 'light' : 'dark');
 });
+
+// === WELCOME GREETING CONTROLLER (ALWAYS ON ENTRY) ===
+const welcomeModal = document.getElementById('welcome-modal');
+const welcomeEnterBtn = document.getElementById('welcome-enter-btn');
+const welcomeBackdrop = document.querySelector('.welcome-backdrop');
+
+function dismissWelcome() {
+  if (!welcomeModal || welcomeModal.classList.contains('closing') || welcomeModal.classList.contains('closed')) return;
+  welcomeModal.classList.add('closing');
+  setTimeout(() => {
+    welcomeModal.classList.add('closed');
+  }, 450);
+}
+
+if (welcomeEnterBtn) welcomeEnterBtn.addEventListener('click', dismissWelcome);
+if (welcomeBackdrop) welcomeBackdrop.addEventListener('click', dismissWelcome);
+
+window.addEventListener('keydown', (e) => {
+  if (welcomeModal && !welcomeModal.classList.contains('closed')) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+      dismissWelcome();
+    }
+  }
+});
+
+// Auto-advance after 8s if user just observes
+setTimeout(() => {
+  if (welcomeModal && !welcomeModal.classList.contains('closed')) {
+    dismissWelcome();
+  }
+}, 8000);
 
 // === INTERACTIVE TERMINAL ENGINE ===
 const termBody = document.getElementById('term-body');
@@ -1567,18 +2062,18 @@ const termData = {
 4. <a href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" class="term-hl">rag-fusion-engine</a>   - Next-gen RAG with RRF &amp; cross-encoder in Python
 5. <a href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" class="term-hl">tma-portfolio-suite</a> - Suite of 7 Telegram Mini Apps (Web3 &amp; TON Connect)
 6. <a href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" class="term-hl">telegram-store-bot</a>  - Full-featured e-commerce shop bot on aiogram 3`,
-    neofetch: `  <span class="term-violet">/\\_/\\</span>      <span class="term-hl">OS</span>        : Hardened Edge Linux x86_64
+    neofetch: `  <span class="term-violet">/\_/\</span>      <span class="term-hl">OS</span>        : Hardened Edge Linux x86_64
  <span class="term-violet">( o.o )</span>     <span class="term-hl">Host</span>      : Zenith-Node-01 (Tokyo Edge)
   <span class="term-violet">&gt; ^ &lt;</span>      <span class="term-hl">Kernel</span>    : 6.10.11-zenith-rt
              <span class="term-hl">Uptime</span>    : 99.98% (Zero Downtime)
              <span class="term-hl">Packages</span>  : 70+ open-source repos (txltedxgod)
-             <span class="term-hl">Shell</span>     : zsh 5.9 (tokyo-night)
+             <span class="term-hl">Shell</span>     : zsh 5.9 (monochrome-minimal)
              <span class="term-hl">Terminal</span>  : Interactive WebAssembly / DOM
              <span class="term-hl">Telegram</span>  : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
     contact: `Direct channels:
 • Telegram : <a href="https://t.me/seocry" target="_blank" class="term-hl">https://t.me/seocry</a> (@seocry)
 • Email    : <a href="mailto:seidoutakidzava@gmail.com" class="term-hl">seidoutakidzava@gmail.com</a>
-<span class="term-green">[✓ Copied @seocry to clipboard!]</span>`,
+<span class="term-green">[Copied @seocry to clipboard]</span>`,
     uptime: `<span class="term-green">UP 243 days, 14:22</span> | Load avg: 0.12, 0.08, 0.05 | Peak throughput: 152,400 req/s | Memory RSS: 18.4 MB`,
     sudo: `<span class="term-violet">[GUARD ACTIVE]</span> Nice try. Kernel sandbox is strictly isolated. Root privileges denied.`
   },
@@ -1622,20 +2117,75 @@ const termData = {
 4. <a href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" class="term-hl">rag-fusion-engine</a>   - RAG-рушій з RRF та крос-енкодером на Python
 5. <a href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" class="term-hl">tma-portfolio-suite</a> - Комплекс із 7 Telegram Mini Apps (Web3 та TON Connect)
 6. <a href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" class="term-hl">telegram-store-bot</a>  - Магазин на aiogram 3 з каталогом та FSM`,
-    neofetch: `  <span class="term-violet">/\\_/\\</span>      <span class="term-hl">ОС</span>        : Hardened Edge Linux x86_64
+    neofetch: `  <span class="term-violet">/\_/\</span>      <span class="term-hl">ОС</span>        : Hardened Edge Linux x86_64
  <span class="term-violet">( o.o )</span>     <span class="term-hl">Вузол</span>     : Zenith-Node-01 (Tokyo Edge)
   <span class="term-violet">&gt; ^ &lt;</span>      <span class="term-hl">Ядро</span>      : 6.10.11-zenith-rt
              <span class="term-hl">Аптайм</span>    : 99.98% (Zero Downtime)
              <span class="term-hl">Пакети</span>    : 70+ відкритих репозиторіїв (txltedxgod)
-             <span class="term-hl">Shell</span>     : zsh 5.9 (tokyo-night)
+             <span class="term-hl">Shell</span>     : zsh 5.9 (monochrome-minimal)
              <span class="term-hl">Термінал</span>  : WebAssembly / DOM
              <span class="term-hl">Telegram</span>  : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
     contact: `Прямі контакти:
 • Telegram : <a href="https://t.me/seocry" target="_blank" class="term-hl">https://t.me/seocry</a> (@seocry)
 • Email    : <a href="mailto:seidoutakidzava@gmail.com" class="term-hl">seidoutakidzava@gmail.com</a>
-<span class="term-green">[✓ Скопійовано @seocry у буфер обміну!]</span>`,
+<span class="term-green">[Скопійовано @seocry у буфер обміну]</span>`,
     uptime: `<span class="term-green">UP 243 дні, 14:22</span> | Навантаження: 0.12, 0.08, 0.05 | Піковий QPS: 152,400 req/s | Пам'ять RSS: 18.4 MB`,
     sudo: `<span class="term-violet">[ЗАХИСТ АКТИВОВАНИЙ]</span> Гарна спроба. Пісочниця ядра надійно ізольована. Root доступ заблоковано.`
+  },
+  ru: {
+    welcome: '<span class="term-dim">[СИСТЕМА ГОТОВА]</span> Подключено к edge-узлу. Введите <span class="term-hl">help</span> или кликните быстрые кнопки для просмотра телеметрии и архитектуры.',
+    help: `Доступные команды:
+  <span class="term-hl">whoami</span>       - Профиль разработчика и фокус
+  <span class="term-hl">benchmarks</span>   - Замеры скорости и сравнение
+  <span class="term-hl">skills</span>       - Компетенции и стек
+  <span class="term-hl">projects</span>     - Флагманские открытые репозитории
+  <span class="term-hl">neofetch</span>     - Телеметрия узла и спецификации
+  <span class="term-hl">contact</span>      - Контакты (копирование @seocry)
+  <span class="term-hl">uptime</span>       - Аптайм и статус сервисов
+  <span class="term-hl">clear</span>        - Очистить вывод`,
+    whoami: `<span class="term-hl">txltedxgod</span> • Инженер системного и серверного ПО
+• Специализация : Низколатентные распределённые движки, async Rust/Go, Telegram Mini Apps.
+• Принцип       : Максимальная производительность, чистый код без лишнего оверхеда.
+• Фокус         : Шлюзы на 150k+ QPS, in-memory хранилища, production AI-пайплайны.
+• Telegram      : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
+    benchmarks: `<table class="term-table">
+  <thead>
+    <tr><th>Система / Цель</th><th>Пиковый QPS</th><th>P99 Задержка</th><th>Память и примечания</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="term-hl">zenith-gateway</span></td><td><span class="term-green">152,400 QPS</span></td><td>0.42 ms</td><td>Rust / Tokio / Zero-copy</td></tr>
+    <tr><td>nginx (baseline)</td><td>84,100 QPS</td><td>1.85 ms</td><td>C / Epoll прокси</td></tr>
+    <tr><td><span class="term-hl">turbokv</span></td><td><span class="term-green">210,000 Ops/s</span></td><td>0.18 ms</td><td>C++17 / Бинарный WAL</td></tr>
+    <tr><td>redis (baseline)</td><td>115,000 Ops/s</td><td>0.89 ms</td><td>In-Memory AOF</td></tr>
+    <tr><td><span class="term-hl">nexus-mq</span></td><td><span class="term-green">480,000 Msg/s</span></td><td>0.65 ms</td><td>Go 1.22 / Zero-copy mmap</td></tr>
+    <tr><td><span class="term-hl">rag-fusion-engine</span></td><td><span class="term-green">2,400 QPS</span></td><td>42.0 ms</td><td>RRF + Cross-Encoder</td></tr>
+  </tbody>
+</table>`,
+    skills: `• <span class="term-hl">Языки</span>         : Rust, Go 1.22, Modern C++17, Python 3.12, C# (.NET 10), TypeScript, SQL
+• <span class="term-hl">High-Load</span>     : Axum, Tokio, gRPC, Protobuf, Kafka (Transactional Outbox), Redis, pgvector
+• <span class="term-hl">Telegram</span>      : aiogram 3, TMA WebApp SDK, Web3 CryptoBot / xRocket, TON Connect
+• <span class="term-hl">Инфраструктура</span>: Docker Multi-stage, Kubernetes, Linux Hardening, Prometheus / Grafana`,
+    projects: `Флагманские открытые репозитории:
+1. <a href="https://github.com/txltedxgod/zenith-gateway" target="_blank" class="term-hl">zenith-gateway</a>      - Cloud-native API Gateway &amp; WAF на Rust (150k+ QPS)
+2. <a href="https://github.com/txltedxgod/turbokv" target="_blank" class="term-hl">turbokv</a>             - In-memory KV база данных с WAL на C++17
+3. <a href="https://github.com/txltedxgod/nexus-mq" target="_blank" class="term-hl">nexus-mq</a>            - Распределённый commit-log брокер сообщений на Go
+4. <a href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" class="term-hl">rag-fusion-engine</a>   - RAG с RRF и cross-encoder на Python
+5. <a href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" class="term-hl">tma-portfolio-suite</a> - Комплекс из 7 Telegram Mini Apps (Web3 &amp; TON Connect)
+6. <a href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" class="term-hl">telegram-store-bot</a>  - Магазин на aiogram 3 с каталогом и FSM`,
+    neofetch: `  <span class="term-violet">/\_/\</span>      <span class="term-hl">ОС</span>        : Hardened Edge Linux x86_64
+ <span class="term-violet">( o.o )</span>     <span class="term-hl">Узел</span>      : Zenith-Node-01 (Tokyo Edge)
+  <span class="term-violet">&gt; ^ &lt;</span>      <span class="term-hl">Ядро</span>      : 6.10.11-zenith-rt
+             <span class="term-hl">Аптайм</span>    : 99.98% (Zero Downtime)
+             <span class="term-hl">Пакеты</span>    : 70+ открытых репозиториев (txltedxgod)
+             <span class="term-hl">Shell</span>     : zsh 5.9 (monochrome-minimal)
+             <span class="term-hl">Терминал</span>  : WebAssembly / DOM
+             <span class="term-hl">Telegram</span>  : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
+    contact: `Прямые контакты:
+• Telegram : <a href="https://t.me/seocry" target="_blank" class="term-hl">https://t.me/seocry</a> (@seocry)
+• Email    : <a href="mailto:seidoutakidzava@gmail.com" class="term-hl">seidoutakidzava@gmail.com</a>
+<span class="term-green">[Скопировано @seocry в буфер обмена]</span>`,
+    uptime: `<span class="term-green">UP 243 дня, 14:22</span> | Нагрузка: 0.12, 0.08, 0.05 | Пиковый QPS: 152,400 req/s | Память RSS: 18.4 MB`,
+    sudo: `<span class="term-violet">[ЗАЩИТА АКТИВНА]</span> Хорошая попытка. Песочница ядра изолирована. Root-доступ заблокирован.`
   }
 };
 
@@ -1652,8 +2202,8 @@ function execTermCmd(raw) {
 
   const args = trimmed.toLowerCase().split(/\s+/);
   const cmd = args[0];
-  const langKey = currentLang === 'uk' ? 'uk' : 'en';
-  const data = termData[langKey];
+  const langKey = (currentLang === 'uk' || currentLang === 'ru') ? currentLang : 'en';
+  const data = termData[langKey] || termData.en;
 
   if (cmd === 'clear') {
     termBody.innerHTML = `<div class="terminal-output">${data.welcome}</div>`;
