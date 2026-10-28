@@ -1345,7 +1345,6 @@ footer {
     <div class="lang-switch" role="group" aria-label="Language">
       <button data-lang="en" class="lang-btn active">EN</button>
       <button data-lang="uk" class="lang-btn">УК</button>
-      <button data-lang="ru" class="lang-btn">RU</button>
     </div>
     <button id="theme-btn" class="theme-btn" type="button" aria-label="Toggle Theme">
       <svg width="18" height="18" id="theme-icon"><use href="#icon-sun"/></svg>
@@ -1406,7 +1405,7 @@ footer {
     </div>
     <div class="stat-card">
       <div class="stat-num">2.5+</div>
-      <div class="stat-label" data-i18n="statYears">Years Shipping Systems</div>
+      <div class="stat-label" data-i18n="statYears">Years of Development</div>
     </div>
   </section>
 
@@ -1743,7 +1742,7 @@ const dict = {
     statRepos: "Open-Source Repositories",
     statQps: "Peak QPS Capacity",
     statUptime: "Production Uptime",
-    statYears: "Years Shipping Systems",
+    statYears: "Years of Development",
     stackH: "Core Technologies",
     projH: "Featured Open-Source Repositories",
     pZenithDesc: "Ultra-fast asynchronous cloud-native API Gateway and WAF in Rust with dynamic rate limiting, token bucket algorithms, and JWT RBAC policies (150k+ QPS).",
@@ -1780,7 +1779,7 @@ const dict = {
     statRepos: "Відкритих репозиторіїв",
     statQps: "Пікова пропускна здатність",
     statUptime: "Аптайм у продакшені",
-    statYears: "Років розробки софту",
+    statYears: "Років розробки",
     stackH: "Стек технологій",
     projH: "Відкриті репозиторії та архітектури",
     pZenithDesc: "Ультрашвидкий хмарний API Gateway & WAF на Rust із динамічним rate limiting, алгоритмами токен-бакетів та політиками JWT RBAC (150k+ QPS).",
@@ -1805,49 +1804,12 @@ const dict = {
     termH: "Інтерактивний термінал систем",
     footNote: "Створено з точністю • Тільки чистий код"
   },
-  ru: {
-    welcomeTitle: "Добро пожаловать в инженерный профиль",
-    welcomeDesc: "Отказоустойчивая архитектура, распределённые движки и Telegram-экосистемы. Максимальная производительность, чистый код.",
-    welcomeBtn: "Войти в портфолио",
-    welcomeHint: "Нажмите Enter, Пробел или в любое место",
-    heroTitle: "Архитектура отказоустойчивых систем",
-    heroSub: "Инженер распределённых систем: высоконагруженный бэкенд, микросервисы, Telegram-боты и Mini Apps, AI-инфраструктура. Чистый код, нулевой оверхед.",
-    ctaTg: "Telegram @seocry",
-    ctaMail: "Написать на почту",
-    statRepos: "Открытых репозиториев",
-    statQps: "Пиковая пропускная способность",
-    statUptime: "Аптайм в продакшене",
-    statYears: "Лет проектирования систем",
-    stackH: "Технологический стек",
-    projH: "Флагманские открытые репозитории",
-    pZenithDesc: "Сверхбыстрый асинхронный cloud-native API Gateway и WAF на Rust: динамический rate-limiting, token bucket, JWT RBAC (150k+ QPS).",
-    pTurbokvDesc: "Высокопроизводительная in-memory KV-база данных на C++17 с бинарным Write-Ahead Log (WAL), гарантией восстановления и кастомным TCP-протоколом.",
-    pNexusDesc: "Распределённый брокер сообщений на Go с commit-log, группами потребителей, авто-ребалансировкой, zero-copy mmap и web-мониторингом.",
-    pRagDesc: "RAG-движок нового поколения с Reciprocal Rank Fusion (RRF), мульти-запросами, cross-encoder реранкингом и векторной дедупликацией.",
-    pTmaDesc: "Комплекс из 7 Telegram Mini Apps: WebApp SDK (haptic feedback, темы), оплаты CryptoBot & xRocket, кошельки TON Connect.",
-    pStoreDesc: "Полнофункциональный бот-магазин на aiogram 3: каталог товаров, корзина, FSM-оформление заказов, промокоды, админ-панель.",
-    viewRepo: "Открыть на GitHub",
-    liveDemo: "Демо онлайн",
-    pillarsH: "Инженерные компетенции",
-    pill1H: "Telegram-боты для продакшена",
-    pill1P: "Полный цикл разработки на aiogram 3: интернет-магазины, FSM-сценарии, мониторинг финансов, контейнеризация в Docker.",
-    pill2H: "Высокопроизводительные API",
-    pill2P: "Низколатентные REST и gRPC сервисы на Rust Axum, Go и FastAPI. Строгая типизация, пул соединений, субмиллисекундный отклик.",
-    pill3H: "Облака и микросервисы",
-    pill3P: "Многоэтапные сборки Docker, контроллеры Kubernetes, GCP Cloud Run и инфраструктура на Terraform с zero-downtime деплоем.",
-    pill4H: "Автономная автоматизация",
-    pill4P: "Самовосстанавливающиеся фоновые демоны, распределённый скрапинг, отчётность и синхронизация 24/7 без ручного вмешательства.",
-    contactH: "Готовы создать надёжную систему?",
-    contactP: "Открыт к разработке бэкенда, Telegram-ботов и Mini Apps, автоматизации и архитектурному консалтингу. Прямой контакт, без бюрократии.",
-    termH: "Интерактивный терминал систем",
-    footNote: "Создано с точностью • Только чистый код"
-  }
 };
+
 
 const roles = {
   en: ["Software & Systems Engineer", "High-Concurrency Backend", "Telegram Bots & Mini Apps", "Distributed Architect"],
-  uk: ["Інженер розподілених систем", "Високонавантажений бекенд", "Telegram-боти та Mini Apps", "Системний архітектор"],
-  ru: ["Инженер распределённых систем", "Высоконагруженный бэкенд", "Telegram-боты и Mini Apps", "Системный архитектор"]
+  uk: ["Інженер розподілених систем", "Високонавантажений бекенд", "Telegram-боти та Mini Apps", "Системний архітектор"]
 };
 
 // Language logic
@@ -1856,13 +1818,12 @@ const i18nEls = document.querySelectorAll('[data-i18n]');
 
 function detectInitialLang() {
   const saved = localStorage.getItem('lang');
-  if (saved && (saved === 'uk' || saved === 'ru' || saved === 'en')) return saved;
+  if (saved && (saved === 'uk' || saved === 'en')) return saved;
   const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
   for (const l of navLangs) {
     if (!l) continue;
     const clean = l.toLowerCase();
     if (clean.startsWith('uk')) return 'uk';
-    if (clean.startsWith('ru')) return 'ru';
   }
   return 'en';
 }
@@ -1870,7 +1831,7 @@ function detectInitialLang() {
 let currentLang = detectInitialLang();
 
 function setLang(lang) {
-  if (!dict[lang]) lang = 'en';
+  if (lang !== 'uk' && lang !== 'en') lang = 'en';
   currentLang = lang;
   document.documentElement.lang = lang;
   
@@ -2101,61 +2062,6 @@ const termData = {
 <span class="term-green">[Скопійовано @seocry у буфер обміну]</span>`,
     uptime: `<span class="term-green">UP 243 дні, 14:22</span> | Навантаження: 0.12, 0.08, 0.05 | Піковий QPS: 152,400 req/s | Пам'ять RSS: 18.4 MB`,
     sudo: `<span class="term-violet">[ЗАХИСТ АКТИВОВАНИЙ]</span> Гарна спроба. Пісочниця ядра надійно ізольована. Root доступ заблоковано.`
-  },
-  ru: {
-    welcome: '<span class="term-dim">[СИСТЕМА ГОТОВА]</span> Подключено к edge-узлу. Введите <span class="term-hl">help</span> или кликните быстрые кнопки для просмотра телеметрии и архитектуры.',
-    help: `Доступные команды:
-  <span class="term-hl">whoami</span>       - Профиль разработчика и фокус
-  <span class="term-hl">benchmarks</span>   - Замеры скорости и сравнение
-  <span class="term-hl">skills</span>       - Компетенции и стек
-  <span class="term-hl">projects</span>     - Флагманские открытые репозитории
-  <span class="term-hl">neofetch</span>     - Телеметрия узла и спецификации
-  <span class="term-hl">contact</span>      - Контакты (копирование @seocry)
-  <span class="term-hl">uptime</span>       - Аптайм и статус сервисов
-  <span class="term-hl">clear</span>        - Очистить вывод`,
-    whoami: `<span class="term-hl">txltedxgod</span> • Инженер системного и серверного ПО
-• Специализация : Низколатентные распределённые движки, async Rust/Go, Telegram Mini Apps.
-• Принцип       : Максимальная производительность, чистый код без лишнего оверхеда.
-• Фокус         : Шлюзы на 150k+ QPS, in-memory хранилища, production AI-пайплайны.
-• Telegram      : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
-    benchmarks: `<table class="term-table">
-  <thead>
-    <tr><th>Система / Цель</th><th>Пиковый QPS</th><th>P99 Задержка</th><th>Память и примечания</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><span class="term-hl">zenith-gateway</span></td><td><span class="term-green">152,400 QPS</span></td><td>0.42 ms</td><td>Rust / Tokio / Zero-copy</td></tr>
-    <tr><td>nginx (baseline)</td><td>84,100 QPS</td><td>1.85 ms</td><td>C / Epoll прокси</td></tr>
-    <tr><td><span class="term-hl">turbokv</span></td><td><span class="term-green">210,000 Ops/s</span></td><td>0.18 ms</td><td>C++17 / Бинарный WAL</td></tr>
-    <tr><td>redis (baseline)</td><td>115,000 Ops/s</td><td>0.89 ms</td><td>In-Memory AOF</td></tr>
-    <tr><td><span class="term-hl">nexus-mq</span></td><td><span class="term-green">480,000 Msg/s</span></td><td>0.65 ms</td><td>Go 1.22 / Zero-copy mmap</td></tr>
-    <tr><td><span class="term-hl">rag-fusion-engine</span></td><td><span class="term-green">2,400 QPS</span></td><td>42.0 ms</td><td>RRF + Cross-Encoder</td></tr>
-  </tbody>
-</table>`,
-    skills: `• <span class="term-hl">Языки</span>         : Rust, Go 1.22, Modern C++17, Python 3.12, C# (.NET 10), TypeScript, SQL
-• <span class="term-hl">High-Load</span>     : Axum, Tokio, gRPC, Protobuf, Kafka (Transactional Outbox), Redis, pgvector
-• <span class="term-hl">Telegram</span>      : aiogram 3, TMA WebApp SDK, Web3 CryptoBot / xRocket, TON Connect
-• <span class="term-hl">Инфраструктура</span>: Docker Multi-stage, Kubernetes, Linux Hardening, Prometheus / Grafana`,
-    projects: `Флагманские открытые репозитории:
-1. <a href="https://github.com/txltedxgod/zenith-gateway" target="_blank" class="term-hl">zenith-gateway</a>      - Cloud-native API Gateway &amp; WAF на Rust (150k+ QPS)
-2. <a href="https://github.com/txltedxgod/turbokv" target="_blank" class="term-hl">turbokv</a>             - In-memory KV база данных с WAL на C++17
-3. <a href="https://github.com/txltedxgod/nexus-mq" target="_blank" class="term-hl">nexus-mq</a>            - Распределённый commit-log брокер сообщений на Go
-4. <a href="https://github.com/txltedxgod/rag-fusion-engine" target="_blank" class="term-hl">rag-fusion-engine</a>   - RAG с RRF и cross-encoder на Python
-5. <a href="https://github.com/txltedxgod/tma-portfolio-suite" target="_blank" class="term-hl">tma-portfolio-suite</a> - Комплекс из 7 Telegram Mini Apps (Web3 &amp; TON Connect)
-6. <a href="https://github.com/txltedxgod/telegram-store-bot" target="_blank" class="term-hl">telegram-store-bot</a>  - Магазин на aiogram 3 с каталогом и FSM`,
-    neofetch: `  <span class="term-violet">/\_/\</span>      <span class="term-hl">ОС</span>        : Hardened Edge Linux x86_64
- <span class="term-violet">( o.o )</span>     <span class="term-hl">Узел</span>      : Zenith-Node-01 (Tokyo Edge)
-  <span class="term-violet">&gt; ^ &lt;</span>      <span class="term-hl">Ядро</span>      : 6.10.11-zenith-rt
-             <span class="term-hl">Аптайм</span>    : 99.98% (Zero Downtime)
-             <span class="term-hl">Пакеты</span>    : 70+ открытых репозиториев (txltedxgod)
-             <span class="term-hl">Shell</span>     : zsh 5.9 (monochrome-minimal)
-             <span class="term-hl">Терминал</span>  : WebAssembly / DOM
-             <span class="term-hl">Telegram</span>  : <a href="https://t.me/seocry" target="_blank" class="term-hl">@seocry</a>`,
-    contact: `Прямые контакты:
-• Telegram : <a href="https://t.me/seocry" target="_blank" class="term-hl">https://t.me/seocry</a> (@seocry)
-• Email    : <a href="mailto:seidoutakidzava@gmail.com" class="term-hl">seidoutakidzava@gmail.com</a>
-<span class="term-green">[Скопировано @seocry в буфер обмена]</span>`,
-    uptime: `<span class="term-green">UP 243 дня, 14:22</span> | Нагрузка: 0.12, 0.08, 0.05 | Пиковый QPS: 152,400 req/s | Память RSS: 18.4 MB`,
-    sudo: `<span class="term-violet">[ЗАЩИТА АКТИВНА]</span> Хорошая попытка. Песочница ядра изолирована. Root-доступ заблокирован.`
   }
 };
 
@@ -2172,7 +2078,7 @@ function execTermCmd(raw) {
 
   const args = trimmed.toLowerCase().split(/\s+/);
   const cmd = args[0];
-  const langKey = (currentLang === 'uk' || currentLang === 'ru') ? currentLang : 'en';
+  const langKey = currentLang === 'uk' ? 'uk' : 'en';
   const data = termData[langKey] || termData.en;
 
   if (cmd === 'clear') {
