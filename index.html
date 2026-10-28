@@ -861,77 +861,160 @@ main {
   border-color: var(--border-hover);
 }
 
-/* === INTERACTIVE TERMINAL (MONOCHROME GLASS) === */
+/* === INTERACTIVE TERMINAL (DEEP MONOCHROME WORKSTATION) === */
 .terminal-window {
   margin-bottom: 60px;
-  background: rgba(14, 17, 24, 0.75);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
+  background: #080a0f;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 255, 255, 0.06), transparent 70%),
+    linear-gradient(180deg, rgba(16, 20, 28, 0.8) 0%, rgba(8, 10, 15, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 24px 70px -15px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  position: relative;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.terminal-window:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 30px 80px -15px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
 [data-theme="light"] .terminal-window {
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  background-image: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .terminal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
-  background: rgba(11, 13, 18, 0.85);
-  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  background: rgba(12, 15, 22, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11.5px;
 }
 
 [data-theme="light"] .terminal-header {
-  background: rgba(240, 242, 245, 0.85);
+  background: #f1f5f9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .terminal-dots {
   display: flex;
-  gap: 8px;
+  gap: 7px;
+  align-items: center;
 }
 
 .terminal-dot {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.terminal-title {
+.terminal-window:hover .terminal-dot {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="light"] .terminal-dot {
+  background: rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .terminal-window:hover .terminal-dot {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.terminal-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-soft);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
-.terminal-status-badge {
+[data-theme="light"] .terminal-tab {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #334155;
+}
+
+.terminal-session {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #ffffff;
+  color: var(--text-muted);
   font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.term-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  animation: pulseDot 2.4s ease-in-out infinite;
+}
+
+[data-theme="light"] .term-status-dot {
+  background: #0f172a;
+  box-shadow: 0 0 6px rgba(15, 23, 42, 0.4);
 }
 
 .terminal-body {
-  padding: 20px;
-  max-height: 380px;
+  padding: 22px 24px;
+  min-height: 220px;
+  max-height: 400px;
   overflow-y: auto;
   font-family: var(--font-mono);
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--text);
+  font-size: 13px;
+  line-height: 1.65;
+  color: #e2e8f0;
   scroll-behavior: smooth;
+  background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(255, 255, 255, 0.015), transparent 70%);
+}
+
+[data-theme="light"] .terminal-body {
+  color: #0f172a;
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .terminal-output {
@@ -940,9 +1023,25 @@ main {
   margin-bottom: 14px;
 }
 
+.term-history-cmd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.term-history-out {
+  margin-bottom: 8px;
+}
+
 .term-prompt-tag {
   color: #ffffff;
   font-weight: 700;
+}
+
+[data-theme="light"] .term-prompt-tag {
+  color: #0f172a;
 }
 
 .term-cmd-text {
@@ -950,10 +1049,19 @@ main {
   font-weight: 600;
 }
 
+[data-theme="light"] .term-cmd-text {
+  color: #0f172a;
+}
+
 .term-hl {
   color: #ffffff;
   font-weight: 700;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="light"] .term-hl {
+  color: #0f172a;
+  text-shadow: none;
 }
 
 .term-violet {
@@ -961,8 +1069,12 @@ main {
 }
 
 .term-green {
-  color: #f1f5f9;
+  color: #f8fafc;
   font-weight: 600;
+}
+
+[data-theme="light"] .term-green {
+  color: #0f172a;
 }
 
 .term-dim {
@@ -973,19 +1085,28 @@ main {
   width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
-  font-size: 12.5px;
+  font-size: 12px;
 }
 
 .term-table th, .term-table td {
   padding: 6px 12px;
   text-align: left;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .term-table th, [data-theme="light"] .term-table td {
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .term-table th {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   font-weight: 700;
+}
+
+[data-theme="light"] .term-table th {
+  background: rgba(0, 0, 0, 0.04);
+  color: #0f172a;
 }
 
 .term-table td {
@@ -996,68 +1117,119 @@ main {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 12px 20px;
-  background: rgba(11, 13, 18, 0.6);
-  border-top: 1px solid var(--border);
+  gap: 7px;
+  padding: 10px 18px;
+  background: rgba(10, 13, 19, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 [data-theme="light"] .terminal-pills-bar {
-  background: rgba(240, 242, 245, 0.6);
+  background: #f8fafc;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .term-pill-hint {
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
+  text-transform: uppercase;
   margin-right: 4px;
 }
 
 .term-pill-btn {
   font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 11px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-soft);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   cursor: pointer;
-  will-change: transform, box-shadow;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
 }
 
 .term-pill-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .term-pill-btn {
+  background: #ffffff;
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .term-pill-btn:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
 }
 
 .terminal-input-bar {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 20px;
-  background: rgba(11, 13, 18, 0.95);
-  border-top: 1px solid var(--border);
+  padding: 12px 18px;
+  background: rgba(8, 10, 15, 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 [data-theme="light"] .terminal-input-bar {
-  background: rgba(245, 245, 247, 0.95);
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .term-input-prompt {
   font-family: var(--font-mono);
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
   white-space: nowrap;
+  user-select: none;
 }
 
-[data-theme="light"] .term-input-prompt {
-  color: #111317;
+.term-prompt-user {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.term-prompt-at {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.term-prompt-host {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.term-prompt-colon {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.term-prompt-path {
+  color: #ffffff;
+}
+
+.term-prompt-dollar {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+[data-theme="light"] .term-prompt-user,
+[data-theme="light"] .term-prompt-host,
+[data-theme="light"] .term-prompt-path {
+  color: #0f172a;
+}
+
+[data-theme="light"] .term-prompt-at,
+[data-theme="light"] .term-prompt-colon,
+[data-theme="light"] .term-prompt-dollar {
+  color: rgba(15, 23, 42, 0.5);
 }
 
 .term-input {
@@ -1066,36 +1238,67 @@ main {
   border: none;
   outline: none;
   font-family: var(--font-mono);
-  font-size: 13.5px;
-  color: var(--text);
+  font-size: 13px;
+  color: #ffffff;
+  caret-color: #ffffff;
+}
+
+[data-theme="light"] .term-input {
+  color: #0f172a;
+  caret-color: #0f172a;
 }
 
 .term-input::placeholder {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.3);
 }
 
-.term-exec-btn {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  background: #ffffff;
-  color: #0c0e12;
+[data-theme="light"] .term-input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.term-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
   border: none;
+  padding: 0;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
-  transition: all 0.2s ease;
 }
 
-[data-theme="light"] .term-exec-btn {
-  background: #111317;
+.term-enter-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 0 rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.15s ease;
 }
 
-.term-exec-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.45);
+.term-enter-btn:hover .term-enter-kbd {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .term-enter-kbd {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .term-enter-btn:hover .term-enter-kbd {
+  background: #e2e8f0;
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 /* === ENGINEERING CAPABILITIES (GLASS & LIFT) === */
@@ -1615,44 +1818,52 @@ footer {
   <section>
     <div class="section-header">
       <div class="section-icon"><svg width="18" height="18"><use href="#icon-terminal"/></svg></div>
-      <h2 class="section-title" data-i18n="termH">Interactive Systems Terminal</h2>
+      <h2 class="section-title" data-i18n="termH">Interactive Console</h2>
     </div>
 
     <div class="terminal-window">
       <div class="terminal-header">
         <div class="terminal-dots">
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
+          <span class="terminal-dot close"></span>
+          <span class="terminal-dot min"></span>
+          <span class="terminal-dot max"></span>
         </div>
-        <div class="terminal-title">seocry@zenith-edge-node: ~ (zsh)</div>
-        <div class="terminal-status-badge">
-          <span class="pulse-dot" style="margin-right:4px;"></span>
-          <span>LIVE &bull; 99.9% UPTIME</span>
+        <div class="terminal-tab">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          <span>txltedxgod@zenith ~ zsh</span>
+        </div>
+        <div class="terminal-session">
+          <span class="term-status-dot"></span>
+          <span>tty1</span>
         </div>
       </div>
 
       <div class="terminal-body" id="term-body">
         <div class="terminal-output" id="term-initial">
-          <span class="term-dim">[SYSTEM READY]</span> Connected to edge runtime. Type <span class="term-hl">help</span> or click quick pills below to inspect architecture, telemetry &amp; benchmarks.
+          <span class="term-dim">txltedxgod workstation (x86_64-linux-gnu, zsh 5.9)</span>
+Type <span class="term-hl">help</span> to view available commands, or click shortcuts below.
         </div>
       </div>
 
       <div class="terminal-pills-bar">
-        <span class="term-pill-hint">Quick Run:</span>
+        <span class="term-pill-hint">Commands:</span>
         <button type="button" class="term-pill-btn" data-cmd="whoami">whoami</button>
-        <button type="button" class="term-pill-btn" data-cmd="benchmarks">benchmarks</button>
-        <button type="button" class="term-pill-btn" data-cmd="skills">skills</button>
         <button type="button" class="term-pill-btn" data-cmd="projects">projects</button>
+        <button type="button" class="term-pill-btn" data-cmd="skills">skills</button>
+        <button type="button" class="term-pill-btn" data-cmd="benchmarks">benchmarks</button>
         <button type="button" class="term-pill-btn" data-cmd="neofetch">neofetch</button>
         <button type="button" class="term-pill-btn" data-cmd="contact">contact</button>
         <button type="button" class="term-pill-btn" data-cmd="clear">clear</button>
       </div>
 
       <form class="terminal-input-bar" id="term-form">
-        <span class="term-input-prompt">seocry@node:~$</span>
-        <input type="text" id="term-input" class="term-input" placeholder="type a command (e.g. benchmarks, whoami, contact)..." autocomplete="off" spellcheck="false" />
-        <button type="submit" class="term-exec-btn">Execute</button>
+        <span class="term-input-prompt">
+          <span class="term-prompt-user">txltedxgod</span><span class="term-prompt-at">@</span><span class="term-prompt-host">zenith</span><span class="term-prompt-colon">:</span><span class="term-prompt-path">~</span><span class="term-prompt-dollar">$</span>
+        </span>
+        <input type="text" id="term-input" class="term-input" placeholder="type 'help' or any command..." autocomplete="off" spellcheck="false" />
+        <button type="submit" class="term-enter-btn" title="Run command" aria-label="Execute">
+          <kbd class="term-enter-kbd">↵ Enter</kbd>
+        </button>
       </form>
     </div>
   </section>
@@ -1715,8 +1926,7 @@ footer {
   <!-- FOOTER -->
   <footer>
     <div>
-      <span>&copy; 2026 txltedxgod &bull; </span>
-      <span data-i18n="footNote">Crafted with precision &bull; Clean code only</span>
+      <span>&copy; 2026 txltedxgod</span>
     </div>
     <div class="footer-links">
       <a class="footer-link" href="https://github.com/txltedxgod" target="_blank" rel="noopener">GitHub</a>
@@ -1764,8 +1974,7 @@ const dict = {
     pill4P: "Self-healing worker daemons, headless scraper meshes, automated reporting, and background sync engines designed to run 24/7 without intervention.",
     contactH: "Ready to Build Something Solid?",
     contactP: "Available for backend development, Telegram bots & Mini Apps, automation systems, and architectural consulting. Direct communication, zero bureaucracy.",
-    termH: "Interactive Systems Terminal",
-    footNote: "Crafted with precision • Clean code only"
+    termH: "Interactive Console",
   },
   uk: {
     welcomeTitle: "Ласкаво просимо до інженерного простору",
@@ -1801,8 +2010,7 @@ const dict = {
     pill4P: "Фонові демони, розподілені скрапери, регулярна звітність та сервіси синхронізації, що працюють цілодобово без втручання.",
     contactH: "Потрібно створити надійне рішення?",
     contactP: "Відкритий до розробки бекенду, Telegram-ботів та Mini Apps, систем автоматизації та архітектурного консалтингу. Прямий контакт, без зайвої бюрократії.",
-    termH: "Інтерактивний термінал систем",
-    footNote: "Створено з точністю • Тільки чистий код"
+    termH: "Інтерактивна консоль",
   },
 };
 
@@ -1954,7 +2162,7 @@ let historyIndex = -1;
 
 const termData = {
   en: {
-    welcome: '<span class="term-dim">[SYSTEM READY]</span> Connected to edge runtime. Type <span class="term-hl">help</span> or click quick pills below to inspect architecture, telemetry &amp; benchmarks.',
+    welcome: '<span class="term-dim">txltedxgod workstation (x86_64-linux-gnu, zsh 5.9)</span>\nType <span class="term-hl">help</span> to view available commands, or click shortcuts below.',
     help: `Available commands:
   <span class="term-hl">whoami</span>       - Engineer identity &amp; core focus
   <span class="term-hl">benchmarks</span>   - High-concurrency metrics vs industry baselines
@@ -2009,7 +2217,7 @@ const termData = {
     sudo: `<span class="term-violet">[GUARD ACTIVE]</span> Nice try. Kernel sandbox is strictly isolated. Root privileges denied.`
   },
   uk: {
-    welcome: '<span class="term-dim">[СИСТЕМА ГОТОВА]</span> Підключено до edge-вузла. Введіть <span class="term-hl">help</span> або натисніть швидкі кнопки для перегляду архітектури та бенчмарків.',
+    welcome: '<span class="term-dim">txltedxgod workstation (x86_64-linux-gnu, zsh 5.9)</span>\nВведіть <span class="term-hl">help</span> для списку команд або скористайтеся підказками нижче.',
     help: `Доступні команди:
   <span class="term-hl">whoami</span>       - Профіль інженера та спеціалізація
   <span class="term-hl">benchmarks</span>   - Заміри продуктивності та порівняння
@@ -2115,7 +2323,7 @@ function execTermCmd(raw) {
 
   const row = document.createElement('div');
   row.className = 'terminal-output';
-  row.innerHTML = `<div><span class="term-prompt-tag">seocry@node:~$</span> <span class="term-cmd-text">${escapeTermHtml(trimmed)}</span></div><div>${outputHtml}</div>`;
+  row.innerHTML = `<div class="term-history-cmd"><span class="term-prompt-tag">txltedxgod@zenith:~$</span> <span class="term-cmd-text">${escapeTermHtml(trimmed)}</span></div><div class="term-history-out">${outputHtml}</div>`;
   termBody.appendChild(row);
   termBody.scrollTop = termBody.scrollHeight;
 }
